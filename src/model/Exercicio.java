@@ -1,0 +1,58 @@
+package model;
+
+public class Exercicio implements Comparable<Exercicio>  {
+    private int id;
+    private String nomeExercicio, intervalo,repeticoes;
+    
+    public Exercicio(int id, String nomeExercicio, String intervalo, String repeticoes) {
+        this.id = id;
+        this.nomeExercicio = nomeExercicio;
+        this.intervalo = intervalo;
+        this.repeticoes = repeticoes;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNomeExercicio() {
+        return nomeExercicio;
+    }
+
+    public void setNomeExercicio(String nomeExercicio) {
+        this.nomeExercicio = nomeExercicio;
+    }
+
+    public String getIntervalo() {
+        return intervalo;
+    }
+
+    public void setIntervalo(String intervalo) {
+        this.intervalo = intervalo;
+    }
+
+    public String getRepeticoes() {
+        return repeticoes;
+    }
+
+    public void setRepeticoes(String repeticoes) {
+        this.repeticoes = repeticoes;
+    }
+
+    @Override
+    public String toString() {
+        return "Exercicio [id=" + id + ", nomeExercicio=" + nomeExercicio + ", intervalo=" + intervalo + ", repeticoes="
+                + repeticoes + "]";
+    }
+
+
+    @Override
+    public int compareTo(Exercicio exercicio) {
+        return nomeExercicio.compareTo(exercicio.getNomeExercicio());
+    }
+
+}

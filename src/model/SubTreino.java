@@ -1,0 +1,74 @@
+package model;
+
+import java.util.List;
+
+public class SubTreino {
+    private int id;
+    private String tipoSubtreino, sexo, letra;
+    private List<Exercicio> exercicios;
+
+    public SubTreino(int id, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
+        this.id = id;
+        this.tipoSubtreino = tipoSubtreino;
+        this.sexo = sexo;
+        this.letra = letra;
+        this.exercicios = exercicios;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTipoSubtreino() {
+        return tipoSubtreino;
+    }
+
+    public void setTipoSubtreino(String tipoSubtreino) {
+        this.tipoSubtreino = tipoSubtreino;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getLetra() {
+        return letra;
+    }
+
+    public void setLetra(String letra) {
+        this.letra = letra;
+    }
+
+    public List<Exercicio> getExercicios() {
+        return exercicios;
+    }
+
+    public void setExercicios(List<Exercicio> exercicios) {
+        this.exercicios = exercicios;
+    }
+
+    public Exercicio buscarExercicio(int id) {
+        return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+    }
+
+    @Override
+    public String toString() {
+        return "SubTreino [id=" + id + ", tipoSubtreino=" + tipoSubtreino + ", sexo=" + sexo + ", letra=" + letra
+                + ", exercicios=" + exercicios + "]";
+    }
+
+    
+
+    
+
+
+
+}
