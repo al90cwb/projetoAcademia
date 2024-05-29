@@ -1,6 +1,6 @@
 package view;
 
-import java.time.format.DateTimeFormatter;
+//import java.time.format.DateTimeFormatter;
 
 /**
  * Este programa é um exemplo simples de gestão de academia
@@ -22,7 +22,7 @@ public class academiaView {
         //OBJETOS
 
         //FORMATER
-        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyy");
+        //DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyy");
 
 
         //USUARIO DE INICIALIZAÇÃO
