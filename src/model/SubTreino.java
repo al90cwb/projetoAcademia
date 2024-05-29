@@ -11,11 +11,12 @@ import java.util.List;
  */
 public class SubTreino {
     private int id;
-    private String tipoSubtreino, sexo, letra;
+    private String nome,tipoSubtreino, sexo, letra;
     private List<Exercicio> exercicios;
 
-    public SubTreino(int id, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
+    public SubTreino(int id,String nome, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
         this.id = id;
+        this.nome = nome;
         this.tipoSubtreino = tipoSubtreino;
         this.sexo = sexo;
         this.letra = letra;
@@ -28,6 +29,14 @@ public class SubTreino {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTipoSubtreino() {
@@ -68,11 +77,10 @@ public class SubTreino {
 
     @Override
     public String toString() {
-        return "SubTreino [id=" + id + ", tipoSubtreino=" + tipoSubtreino + ", sexo=" + sexo + ", letra=" + letra
-                + ", exercicios=" + exercicios + "]";
+        return "SubTreino [id=" + id + ", nome=" + nome + ", tipoSubtreino=" + tipoSubtreino + ", sexo=" + sexo
+                + ", letra=" + letra + ", exercicios=" + exercicios + "]";
     }
 
-    
 
     
 
