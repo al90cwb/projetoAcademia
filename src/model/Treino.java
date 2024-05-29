@@ -3,6 +3,15 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Este Objeto contem os dados de subtreino
+ * Contem uma lista de subtrienos
+ * com informações gerais sobre aquele treino
+ * Os treinos servem de base , e são copiados para os alunos
+ * Versão: 1.0
+ * Autor: [Alan Henrique de Souza]
+ * Data de criação: [28/05/2024]
+ */
 public class Treino {
     private int id, duracao;
     private String aquecimento, sugestaoDiasTreino;

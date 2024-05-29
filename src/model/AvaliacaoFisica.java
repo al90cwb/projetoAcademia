@@ -1,5 +1,13 @@
 package model;
 
+/**
+ * Este Objeto contem os dados de avaliação fisica
+ * Cada aluno possui uma lista de avaliações fisicas, somente daquele aluno
+ * Versão: 1.0
+ * Autor: [Alan Henrique de Souza]
+ * Data de criação: [28/05/2024]
+ */
+
 public class AvaliacaoFisica  {
     private int id;
     private float peso, altura, percentualGordura, iMC;

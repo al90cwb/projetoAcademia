@@ -1,7 +1,14 @@
 package model;
 
 import java.util.List;
-
+/**
+ * Este Objeto contem os dados de subtreino
+ * Contem uma lista de exercicios e informações do subtrieno
+ * Os subtreinos são comuns para todos os treinos
+ * Versão: 1.0
+ * Autor: [Alan Henrique de Souza]
+ * Data de criação: [28/05/2024]
+ */
 public class SubTreino {
     private int id;
     private String tipoSubtreino, sexo, letra;

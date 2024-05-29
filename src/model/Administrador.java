@@ -2,6 +2,14 @@ package model;
 
 import java.time.LocalDate;
 
+/**
+ * Este Objeto contem os dados de administrador
+ * Tem acesso de criação, edição e exclusão de usuarios
+ * Versão: 1.0
+ * Autor: [Alan Henrique de Souza]
+ * Data de criação: [28/05/2024]
+ */
+
 public class Administrador extends Usuario  {
     public Administrador(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento) {
