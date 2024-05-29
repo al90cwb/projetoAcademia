@@ -32,6 +32,7 @@ public class academiaView {
         //INICIO DO SISTEMA-------------------------------------------------
             System.out.println("Sistema de Academia-------------------------");
             
+            System.out.println("Teste ");
 
 
 
