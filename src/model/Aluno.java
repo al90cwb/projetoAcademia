@@ -3,6 +3,17 @@ package model;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Este Objeto contem os dados de aluno
+ * Contem um trieno que é copiado do sistema principal de treinos
+ * Contem todos os dados herdados de usuario
+ * Contem uma lista de avaliações fisicas desse aluno
+ * Tem acesso de visualização do treino, avaliações e solicitaçaõ de novo treino.
+ * Versão: 1.0
+ * Autor: [Alan Henrique de Souza]
+ * Data de criação: [28/05/2024]
+ */
+
 public class Aluno extends Usuario  {
 
     private Treino trieno;
