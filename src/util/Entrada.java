@@ -1,7 +1,9 @@
 package util;
 
+import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
 /**
  * Este Objeto filtra as entradas do teclado, todos tratamento
  * poderm ser feitos aqui 
@@ -11,8 +13,11 @@ import java.util.Scanner;
  * Data de criação: [28/05/2024]
  */
 
-public class Entrada {
+public abstract class Entrada {
+        //formatação entradas
+        public static  DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
 
+        //tratamento entradas
         public static int entradaInt() {
             boolean entradaValida = false;
             int numero=0;
@@ -97,5 +102,6 @@ public class Entrada {
 
             return dataFormatada;
         }
+
 
 }

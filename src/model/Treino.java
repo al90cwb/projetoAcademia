@@ -13,16 +13,17 @@ import java.util.List;
  * Data de criação: [28/05/2024]
  */
 public class Treino {
-    private int id, duracao;
-    private String aquecimento, sugestaoDiasTreino;
+    private int id,  duracao;
+    private String nome, aquecimento, sugestaoDiasTreino;
     private LocalDate dataInicio, dataFim;
     private List<SubTreino> subtreinos;
 
 
-    public Treino(int id, int duracao, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
+    public Treino(int id, int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
             LocalDate dataFim, List<SubTreino> subtreinos) {
         this.id = id;
         this.duracao = duracao;
+        this.nome = nome;
         this.aquecimento = aquecimento;
         this.sugestaoDiasTreino = sugestaoDiasTreino;
         this.dataInicio = dataInicio;
@@ -30,6 +31,16 @@ public class Treino {
         this.subtreinos = subtreinos;
     }
 
+
+    public String getNome() {
+        return nome;
+    }
+
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public int getId() {
         return id;
@@ -96,10 +107,13 @@ public class Treino {
 
     @Override
     public String toString() {
-        return "Treino [id=" + id + ", duracao=" + duracao + ", aquecimento=" + aquecimento + ", sugestaoDiasTreino="
-                + sugestaoDiasTreino + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", subtreinos="
-                + subtreinos + "]";
+        return "Treino [id=" + id + ", duracao=" + duracao + ", nome=" + nome + ", aquecimento=" + aquecimento
+                + ", sugestaoDiasTreino=" + sugestaoDiasTreino + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
+                + ", subtreinos=" + subtreinos + "]";
     }
+
+
+
 
 
 }

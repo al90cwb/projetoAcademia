@@ -8,7 +8,7 @@ import java.util.Scanner;
  * Autor: [Alan Henrique de Souza]
  * Data de criação: [28/05/2024]
  */
-public class Teclado {
+public abstract class Teclado {
     private static Scanner teclado = new Scanner(System.in);
 
     private Teclado() {
