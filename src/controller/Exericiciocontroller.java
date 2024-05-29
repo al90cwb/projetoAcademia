@@ -11,10 +11,10 @@ import model.Exercicio;
  * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024] 
  * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
  */
-public class Exericiciocontroller {
+public class ExericicioController {
     private List<Exercicio> exercicios;
 
-    public Exericiciocontroller(List<Exercicio> exercicios) {
+    public ExericicioController(List<Exercicio> exercicios) {
         this.exercicios = exercicios;
     }
 
