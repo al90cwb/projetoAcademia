@@ -16,19 +16,19 @@ import java.util.Scanner;
 public abstract class Entrada {
         //formatação entradas
         public static  DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
+        private static Scanner in = new Scanner(System.in);
 
         //tratamento entradas
         public static int entradaInt() {
             boolean entradaValida = false;
             int numero=0;
-            Scanner teclado = Teclado.getScanner();
             while (!entradaValida) {
                 try {
-                    numero = teclado.nextInt();
+                    numero = in.nextInt();
                     entradaValida = true; // Se a entrada for válida, saímos do loop
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                    teclado.nextLine(); // Limpa o buffer do scanner
+                    in.nextLine(); // Limpa o buffer do scanner
                 }
             }
             return numero;
@@ -37,15 +37,14 @@ public abstract class Entrada {
         public static float entradaFloat() {
             boolean entradaValida = false;
             float numero=0f;
-            Scanner teclado = Teclado.getScanner();
 
             while (!entradaValida) {
                 try {
-                    numero = teclado.nextFloat();
+                    numero = in.nextFloat();
                     entradaValida = true; // Se a entrada for válida, saímos do loop
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                    teclado.nextLine(); // Limpa o buffer do scanner
+                    in.nextLine(); // Limpa o buffer do scanner
                 }
             }
             return numero;
@@ -54,27 +53,25 @@ public abstract class Entrada {
         public static String entradaString(){
             boolean entradaValida = false;
             String frase="";
-            Scanner teclado = Teclado.getScanner();
             //teclado.nextLine();
             while (!entradaValida) {
                 try {
-                    frase = teclado.nextLine();
+                    frase = in.nextLine();
                     entradaValida = true; // Se a entrada for válida, saímos do loop
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                    teclado.nextLine(); // Limpa o buffer do scanner
+                    in.nextLine(); // Limpa o buffer do scanner
                 }
             }
             return frase;
         }
 
         public static String entradaData(){
-            Scanner teclado = Teclado.getScanner();
             String dataFormatada = "";
 
             boolean formatoCorreto = false;
             while (!formatoCorreto) {
-                String entrada = teclado.nextLine();
+                String entrada = in.nextLine();
 
                 try {
                     // Verifica se a entrada possui o formato correto
