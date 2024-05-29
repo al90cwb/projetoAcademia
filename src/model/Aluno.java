@@ -16,12 +16,12 @@ import java.util.List;
 
 public class Aluno extends Usuario  {
 
-    private Treino trieno;
+    private Treino treino;
     private List<AvaliacaoFisica> avaliacoesFisicas;
 
 
-    public Aluno(Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas) {
-        this.trieno = trieno;
+    public Aluno(Treino treino, List<AvaliacaoFisica> avaliacoesFisicas) {
+        this.treino = treino;
         this.avaliacoesFisicas = avaliacoesFisicas;
     }
 
@@ -29,17 +29,17 @@ public class Aluno extends Usuario  {
     public Aluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento, Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);
-        this.trieno = trieno;
+        this.treino = trieno;
         this.avaliacoesFisicas = avaliacoesFisicas;
     }
     
     public Treino getTrieno() {
-        return trieno;
+        return treino;
     }
 
 
     public void setTrieno(Treino trieno) {
-        this.trieno = trieno;
+        this.treino = trieno;
     }
 
 
@@ -71,6 +71,6 @@ public class Aluno extends Usuario  {
     public String toString() {
         return "Aluno [id=" + super.getId() + ", nome=" + super.getNome() + ", cpf=" + super.getCpf() + ", endereco=" + super.getEndereco() + ", celular="
                 + super.getCelular() + ", email=" + super.getEmail() + ", sexo=" + super.getSexo() + ", senha=" + super.getSenha() + ", dataNascimento="
-                + super.getDataNascimento() + ", trieno=" + trieno + ", avaliacoesFisicas=" + avaliacoesFisicas + "]";
+                + super.getDataNascimento() + ", treino=" + treino + ", avaliacoesFisicas=" + avaliacoesFisicas + "]";
     }
 }

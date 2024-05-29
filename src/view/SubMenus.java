@@ -15,6 +15,10 @@ import util.Entrada;
  */
 public abstract class SubMenus {
 
+    public static void login(){
+        
+    }
+
 
     public static Exercicio cadastroExercicio(Exercicio exercicio){
         //cadastro exercicio

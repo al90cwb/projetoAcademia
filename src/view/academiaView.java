@@ -1,5 +1,8 @@
 package view;
 
+import controller.ExericicioController;
+import controller.SubtreinoController;
+import controller.TreinoController;
 
 /**
  * Este programa é um exemplo simples de gestão de academia
@@ -13,8 +16,9 @@ public class academiaView {
     public static void main(String[] args)throws Exception {
         //DECLARAÇÃO DE VARIAVEIS
         //CONTROLLER
-        
-        //MENU
+            ExericicioController controllerExecicio ;
+            SubtreinoController controllerSubtreino ;
+            TreinoController controllerTreino ;
 
         //DADOS DE CADASTRO
 
@@ -26,7 +30,10 @@ public class academiaView {
 
 
         //INICIO DO SISTEMA-------------------------------------------------
-        
+            System.out.println("Sistema de Academia-------------------------");
+            
+
+
 
         //MENU PRINCIPAL
 

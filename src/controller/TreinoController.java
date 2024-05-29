@@ -14,10 +14,10 @@ import model.Treino;
  */
 
 
-public class TreinoContrller {
+public class TreinoController {
     private List<Treino> trienos;
 
-    public TreinoContrller(List<Treino> trienos) {
+    public TreinoController(List<Treino> trienos) {
         this.trienos = trienos;
     }
 
