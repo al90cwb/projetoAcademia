@@ -25,8 +25,8 @@ public class academiaView {
         //DECLARAÇÃO DE VARIAVEIS
         //CONTROLLER
             ExercicioController controllerExecicio  = new ExercicioController(new ArrayList<Exercicio>());
-            SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
-            TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>()) ;
+           // SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
+           // TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>()) ;
 
         //DADOS DE CADASTRO
             boolean modoTeste= true;
@@ -36,12 +36,12 @@ public class academiaView {
 
         //EXERCICIO
             Exercicio exercicioCadastro = new Exercicio( null, null, null);
-            SubTreino subTreinoCadastro = new SubTreino( null, null, null, null, null);
-            Treino treinoCadastro = new Treino(opcaoCadastroExercicio, null, null, null, null, null, null);
+            //SubTreino subTreinoCadastro = new SubTreino( null, null, null, null, null);
+            //Treino treinoCadastro = new Treino(opcaoCadastroExercicio, null, null, null, null, null, null);
 
             Exercicio exercicioBusca;//somente para buscas
-            SubTreino subtreinoBusca;//somente para buscas
-            Treino treinoBusca;//somente para buscas
+           // SubTreino subtreinoBusca;//somente para buscas
+            //Treino treinoBusca;//somente para buscas
 
 
         //USUARIO DE INICIALIZAÇÃO
@@ -62,7 +62,8 @@ public class academiaView {
             
         //CADASTRO EXERCICIO
             do {
-                SubMenus.opcoesCadastroExercicio();
+               
+                subMenus.opcoesCadastroExercicio();
                 opcaoCadastroExercicio = Entrada.entradaInt();
                 sairOpcaoCadastroExercicio = false;//se for para true sai do menu
 
@@ -72,15 +73,12 @@ public class academiaView {
                         break;
                     case 1://CADASTRO EXERCICIO
 
-                        SubMenus.cadastroExercicio(exercicioCadastro);
+                        subMenus.cadastroExercicio(exercicioCadastro);
                         System.out.println("Você deseja cadastrar o Exercicio?");
-                        SubMenus.verExercicio(exercicioCadastro);
+                        subMenus.verExercicio(exercicioCadastro);
 
-                        if (SubMenus.confimar()){
-                            SubMenus.alterarExercicio(exercicioCadastro, idBusca);
-
-                            //alterar o exercicio pelo novo 
-
+                        if (subMenus.confimar()){
+                            //alterar o exercicio pelo novo
                             controllerExecicio.cadastrarExercicio(new Exercicio(exercicioCadastro.getNomeExercicio(),
                             exercicioCadastro.getIntervalo(), exercicioCadastro.getRepeticoes()));
 
@@ -94,17 +92,17 @@ public class academiaView {
                     case 2://ALTERAR
 
                         //BUSCAR EXERCICIO
-                        idBusca = SubMenus.buscarExercicio();
+                        idBusca = subMenus.buscarExercicio();
                         exercicioBusca = controllerExecicio.buscaExercicioId(idBusca);
 
                         if (exercicioBusca==null) {
                             System.out.println("Exercicio Não Encontrado");
                         } else {
                             System.out.println("Você deseja alterar o Exercicio?");
-                            SubMenus.verExercicio(exercicioBusca);
+                            subMenus.verExercicio(exercicioBusca);
 
-                            if (SubMenus.confimar()){
-                                SubMenus.alterarExercicio(exercicioCadastro, idBusca);
+                            if (subMenus.confimar()){
+                                subMenus.alterarExercicio(exercicioCadastro, idBusca);
 
                                 //alterar o exercicio pelo novo 
                                     exercicioBusca.setNomeExercicio(exercicioCadastro.getNomeExercicio());
@@ -112,10 +110,10 @@ public class academiaView {
                                     exercicioBusca.setRepeticoes(exercicioCadastro.getRepeticoes());
 
                                 System.out.println("Exercicio Alterado:");
-                                SubMenus.verExercicio(exercicioBusca);
+                                subMenus.verExercicio(exercicioBusca);
                             }else{
                                 System.out.println("Operação Cancelada, Exercicio não foi alterado:");
-                                SubMenus.verExercicio(exercicioBusca);
+                                subMenus.verExercicio(exercicioBusca);
                             }
                         }
 
@@ -124,21 +122,21 @@ public class academiaView {
                     case 3://DELETAR
 
                         //BUSCAR EXERCICIO
-                        idBusca = SubMenus.buscarExercicio();
+                        idBusca = subMenus.buscarExercicio();
                         exercicioBusca = controllerExecicio.buscaExercicioId(idBusca);
 
                         if (exercicioBusca==null) {
                             System.out.println("Exercicio Não Encontrado");
                         } else {
                             System.out.println("Você deseja EXCLUIR o Exercicio?");
-                            SubMenus.verExercicio(exercicioBusca);
+                            subMenus.verExercicio(exercicioBusca);
 
-                            if (SubMenus.confimar()){
+                            if (subMenus.confimar()){
                                 controllerExecicio.deletarTreino(idBusca);
                                 System.out.println("Exercicio Excluido:");
                             }else{
                                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
-                                SubMenus.verExercicio(exercicioBusca);
+                                subMenus.verExercicio(exercicioBusca);
                             }
                         }
                         sairOpcaoCadastroExercicio = false;//continua no menu
