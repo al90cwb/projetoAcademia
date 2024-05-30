@@ -130,14 +130,26 @@ public class academiaView {
                         if (exercicioBusca==null) {
                             System.out.println("Exercicio Não Encontrado");
                         } else {
-                            
+                            System.out.println("Você deseja EXCLUIR o Exercicio?");
+                            SubMenus.verExercicio(exercicioBusca);
 
+                            if (SubMenus.confimar()){
+                                controllerExecicio.deletarTreino(idBusca);
+                                System.out.println("Exercicio Excluido:");
+                            }else{
+                                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+                                SubMenus.verExercicio(exercicioBusca);
+                            }
                         }
-
-
                         sairOpcaoCadastroExercicio = false;//continua no menu
                         break;
 
+                    case 4://LISTA DE EXERCICIOS CADASTRADOS
+                        System.out.println("Lista de Exercicios Cadastrados");
+                        controllerExecicio.getExercicios().forEach(System.out::println);
+                        System.out.println("----------------\n\n");
+                        sairOpcaoCadastroExercicio = false;//continua no menu
+                        break;
                     default:
                         sairOpcaoCadastroExercicio = false;//continua no menu
                         break;
@@ -145,10 +157,6 @@ public class academiaView {
 
             } while (!sairOpcaoCadastroExercicio);//se for para true sai do menu
 
-
-
-            
-        //TESTE JUAN
 
             
     }
