@@ -14,8 +14,8 @@ public class SubTreino {
     private String nome,tipoSubtreino, sexo, letra;
     private List<Exercicio> exercicios;
 
-    public SubTreino(int id,String nome, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
-        this.id = id;
+    public SubTreino(String nome, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
+        this.id = 0;
         this.nome = nome;
         this.tipoSubtreino = tipoSubtreino;
         this.sexo = sexo;
@@ -73,6 +73,10 @@ public class SubTreino {
 
     public Exercicio buscarExercicio(int id) {
         return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+    }
+
+    public void limparExercicios(){
+        exercicios.clear();
     }
 
     @Override

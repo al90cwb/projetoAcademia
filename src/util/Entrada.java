@@ -16,7 +16,7 @@ import java.util.Scanner;
 public abstract class Entrada {
         //formatação entradas
         public static  DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
-        private static Scanner in = new Scanner(System.in);
+        public static Scanner in = new Scanner(System.in);
 
         //tratamento entradas
         public static int entradaInt() {
@@ -25,6 +25,27 @@ public abstract class Entrada {
             while (!entradaValida) {
                 try {
                     numero = in.nextInt();
+                    entradaValida = true; // Se a entrada for válida, saímos do loop
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                    in.nextLine(); // Limpa o buffer do scanner
+                }
+            }
+            return numero;
+        }
+
+        public static int entradaZeroUm() {
+            boolean entradaValida = false;
+            int numero=0;
+            while (!entradaValida) {
+                try {
+                    numero = in.nextInt();
+                    if (numero==0 || numero ==1){
+                        entradaValida = true; // Se a entrada for válida, saímos do loop
+                    }else{
+                        entradaValida = false; // Se a entrada for válida, saímos do loop
+                        System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                    }
                     entradaValida = true; // Se a entrada for válida, saímos do loop
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
@@ -48,6 +69,18 @@ public abstract class Entrada {
                 }
             }
             return numero;
+        }
+
+        public static String entradaCPF(){
+            return in.nextLine();
+        }
+        
+        public static String entradaEmail(){
+            return in.nextLine();
+        }
+
+        public static String entradaSexo(){
+            return in.nextLine();
         }
 
         public static String entradaString(){

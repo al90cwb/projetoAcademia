@@ -11,10 +11,10 @@ import model.Exercicio;
  * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024] 
  * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
  */
-public class ExericicioController {
+public class ExercicioController {
     private List<Exercicio> exercicios;
 
-    public ExericicioController(List<Exercicio> exercicios) {
+    public ExercicioController(List<Exercicio> exercicios) {
         this.exercicios = exercicios;
     }
 
@@ -33,13 +33,13 @@ public class ExericicioController {
         return "Exericiciocontroller [exercicios=" + exercicios + "]";
     }
 
-    public String cadastrarSubTreino(Exercicio exercicio) {
+    public String cadastrarExercicio(Exercicio exercicio) {
         if (buscaExercicioId(exercicio.getId() ) == null) {
             exercicio.setId(criarID());
             exercicios.add(exercicio);
-            return "SubTreino Cadastrado!";
+            return "Exercicio Cadastrado!";
         }
-        return "Subtreino Ja Existe!";
+        return "Exercicio Ja Existe!";
     }
 
     public void deletarTreino(int id){
@@ -48,6 +48,10 @@ public class ExericicioController {
 
     public Exercicio buscaExercicioId(int id) {
         return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+    }
+
+    public void limparExercicios(){
+        exercicios.clear();
     }
 
     public int criarID() {

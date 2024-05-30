@@ -12,8 +12,8 @@ public class Exercicio implements Comparable<Exercicio>  {
     private int id;
     private String nomeExercicio, intervalo,repeticoes;
     
-    public Exercicio(int id, String nomeExercicio, String intervalo, String repeticoes) {
-        this.id = id;
+    public Exercicio( String nomeExercicio, String intervalo, String repeticoes) {
+        this.id = 0;
         this.nomeExercicio = nomeExercicio;
         this.intervalo = intervalo;
         this.repeticoes = repeticoes;

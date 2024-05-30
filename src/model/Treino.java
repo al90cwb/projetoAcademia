@@ -19,9 +19,9 @@ public class Treino {
     private List<SubTreino> subtreinos;
 
 
-    public Treino(int id, int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
+    public Treino( int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
             LocalDate dataFim, List<SubTreino> subtreinos) {
-        this.id = id;
+        this.id = 0;
         this.duracao = duracao;
         this.nome = nome;
         this.aquecimento = aquecimento;
