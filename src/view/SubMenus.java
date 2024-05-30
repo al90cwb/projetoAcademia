@@ -1,5 +1,6 @@
 package view;
 
+import java.security.PublicKey;
 import java.time.LocalDate;
 
 import model.Exercicio;
@@ -15,14 +16,34 @@ import util.Entrada;
  */
 public abstract class SubMenus {
 
-    public static void login(){
-        
+    public static void opcoesCadastroExercicio(){
+        //menu com as opçções de cadastro de Exercicio
+            System.out.println("\n\n");
+            System.out.println("OPÇÕES CADASTRO DE EXERCICIOS, digite um numero correspondente:");
+            System.out.println("1 - CADASTRAR NOVO EXERCICIO:");
+            System.out.println("2 - ALTERAR EXERCICIO:");
+            System.out.println("3 - DELETAR EXERCICIO:");
+            System.out.println("4 - CANCELAR");
     }
-
 
     public static Exercicio cadastroExercicio(Exercicio exercicio){
         //cadastro exercicio
+            System.out.println("\n\n");
             System.out.println("Cadastro de Exercicio");
+            System.out.println("Nome do exercicio");
+            exercicio.setNomeExercicio(Entrada.entradaString());
+            System.out.println("Quantidade de Repetições");
+            exercicio.setRepeticoes(Entrada.entradaString());
+            System.out.println("Tempo de Intervalo");
+            exercicio.setIntervalo(Entrada.entradaString());
+        return exercicio;
+    }
+
+    public static Exercicio alterarExercicio(Exercicio exercicio, int id){
+        //cadastro exercicio
+            System.out.println("\n\n");
+            System.out.println("Alterar Exercicio id: "  + id);
+            exercicio.setId(id);//id selecionado
             System.out.println("Nome do exercicio");
             exercicio.setNomeExercicio(Entrada.entradaString());
             System.out.println("Quantidade de Repetições");
@@ -33,7 +54,8 @@ public abstract class SubMenus {
     }
     
     public static SubTreino cadastroSubtreino(SubTreino subtreino){
-        //cadastro exercicio
+        //cadastro Subtreino
+            System.out.println("\n\n");
             System.out.println("Cadastro de Subtrieno");
             System.out.println("Nome do Subtreino");
             subtreino.setNome(Entrada.entradaString());
@@ -46,8 +68,16 @@ public abstract class SubMenus {
         return subtreino;
     }
 
+    public static void verExercicio(Exercicio exercicio){
+        //ver exercicio
+            System.out.println("\n\n");
+            
+
+    }
+
     public static Treino cadastroTreino(Treino treino){
-        //cadastro exercicio
+        //cadastro Treino
+            System.out.println("\n\n");
             System.out.println("Cadastro de Treino");
             System.out.println("Nome do Treino");
             treino.setNome(Entrada.entradaString());

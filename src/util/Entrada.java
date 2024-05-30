@@ -16,7 +16,7 @@ import java.util.Scanner;
 public abstract class Entrada {
         //formatação entradas
         public static  DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
-        private static Scanner in = new Scanner(System.in);
+        public static Scanner in = new Scanner(System.in);
 
         //tratamento entradas
         public static int entradaInt() {
