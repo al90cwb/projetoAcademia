@@ -13,7 +13,7 @@ import util.Entrada;
  * Autor: [Alan Henrique de Souza]
  * Data de criação: [28/05/2024]
  */
-public abstract class subMenus {
+public abstract class SubMenus {
     //GERAL---------------------------- 
     public static boolean confimar(){
         //ver exercicio

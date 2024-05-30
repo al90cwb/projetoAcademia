@@ -63,7 +63,7 @@ public class academiaView {
         //CADASTRO EXERCICIO
             do {
                
-                subMenus.opcoesCadastroExercicio();
+                SubMenus.opcoesCadastroExercicio();
                 opcaoCadastroExercicio = Entrada.entradaInt();
                 sairOpcaoCadastroExercicio = false;//se for para true sai do menu
 
@@ -73,11 +73,11 @@ public class academiaView {
                         break;
                     case 1://CADASTRO EXERCICIO
 
-                        subMenus.cadastroExercicio(exercicioCadastro);
+                        SubMenus.cadastroExercicio(exercicioCadastro);
                         System.out.println("Você deseja cadastrar o Exercicio?");
-                        subMenus.verExercicio(exercicioCadastro);
+                        SubMenus.verExercicio(exercicioCadastro);
 
-                        if (subMenus.confimar()){
+                        if (SubMenus.confimar()){
                             //alterar o exercicio pelo novo
                             controllerExecicio.cadastrarExercicio(new Exercicio(exercicioCadastro.getNomeExercicio(),
                             exercicioCadastro.getIntervalo(), exercicioCadastro.getRepeticoes()));
@@ -92,17 +92,17 @@ public class academiaView {
                     case 2://ALTERAR
 
                         //BUSCAR EXERCICIO
-                        idBusca = subMenus.buscarExercicio();
+                        idBusca = SubMenus.buscarExercicio();
                         exercicioBusca = controllerExecicio.buscaExercicioId(idBusca);
 
                         if (exercicioBusca==null) {
                             System.out.println("Exercicio Não Encontrado");
                         } else {
                             System.out.println("Você deseja alterar o Exercicio?");
-                            subMenus.verExercicio(exercicioBusca);
+                            SubMenus.verExercicio(exercicioBusca);
 
-                            if (subMenus.confimar()){
-                                subMenus.alterarExercicio(exercicioCadastro, idBusca);
+                            if (SubMenus.confimar()){
+                                SubMenus.alterarExercicio(exercicioCadastro, idBusca);
 
                                 //alterar o exercicio pelo novo 
                                     exercicioBusca.setNomeExercicio(exercicioCadastro.getNomeExercicio());
@@ -110,10 +110,10 @@ public class academiaView {
                                     exercicioBusca.setRepeticoes(exercicioCadastro.getRepeticoes());
 
                                 System.out.println("Exercicio Alterado:");
-                                subMenus.verExercicio(exercicioBusca);
+                                SubMenus.verExercicio(exercicioBusca);
                             }else{
                                 System.out.println("Operação Cancelada, Exercicio não foi alterado:");
-                                subMenus.verExercicio(exercicioBusca);
+                                SubMenus.verExercicio(exercicioBusca);
                             }
                         }
 
@@ -122,21 +122,21 @@ public class academiaView {
                     case 3://DELETAR
 
                         //BUSCAR EXERCICIO
-                        idBusca = subMenus.buscarExercicio();
+                        idBusca = SubMenus.buscarExercicio();
                         exercicioBusca = controllerExecicio.buscaExercicioId(idBusca);
 
                         if (exercicioBusca==null) {
                             System.out.println("Exercicio Não Encontrado");
                         } else {
                             System.out.println("Você deseja EXCLUIR o Exercicio?");
-                            subMenus.verExercicio(exercicioBusca);
+                            SubMenus.verExercicio(exercicioBusca);
 
-                            if (subMenus.confimar()){
+                            if (SubMenus.confimar()){
                                 controllerExecicio.deletarTreino(idBusca);
                                 System.out.println("Exercicio Excluido:");
                             }else{
                                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
-                                subMenus.verExercicio(exercicioBusca);
+                                SubMenus.verExercicio(exercicioBusca);
                             }
                         }
                         sairOpcaoCadastroExercicio = false;//continua no menu
