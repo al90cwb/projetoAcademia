@@ -46,7 +46,6 @@ public abstract class Entrada {
                         entradaValida = false; // Se a entrada for válida, saímos do loop
                         System.out.println("Entrada inválida. Por favor, digite um número válido.");
                     }
-                    entradaValida = true; // Se a entrada for válida, saímos do loop
                 } catch (InputMismatchException e) {
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
                     in.nextLine(); // Limpa o buffer do scanner
