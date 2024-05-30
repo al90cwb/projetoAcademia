@@ -75,6 +75,10 @@ public class SubTreino {
         return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
+    public void limparExercicios(){
+        exercicios.clear();
+    }
+
     @Override
     public String toString() {
         return "SubTreino [id=" + id + ", nome=" + nome + ", tipoSubtreino=" + tipoSubtreino + ", sexo=" + sexo

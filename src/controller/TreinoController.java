@@ -47,6 +47,10 @@ public class TreinoController {
         trienos.removeIf( t -> t.getId() == id);
     }
 
+    public void limparTreinos(){
+        trienos.clear();
+    }
+
     public Treino buscaTreinoId(int id) {
         return trienos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }

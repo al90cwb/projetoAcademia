@@ -50,6 +50,10 @@ public class ExercicioController {
         return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
+    public void limparExercicios(){
+        exercicios.clear();
+    }
+
     public int criarID() {
         int res = 0;
         for (Exercicio p : exercicios) {
