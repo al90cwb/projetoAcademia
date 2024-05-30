@@ -43,6 +43,10 @@ public class SubtreinoController {
         return subTreinos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
+    public void limparSubtreinos(){
+        subTreinos.clear();
+    }
+
     public int criarID() {
         int res = 0;
         for (SubTreino p : subTreinos) {
