@@ -150,7 +150,6 @@ public class academiaView {
             
         //TESTE JUAN
 
-            //TesteVinicius
-            //TesteVinicius2
+            
     }
 }
