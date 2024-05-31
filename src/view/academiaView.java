@@ -171,6 +171,7 @@ public class academiaView {
 
             //PRECISA IMPLEMENTAR OS SUBTREINOS - NÃO CONSEGUI - JUAN.
             //ALGUM BUG NO CADASTRAR AQUECIMENTO, ESTÁ SENDO PULADO NA HORA DO CADASTRO.
+            //Manti totalmente o padrão feito acima para mais fácil visualização.
 
             do {
 
