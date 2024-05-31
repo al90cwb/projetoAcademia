@@ -75,6 +75,18 @@ public abstract class SubMenus {
     }
 
     //SUBTREINO-------------------------- 
+
+    public static void opcoesCadastroSubtreino(){
+        System.out.println("\n\n");
+        System.out.println("Cadastro de treinos, digite um numero correspondente:");
+        System.out.println("0 - CANCELAR");
+        System.out.println("1 - CADASTRAR NOVO SUBTREINO:");
+        System.out.println("2 - ALTERAR SUBTREINO:");
+        System.out.println("3 - DELETAR SUBTREINO:");
+        System.out.println("4 - LISTA SUBTREINOS CADATRADOS:");
+}
+
+
     public static SubTreino cadastroSubtreino(SubTreino subtreino){
         //cadastro Subtreino
             Entrada.in.nextLine();//LIMPA BUFFER
@@ -91,9 +103,13 @@ public abstract class SubMenus {
         return subtreino;
     }
 
+
+
+
+    
+
     //TRIENO-----------------------------
     public static void opcoesCadastroTreino(){
-        //menu com as opçções de cadastro de Exercicio
             System.out.println("\n\n");
             System.out.println("Cadastro de treinos, digite um numero correspondente:");
             System.out.println("0 - CANCELAR");
@@ -124,7 +140,6 @@ public abstract class SubMenus {
         return treino;
     }
     public static Treino alterarTreino(Treino treino, int id){
-        //cadastro exercicio
             Entrada.in.nextLine();//LIMPA BUFFER
 
             System.out.println("\n\n");

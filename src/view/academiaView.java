@@ -25,26 +25,31 @@ public class academiaView {
         //DECLARAÇÃO DE VARIAVEIS
         //CONTROLLER
             ExercicioController controllerExecicio  = new ExercicioController(new ArrayList<Exercicio>());
-           // SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
+            SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
             TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>()) ;
 
         //DADOS DE CADASTRO
             boolean modoTeste= true;
             boolean sairOpcaoCadastroExercicio = false;
             int opcaoCadastroExercicio = 0;
-            int idBusca = 0;
+    
             boolean sairOpcaoCadastroTreino = false;
             int opcaoCadastroTreino = 0;
+
+            boolean sairOpcaoCadastroSubtreino = false;
+            int opcaoCadastroSubtreino = 0;
+
+            int idBusca = 0;
 
     
 
         //EXERCICIO
             Exercicio exercicioCadastro = new Exercicio( null, null, null);
-            //SubTreino subTreinoCadastro = new SubTreino( null, null, null, null, null);
+            SubTreino subTreinoCadastro = new SubTreino( null, null, null, null, null);
             Treino treinoCadastro = new Treino(opcaoCadastroExercicio, null, null, null, null, null, null);
             
             Exercicio exercicioBusca;//somente para buscas
-           // SubTreino subtreinoBusca;//somente para buscas
+            SubTreino subtreinoBusca;//somente para buscas
             Treino treinoBusca;//somente para buscas
 
 
@@ -173,7 +178,7 @@ public class academiaView {
             //ALGUM BUG NO CADASTRAR AQUECIMENTO, ESTÁ SENDO PULADO NA HORA DO CADASTRO.
             //Manti totalmente o padrão feito acima para mais fácil visualização.
 
-            do {
+          /*    do {
 
                 SubMenus.opcoesCadastroTreino();
                 opcaoCadastroTreino = Entrada.entradaInt();
@@ -271,9 +276,16 @@ public class academiaView {
         }
 
             
+        */
+
+        //CADASTRO SUBTREINOS 
+        
+
 
 
 
             
     }
+
+}
 
