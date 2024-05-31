@@ -92,22 +92,69 @@ public abstract class SubMenus {
     }
 
     //TRIENO-----------------------------
+    public static void opcoesCadastroTreino(){
+        //menu com as opçções de cadastro de Exercicio
+            System.out.println("\n\n");
+            System.out.println("Cadastro de treinos, digite um numero correspondente:");
+            System.out.println("0 - CANCELAR");
+            System.out.println("1 - CADASTRAR NOVO TREINO:");
+            System.out.println("2 - ALTERAR TREINO:");
+            System.out.println("3 - DELETAR TREINO:");
+            System.out.println("4 - LISTA TREINOS CADATRADOS:");
+    }
     public static Treino cadastroTreino(Treino treino){
         //cadastro Treino
             Entrada.in.nextLine();//LIMPA BUFFER
+
             System.out.println("\n\n");
             System.out.println("Cadastro de Treino");
             System.out.println("Nome do Treino");
             treino.setNome(Entrada.entradaString());
             System.out.println("Data Inicio");
             treino.setDataInicio( LocalDate.parse(Entrada.entradaData(), Entrada.formatoData)  );
+            System.out.println("Data Fim");
+            treino.setDataFim( LocalDate.parse(Entrada.entradaData(), Entrada.formatoData)  );
             System.out.println("Dias de duração");
             treino.setDuracao(Entrada.entradaInt());
-            System.out.println("Aquecimento: ");
+            System.out.println("Aquecimento: \n");
             treino.setAquecimento(Entrada.entradaString());
-            System.out.println("Sugetão dias de treino: ");
+            System.out.println("Sugestão dias de treino: ");
+            treino.setSugestaoDiasTreino(Entrada.entradaString());
+   //precisa dos subtreinos!
+        return treino;
+    }
+    public static Treino alterarTreino(Treino treino, int id){
+        //cadastro exercicio
+            Entrada.in.nextLine();//LIMPA BUFFER
+
+            System.out.println("\n\n");
+            System.out.println("Alterar Treino id: "  + id);
+            treino.setId(id);//id selecionado
+            System.out.println("Nome do treino");
+            treino.setNome(Entrada.entradaString());
+            System.out.println("Alterar Data de Inicio");
+            treino.setDataInicio( LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+            System.out.println("Alterar Data do Fim");
+            treino.setDataFim( LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+            System.out.println("Alterar dias de duração");
+            treino.setDuracao(Entrada.entradaInt());
+            System.out.println("Alterar Aquecimento");
+            treino.setAquecimento(Entrada.entradaString());
+            System.out.println("Alterar dias de Sugestão para o treino");
             treino.setSugestaoDiasTreino(Entrada.entradaString());
         return treino;
     }
+
+    public static int buscarTreino(){
+        Entrada.in.nextLine();//LIMPA BUFFER
+        System.out.println("Informar id do treino que deseja alterar");
+        int id = Entrada.entradaInt();
+        return id;
+    }
+    public static void verTreino(Treino treino){
+        //ver treino
+            System.out.println(treino.toString());
+    }
+
 
 }
