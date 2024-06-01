@@ -6,6 +6,7 @@ import java.util.List;
 import model.Administrador;
 
 
+
 /**
  * Este Contrler Gerencia a lista de Administradores cadastrados
  * Versão: 1.0
@@ -40,6 +41,15 @@ public class AdministradorController {
             return "Administrador Cadastrado!";
         }
         return "Administrador Já Existe!";
+    }
+
+    public Administrador buscaAdministradorPorCpf(String cpf) {
+        for (Administrador administradores : administradors) {
+            if (administradores.getCpf().equals(cpf)) {
+                return administradores;
+            }
+        }
+        return null;
     }
 
 

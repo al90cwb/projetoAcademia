@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.Professor;
 
+
 /**
  * Este Contrler Gerencia a lista de Prodessores cadastrados
  * Versão: 1.0
@@ -37,7 +38,15 @@ public class ProfessorController {
         }
         return "Professor Já Existe!";
     }
-
+    
+    public Professor buscaProfessorPorCpf(String cpf) {
+        for (Professor professores : professors) {
+            if (professores.getCpf().equals(cpf)) {
+                return professores;
+            }
+        }
+        return null;
+    }
 
     public void deletarProfessor(int id){
         professors.removeIf( t -> t.getId() == id);

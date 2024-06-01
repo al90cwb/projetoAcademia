@@ -40,6 +40,14 @@ import model.Aluno;
         return "Aluno Já Existe!";
     }
 
+    public Aluno buscaAlunoPorCpf(String cpf) {
+        for (Aluno aluno : alunos) {
+            if (aluno.getCpf().equals(cpf)) {
+                return aluno;
+            }
+        }
+        return null;
+    }
 
     public void deletarAluno(int id){
         alunos.removeIf( t -> t.getId() == id);
