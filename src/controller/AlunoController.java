@@ -22,7 +22,7 @@ import model.Aluno;
         return alunos;
     }
 
-    public void setTrienos(List<Aluno> alunos) {
+    public void setAluno(List<Aluno> alunos) {
         this.alunos = alunos;
     }
 
@@ -39,6 +39,7 @@ import model.Aluno;
         }
         return "Aluno Já Existe!";
     }
+
 
     public void deletarAluno(int id){
         alunos.removeIf( t -> t.getId() == id);
