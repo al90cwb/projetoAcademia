@@ -6,11 +6,17 @@ import java.util.ArrayList;
 import controller.ExercicioController;
 import controller.SubtreinoController;
 import controller.TreinoController;
+import controller.AdministradorController;
+import controller.AlunoController;
+import controller.ProfessorController;
 import model.Administrador;
 import model.Exercicio;
 import model.SubTreino;
 import model.Treino;
 import util.Entrada;
+import model.Aluno;
+import model.Professor;
+import model.Administrador;
 
 /**
  * Este programa é um exemplo simples de gestão de academia
@@ -27,6 +33,9 @@ public class academiaView {
             ExercicioController controllerExecicio  = new ExercicioController(new ArrayList<Exercicio>());
             SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
             TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>()) ;
+            AlunoController controllerAluno = new AlunoController(new ArrayList<Aluno>());
+            ProfessorController controllerProfessor = new ProfessorController(new ArrayList<Professor>());
+            AdministradorController controllerAdministrador = new AdministradorController(new ArrayList<Administrador>());
 
         //DADOS DE CADASTRO
             boolean modoTeste= true;
@@ -169,9 +178,6 @@ public class academiaView {
 
 
 
-
-
-
             //CADASTRO TREINO
 
             //PRECISA IMPLEMENTAR OS SUBTREINOS - NÃO CONSEGUI - JUAN.
@@ -284,7 +290,351 @@ public class academiaView {
 
 
 
-            
+
+
+       
+
+        /*CADASTRO ALUNO
+
+        int = TipoCadastro;
+             do {
+            System.out.println("Selecione o tipo de cadastro:");
+            System.out.println("1. Aluno");
+            System.out.println("2. Professor");
+            System.out.println("3. Admin");
+            tipoCadastro = scanner.nextInt();
+
+            switch (tipoCadastro) {
+                case 1:
+                    menuAluno(scanner);
+                    break;
+                case 2:
+                    menuProfessor(scanner);
+                    break;
+                case 3:
+                    menuAdmin(scanner);
+                    break;
+                default:
+                    System.out.println("Opção inválida!");
+            }
+        } while (tipoCadastro != 3);
+
+        scanner.close();
+    }
+
+            do {
+               
+                SubMenus.opcoesCadastroAluno();
+                opcaoCadastroAluno = Entrada.entradaInt();
+                sairOpcaoCadastroAluno = false;//se for para true sai do menu
+
+                switch (opcaoCadastroAluno) {
+                    case 0://SAIR
+                        sairOpcaoCadastroAluno = true;//sai do menu
+                        break;
+                    case 1://CADASTRO ALUNO
+
+                        SubMenus.cadastroAluno(alunoCadastro);
+                        System.out.println("Você deseja cadastrar o Aluno?");
+                        SubMenus.verAluno(alunoCadastro);
+
+                        if (SubMenus.confimar()){
+                            //alterar o aluno pelo novo
+                            controllerAluno.cadastrarAluno(new Aluno(alunoCadastro.getid(),alunoCadastro.getcpf()
+                            alunoCadastro.getendereco(),alunoCadastro.getcelular(),alunoCadastro.getemail(),alunoCadastro.getsexo(),alunoCadastro.getsenha(),alunoCadastro.getdataNascimento(),alunoCadastro.gettrieno(), alunoCadastro.getavaliacoesFisicas()));
+
+                            System.out.println("Aluno Cadastrado:");
+                        }else{
+                            System.out.println("Operação Cancelada.");
+                        }
+                        sairOpcaoCadastroAluno = false;//continua no menu
+
+                        break; 
+                    case 2://ALTERAR
+
+                        //BUSCAR ALUNO
+                        idBusca = SubMenus.buscarAluno();
+                        alunoBusca = controllerAluno.buscaAlunoId(idBusca);
+
+                        if (alunoBusca==null) {
+                            System.out.println("Aluno Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja alterar o Aluno?");
+                            SubMenus.verAluno(AlunoBusca);
+
+                            if (SubMenus.confimar()){
+                                SubMenus.alterarAluno(alunoCadastro, idBusca);
+
+                                //alterar o aluno pelo novo 
+                                    alunoBusca.setid(alunoCadastro.getid());
+                                    alunoBusca.setcpf(alunoCadastro.getcpf());
+                                    alunoBusca.setenderecoa(alunoCadastro.getendereco());
+                                    alunoBusca.setcelular(alunoCadastro.getcelular());
+                                    alunoBusca.sexo(alunoCadastro.getemail());
+                                    alunoBusca.setsenha(alunoCadastro.getemail());
+                                    alunoBusca.setdataNascimento(alunoCadastro.getemail());
+                                    alunoBusca.settrieno(alunoCadastro.getemail());
+                                    alunoBusca.setavaliacoesFisicas(alunoCadastro.getavaliacoesFisicas());
+
+                                System.out.println("Aluno Alterado:");
+                                SubMenus.verAluno(alunoBusca);
+                            }else{
+                                System.out.println("Operação Cancelada, Aluno não foi alterado:");
+                                SubMenus.verAluno(alunoBusca);
+                            }
+                        }
+
+                        sairOpcaoCadastroAluno = false;//continua no menu
+                        break;
+                    case 3://DELETAR
+
+                        //BUSCAR ALUNO
+                        idBusca = SubMenus.buscarAluno();
+                        alunoBusca = controllerAluno.buscaAlunoId(idBusca);
+
+                        if (alunoBusca==null) {
+                            System.out.println("Aluno Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja EXCLUIR o Aluno?");
+                            SubMenus.verAluno(alunoBusca);
+
+                            if (SubMenus.confimar()){
+                                controllerAluno.deletarAluno(idBusca);
+                                System.out.println("Aluno Excluido:");
+                            }else{
+                                System.out.println("Operação Cancelada, Aluno não foi deletado:");
+                                SubMenus.verAluno(alunoBusca);
+                            }
+                        }
+                        sairOpcaoCadastroAluno = false;//continua no menu
+                        break;
+
+                    case 4://LISTA DE ALUNOS CADASTRADOS
+                        System.out.println("Lista de Alunos Cadastrados");
+                        controllerAluno.getAlunos().forEach(System.out::println);
+                        System.out.println("----------------\n\n");
+                        sairOpcaoCadastroAluno = false;//continua no menu
+                        break;
+                    default:
+                        sairOpcaoCadastroAluno = false;//continua no menu
+                        break;
+                }
+
+            } while (!sairOpcaoCadastroAluno);//se for para true sai do menu
+
+            */
+
+
+
+            /* CADASTRO PROFESSOR
+            do {
+               
+                SubMenus.opcoesCadastroProfessor();
+                opcaoCadastroProfessor = Entrada.entradaInt();
+                sairOpcaoCadastroProfessor = false;//se for para true sai do menu
+
+                switch (opcaoCadastroProfessor) {
+                    case 0://SAIR
+                        sairOpcaoCadastroProfessor = true;//sai do menu
+                        break;
+                    case 1://CADASTRO PROFESSOR
+
+                        SubMenus.cadastroProfessor(professorCadastro);
+                        System.out.println("Você deseja cadastrar o Professor?");
+                        SubMenus.verProfessor(professorCadastro);
+
+                        if (SubMenus.confimar()){
+                            //alterar o professor pelo novo
+                            controllerProfessor.cadastrarProfessor(new Professor(professorCadastro.getid(), professorCadastro.getnome(),
+                            professorCadastro.getcpf(), professorCadastro.getendereco(), professorCadastro.getcelular(),professorCadastro.getemail(), professorCadastro.getsexo(), professorCadastro.getsenha(), professorCadastro.getdatanascimento()));
+
+                            System.out.println("ProfessorCadastrado:");
+                        }else{
+                            System.out.println("Operação Cancelada.");
+                        }
+                        sairOpcaoCadastroProfessor = false;//continua no menu
+
+                        break; 
+                    case 2://ALTERAR
+
+                        //BUSCAR PROFESSOR
+                        idBusca = SubMenus.buscarProfessor();
+                        professorBusca = controllerProfessor.buscaProfessorId(idBusca);
+
+                        if (professorBusca==null) {
+                            System.out.println("Professor Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja alterar o Professor?");
+                            SubMenus.verProfessor(ProfessorBusca);
+
+                            if (SubMenus.confimar()){
+                                SubMenus.alterarProfessor(professorCadastro, idBusca);
+
+                                //alterar o professor pelo novo 
+                                    professorBusca.setid(professorCadastro.getid());
+                                    professorBusca.setnome(professorCadastro.getnome());
+                                    professorBusca.setcpf(professorCadastro.getcpf());
+                                    professorBusca.setendereco(professorCadastro.getendereco());
+                                    professorBusca.setcelular(professorCadastro.getcelular());
+                                    professorBusca.setemail(professorCadastro.getemail());
+                                    professorBusca.setsexo(professorCadastro.getsexo());
+                                    professorBusca.setsenha(professorCadastro.getsenha());
+                                    professorBusca.setdatanascimento(professorCadastro.getdatanascimento());
+                                    
+                                System.out.println("Professor Alterado:");
+                                SubMenus.verProfessor(professorBusca);
+                            }else{
+                                System.out.println("Operação Cancelada, Professor não foi alterado:");
+                                SubMenus.verProfessor(professorBusca);
+                            }
+                        }
+
+                        sairOpcaoCadastroProfessor = false;//continua no menu
+                        break;
+                    case 3://DELETAR
+
+                        //BUSCAR PROFESSOR
+                        idBusca = SubMenus.buscarProfessor();
+                        professorBusca = controllerProfessor.buscaProfessorId(idBusca);
+
+                        if (professorBusca==null) {
+                            System.out.println("Professor Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja EXCLUIR o Professor?");
+                            SubMenus.verProfessor(professorBusca);
+
+                            if (SubMenus.confimar()){
+                                controllerProfessor.deletarProfessor(idBusca);
+                                System.out.println("Professor Excluido:");
+                            }else{
+                                System.out.println("Operação Cancelada, Professor não foi deletado:");
+                                SubMenus.verProfessor(professorBusca);
+                            }
+                        }
+                        sairOpcaoCadastroProfessor = false;//continua no menu
+                        break;
+
+                    case 4://LISTA DE PROFESSOR CADASTRADOS
+                        System.out.println("Lista de Professores Cadastrados");
+                        controllerProfessor.getProfessores().forEach(System.out::println);
+                        System.out.println("----------------\n\n");
+                        sairOpcaoCadastroProfessor = false;//continua no menu
+                        break;
+                    default:
+                        sairOpcaoCadastroProfessor = false;//continua no menu
+                        break;
+                }
+
+            } while (!sairOpcaoCadastroProfessor);//se for para true sai do menu
+
+            */
+
+            /*CADASTRO ADMINISTRADOR
+
+            //FALTOU MOSTRAR ALUNO, PROF E ADM
+
+            do {
+               
+                SubMenus.opcoesCadastroAdministrador();
+                opcaoCadastroAdministrador = Entrada.entradaInt();
+                sairOpcaoCadastroAdministrador = false;//se for para true sai do menu
+
+                switch (opcaoCadastroAdministrador) {
+                    case 0://SAIR
+                        sairOpcaoCadastroAdministrador = true;//sai do menu
+                        break;
+                    case 1://CADASTRO ADMINISTRADOR
+
+                        SubMenus.cadastroAdministrador(administradorCadastro);
+                        System.out.println("Você deseja cadastrar o Administrador?");
+                        SubMenus.verAdministrador(adminitradorCadastro);
+
+                        if (SubMenus.confimar()){
+                            //alterar o administrador pelo novo
+                            controllerAdministrador.cadastrarAdministrador(new Administrador(administradorCadastro.getid(),
+                            administradorCadastro.getnome(), administradorCadastro.getcpf, administradorCadastro.getendereco, administradorCadastro.getcelular, administradorCadastro.getemail, administrador.Cadastro.getsexo, administradorCadastro.getsenha, administradorCadastro.getdataNascimento ()));
+
+                            System.out.println("Administrador Cadastrado:");
+                        }else{
+                            System.out.println("Operação Cancelada.");
+                        }
+                        sairOpcaoCadastroAdministrador = false;//continua no menu
+
+                        break; 
+                    case 2://ALTERAR
+
+                        //BUSCAR ADMINISTRADOR
+                        idBusca = SubMenus.buscarAdministrador();
+                        administradorBusca = controllerAdministrador.buscaAdministradorId(idBusca);
+
+                        if (administradorBusca==null) {
+                            System.out.println("Administrador Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja alterar o Administrador?");
+                            SubMenus.verAdministrador(administradorBusca);
+
+                            if (SubMenus.confimar()){
+                                SubMenus.alterarAdministrador(administradorCadastro, idBusca);
+
+                                //alterar o administrador pelo novo 
+                                    administradorBusca.setid(administradorCadastro.getid());
+                                    administradorBusca.setnome(administradorCadastro.getnome());
+                                    administradorBusca.setcpf(administradorCadastro.getcpf());
+                                    administradorBusca.setendereco(administradorCadastro.getendereco());
+                                    administradorBusca.setcelular(administradorCadastro.getcelular());
+                                    administradorBusca.setemail(administradorCadastro.getemail());
+                                    administradorBusca.setsexo(administradorCadastro.getsexo());
+                                    administradorBusca.setsenha(administradorCadastro.getsenha());
+                                    administradorBusca.setdataNascimento(administradorCadastro.getdataNascimento());
+
+                                System.out.println("Administrador Alterado:");
+                                SubMenus.verAdministrador(administradorBusca);
+                            }else{
+                                System.out.println("Operação Cancelada, Administrador não foi alterado:");
+                                SubMenus.verAdministrador(administradorBusca);
+                            }
+                        }
+
+                        sairOpcaoCadastroAdministrador = false;//continua no menu
+                        break;
+                    case 3://DELETAR
+
+                        //BUSCAR ADMINISTRADOR
+                        idBusca = SubMenus.buscarAdministrador();
+                        administradorBusca = controllerAdministrador.buscaAdministradorId(idBusca);
+
+                        if (administradorBusca==null) {
+                            System.out.println("Administrador Não Encontrado");
+                        } else {
+                            System.out.println("Você deseja EXCLUIR o Administrador?");
+                            SubMenus.verAdministrador(administradorBusca);
+
+                            if (SubMenus.confimar()){
+                                controllerAdministrador.deletarAdministrador(idBusca);
+                                System.out.println("Administrador Excluido:");
+                            }else{
+                                System.out.println("Operação Cancelada, Administrador não foi deletado:");
+                                SubMenus.verAdministrador(administradorBusca);
+                            }
+                        }
+                        sairOpcaoCadastroAdministrador = false;//continua no menu
+                        break;
+
+                    case 4://LISTA DE ADMINISTRADOR CADASTRADOS
+                        System.out.println("Lista de Administrador Cadastrados");
+                        controllerAdministrador.getAdministradors().forEach(System.out::println);
+                        System.out.println("----------------\n\n"); 
+                        sairOpcaoCadastroAdministrador = false;//continua no menu
+                        break;
+                    default:
+                        sairOpcaoCadastroAdministrador = false;//continua no menu
+                        break;
+                }
+
+            } while (!sairOpcaoCadastroAdministrador);//se for para true sai do menu
+
+            */
+ 
     }
 
 }

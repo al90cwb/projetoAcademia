@@ -4,6 +4,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import model.Treino;
+
 /**
  * Este Objeto filtra as entradas do teclado, todos tratamento
  * poderm ser feitos aqui 
@@ -131,6 +133,8 @@ public abstract class Entrada {
 
             return dataFormatada;
         }
+
+        protected abstract Treino entradaTreino();
 
 
 }
