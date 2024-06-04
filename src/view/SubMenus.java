@@ -6,6 +6,10 @@ import model.Exercicio;
 import model.SubTreino;
 import model.Treino;
 import util.Entrada;
+import model.Aluno;
+import model.Professor;
+import model.Administrador;
+
 
 /**
  * Este Contrler Gerencia o menu do sistema
@@ -21,6 +25,9 @@ public abstract class SubMenus {
             boolean op = Entrada.entradaZeroUm()==1;
         return op;
     }
+
+
+    //
 
     //EXERCICIO------------------------
     public static void opcoesCadastroExercicio(){
@@ -171,5 +178,217 @@ public abstract class SubMenus {
             System.out.println(treino.toString());
     }
 
+    //ALUNO-----------------------------
+    public static void opcoesCadastroAluno(){
+        System.out.println("\n\n");
+        System.out.println("Cadastro de alunos, digite um numero correspondente:");
+        System.out.println("0 - CANCELAR");
+        System.out.println("1 - CADASTRAR NOVO ALUNO:");
+        System.out.println("2 - ALTERAR ALUNO:");
+        System.out.println("3 - DELETAR ALUNO:");
+        System.out.println("4 - LISTA ALUNO CADATRADOS:");
+}
+    /*public static Aluno cadastroAluno(Aluno aluno){
+    // TREINO E AVANLIAÇÃO FISICA TÃO DANDO ERRO SE ALGUEM PUDER AJUDAR
+        Entrada.in.nextLine();
+        System.out.println("\n\n");
+        System.out.println("Cadastro de Aluno");
+        System.out.println("Nome do Aluno:");
+        aluno.setNome(Entrada.entradaString());
+        System.out.println("Digite o CPF:");
+        aluno.setCpf(Entrada.entradaString());
+        System.out.println("Digite Endereço:");
+        aluno.setEndereco(Entrada.entradaString());
+        System.out.println("Digite o celular:");
+        aluno.setCelular(Entrada.entradaString());
+        System.out.println("Digite o email:");
+        aluno.setEmail(Entrada.entradaString());
+        System.out.println("Digite o Sexo:");
+        aluno.setSexo(Entrada.entradaString());
+        System.out.println("Digite a Senha:");
+        aluno.setSenha(Entrada.entradaString());
+        System.out.println("Digite a Data de Nascimento:");
+        aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+        System.out.println("Treino:");
+        aluno.setTrieno(Entrada.entradaTreino());
+        System.out.println("Avaliação Fisica:");
+        aluno.setAvaliacoesFisicas(Entrada.entradaString());
+    return aluno;
+}
 
+    public static Aluno alterarAluno(Aluno aluno, int id){
+    
+        Entrada.in.nextLine();//LIMPA BUFFER
+        System.out.println("\n\n");
+        System.out.println("Alterar Aluno id: "  + id);
+        aluno.setId(id);//id selecionado
+        System.out.println("Alterar o CPF:");
+        aluno.setCpf(Entrada.entradaString());
+        System.out.println("Altera o Endereço:");
+        aluno.setEndereco(Entrada.entradaString());
+        System.out.println("Altera o Celular:");
+        aluno.setCelular(Entrada.entradaString());
+        System.out.println("Altera o Email:");
+        aluno.setEmail(Entrada.entradaString());
+        System.out.println("Altera o Sexo:");
+        aluno.setSexo(Entrada.entradaString());
+        System.out.println("Altera a Senha:");
+        aluno.setSenha(Entrada.entradaString());
+        System.out.println("Altera a Data de Nascimento:");
+        aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+        System.out.println("Altera o Treino:");
+        aluno.setTrieno(Entrada.entradaTreino());
+        System.out.println("Avaliação Fisica:");
+        aluno.setAvaliacoesFisicas(Entrada.entradaString());
+    return aluno;
+}*/
+
+public static int buscarAluno(){
+    Entrada.in.nextLine();//LIMPA BUFFER
+    System.out.println("Informar id do aluno que deseja alterar");
+    int id = Entrada.entradaInt();
+    return id;
+}
+public static void verAluno(Aluno aluno){
+    //ver exercicio
+        System.out.println(aluno.toString());
+}
+
+//PROFESSOR-----------------------------
+public static void opcoesCadastroProfessor(){
+    System.out.println("\n\n");
+    System.out.println("Cadastro de professor, digite um numero correspondente:");
+    System.out.println("0 - CANCELAR");
+    System.out.println("1 - CADASTRAR NOVO ALUNO:");
+    System.out.println("2 - ALTERAR ALUNO:");
+    System.out.println("3 - DELETAR ALUNO:");
+    System.out.println("4 - LISTA ALUNO CADATRADOS:");
+
+}
+public static Professor cadastroProfessor(Professor professor){
+    
+    Entrada.in.nextLine();
+    System.out.println("\n\n");
+    System.out.println("Cadastro de Professor");
+    System.out.println("Nome do Professor:");
+    professor.setNome(Entrada.entradaString());
+    System.out.println("Digite o CPF:");
+    professor.setCpf(Entrada.entradaString());
+    System.out.println("Digite Endereço:");
+    professor.setEndereco(Entrada.entradaString());
+    System.out.println("Digite o celular:");
+    professor.setCelular(Entrada.entradaString());
+    System.out.println("Digite o email:");
+    professor.setEmail(Entrada.entradaString());
+    System.out.println("Digite o Sexo:");
+    professor.setSexo(Entrada.entradaString());
+    System.out.println("Digite a Senha:");
+    professor.setSenha(Entrada.entradaString());
+    System.out.println("Digite a Data de Nascimento:");
+    professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+return professor;
+}
+
+public static Professor alterarProfessor(Professor professor, int id){
+    
+    Entrada.in.nextLine();//LIMPA BUFFER
+    System.out.println("\n\n");
+    System.out.println("Alterar Aluno id: "  + id);
+    professor.setId(id);//id selecionado
+    System.out.println("Alterar o CPF:");
+    professor.setCpf(Entrada.entradaString());
+    System.out.println("Altera o Endereço:");
+    professor.setEndereco(Entrada.entradaString());
+    System.out.println("Altera o Celular:");
+    professor.setCelular(Entrada.entradaString());
+    System.out.println("Altera o Email:");
+    professor.setEmail(Entrada.entradaString());
+    System.out.println("Altera o Sexo:");
+    professor.setSexo(Entrada.entradaString());
+    System.out.println("Altera a Senha:");
+    professor.setSenha(Entrada.entradaString());
+    System.out.println("Altera a Data de Nascimento:");
+    professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+    
+return professor;
+}
+public static int buscarProfessor(){
+    Entrada.in.nextLine();//LIMPA BUFFER
+    System.out.println("Informar id do professor que deseja alterar");
+    int id = Entrada.entradaInt();
+    return id;
+}
+public static void verProfessor(Professor professor){
+   
+        System.out.println(professor.toString());
+}
+
+//ADMINISTRADOR-----------------------------
+public static void opcoesCadastroAdministrador(){
+    System.out.println("\n\n");
+    System.out.println("Cadastro de professor, digite um numero correspondente:");
+    System.out.println("0 - CANCELAR");
+    System.out.println("1 - CADASTRAR NOVO ALUNO:");
+    System.out.println("2 - ALTERAR ALUNO:");
+    System.out.println("3 - DELETAR ALUNO:");
+    System.out.println("4 - LISTA ALUNO CADATRADOS:");
+}
+public static Administrador cadastroAdministrador(Administrador administrador){
+    
+    Entrada.in.nextLine();
+    System.out.println("\n\n");
+    System.out.println("Cadastro de Professor");
+    System.out.println("Nome do Professor:");
+    administrador.setNome(Entrada.entradaString());
+    System.out.println("Digite o CPF:");
+    administrador.setCpf(Entrada.entradaString());
+    System.out.println("Digite Endereço:");
+    administrador.setEndereco(Entrada.entradaString());
+    System.out.println("Digite o celular:");
+    administrador.setCelular(Entrada.entradaString());
+    System.out.println("Digite o email:");
+    administrador.setEmail(Entrada.entradaString());
+    System.out.println("Digite o Sexo:");
+    administrador.setSexo(Entrada.entradaString());
+    System.out.println("Digite a Senha:");
+    administrador.setSenha(Entrada.entradaString());
+    System.out.println("Digite a Data de Nascimento:");
+    administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+return administrador;
+}
+
+public static Administrador alterarAdministrador(Administrador administrador, int id){
+    
+    Entrada.in.nextLine();//LIMPA BUFFER
+    System.out.println("\n\n");
+    System.out.println("Alterar Administrador id: "  + id);
+    administrador.setId(id);//id selecionado
+    System.out.println("Alterar o CPF:");
+    administrador.setCpf(Entrada.entradaString());
+    System.out.println("Altera o Endereço:");
+    administrador.setEndereco(Entrada.entradaString());
+    System.out.println("Altera o Celular:");
+    administrador.setCelular(Entrada.entradaString());
+    System.out.println("Altera o Email:");
+    administrador.setEmail(Entrada.entradaString());
+    System.out.println("Altera o Sexo:");
+    administrador.setSexo(Entrada.entradaString());
+    System.out.println("Altera a Senha:");
+    administrador.setSenha(Entrada.entradaString());
+    System.out.println("Altera a Data de Nascimento:");
+    administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
+    
+return administrador;
+}
+
+public static int buscarAdministrador(){
+    Entrada.in.nextLine();//LIMPA BUFFER
+    System.out.println("Informar id do administrador que deseja alterar");
+    int id = Entrada.entradaInt();
+    return id;
+}
+public static void verAdministrador(Administrador administrador){
+   
+    System.out.println(administrador.toString());
+}
 }

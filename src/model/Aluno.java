@@ -73,4 +73,16 @@ public class Aluno extends Usuario  {
                 + super.getCelular() + ", email=" + super.getEmail() + ", sexo=" + super.getSexo() + ", senha=" + super.getSenha() + ", dataNascimento="
                 + super.getDataNascimento() + ", treino=" + treino + ", avaliacoesFisicas=" + avaliacoesFisicas + "]";
     }
-}
+
+
+    public Treino getTreino() {
+        return treino;
+    }
+
+
+    public void setTreino(Treino treino) {
+        this.treino = treino;
+    }
+
+
+} 
