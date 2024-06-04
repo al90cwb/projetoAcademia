@@ -38,7 +38,7 @@ public abstract class SubMenus {
             System.out.println("1 - CADASTRAR NOVO EXERCICIO:");
             System.out.println("2 - ALTERAR EXERCICIO:");
             System.out.println("3 - DELETAR EXERCICIO:");
-            System.out.println("4 - LISTA EXERCICIOS CADATRADOS:");
+            System.out.println("4 - LISTA EXERCICIOS CADASTRADOS:");
     }
 
     public static Exercicio cadastroExercicio(Exercicio exercicio){
@@ -85,12 +85,12 @@ public abstract class SubMenus {
 
     public static void opcoesCadastroSubtreino(){
         System.out.println("\n\n");
-        System.out.println("Cadastro de treinos, digite um numero correspondente:");
+        System.out.println("OPCOES CADASTRO DE SUBTREINOS, digite um numero correspondente:");
         System.out.println("0 - CANCELAR");
         System.out.println("1 - CADASTRAR NOVO SUBTREINO:");
         System.out.println("2 - ALTERAR SUBTREINO:");
         System.out.println("3 - DELETAR SUBTREINO:");
-        System.out.println("4 - LISTA SUBTREINOS CADATRADOS:");
+        System.out.println("4 - LISTA SUBTREINOS CADASTRADOS:");
 }
 
 
@@ -107,7 +107,37 @@ public abstract class SubMenus {
             subtreino.setSexo(Entrada.entradaString());
             System.out.println("Tipo Grupo Muscular");
             subtreino.setTipoSubtreino(Entrada.entradaString());
+            
+
         return subtreino;
+    }
+    public static SubTreino alterarSubTreino(SubTreino subTreino, int id){
+        //alterar subtreino
+        Entrada.in.nextLine(); // limpa o buffer
+        System.out.println("\n\n");
+        System.out.println("Alterar SubTreino ID: "  + id);
+        subTreino.setId(id); // define o ID selecionado
+        System.out.println("Nome do subtreino:");
+        subTreino.setNome(Entrada.entradaString());
+        System.out.println("Tipo de subtreino:");
+        subTreino.setTipoSubtreino(Entrada.entradaString());
+        System.out.println("Sexo:");
+        subTreino.setSexo(Entrada.entradaString());
+        System.out.println("Letra:");
+        subTreino.setLetra(Entrada.entradaString());
+        return subTreino;
+    }
+
+    public static int buscarSubTreino(){
+        //buscar subtreino
+        Entrada.in.nextLine(); // limpa o buffer
+        System.out.println("Informar ID do subtreino que deseja alterar:");
+        return Entrada.entradaInt();
+    }
+
+    public static void verSubTreino(SubTreino subTreino){
+        //ver informações do subtreino
+        System.out.println(subTreino.toString());
     }
 
 

@@ -183,7 +183,7 @@ public class academiaView {
             //ALGUM BUG NO CADASTRAR AQUECIMENTO, ESTÁ SENDO PULADO NA HORA DO CADASTRO.
             //Manti totalmente o padrão feito acima para mais fácil visualização.
 
-              do {
+             /*  do {
 
                 SubMenus.opcoesCadastroTreino();
                 opcaoCadastroTreino = Entrada.entradaInt();
@@ -280,10 +280,109 @@ public class academiaView {
             } while (!sairOpcaoCadastroTreino);// se for para true sai do menu
         }
 
+        */
+
             
        
 
         //CADASTRO SUBTREINOS 
+        do {
+            SubMenus.opcoesCadastroSubtreino();
+            opcaoCadastroSubtreino = Entrada.entradaInt();
+            sairOpcaoCadastroSubtreino = false; // Se for true, sai do menu
+        
+            switch (opcaoCadastroSubtreino) {
+                case 0: // SAIR
+                    sairOpcaoCadastroSubtreino = true; // Sai do menu
+                    break;
+                case 1: // CADASTRO SUBTREINO
+        
+                    SubMenus.cadastroSubtreino(subTreinoCadastro);
+                    System.out.println("Você deseja cadastrar o Subtreino?");
+                    SubMenus.verSubTreino(subTreinoCadastro);
+        
+                    if (SubMenus.confimar()) {
+                        // Cadastrar o subtreino
+                        controllerSubtreino.cadastrarSubTreino(new SubTreino(
+                                subTreinoCadastro.getNome(),
+                                subTreinoCadastro.getTipoSubtreino(),
+                                subTreinoCadastro.getSexo(),
+                                subTreinoCadastro.getLetra(),
+                                new ArrayList<Exercicio>() 
+                        ));
+                        System.out.println("Subtreino cadastrado!");
+                    } else {
+                        System.out.println("Operação cancelada.");
+                    }
+                    sairOpcaoCadastroSubtreino = false; // Continua no menu
+        
+                    break;
+                case 2: // ALTERAR
+        
+                    // BUSCAR SUBTREINO
+                    idBusca = SubMenus.buscarSubTreino();
+                    subtreinoBusca = controllerSubtreino.buscaSubTreinoId(idBusca);
+        
+                    if (subtreinoBusca == null) {
+                        System.out.println("Subtreino não encontrado.");
+                    } else {
+                        System.out.println("Você deseja alterar o Subtreino?");
+                        SubMenus.verSubTreino(subtreinoBusca);
+        
+                        if (SubMenus.confimar()) {
+                            SubMenus.alterarSubTreino(subTreinoCadastro, idBusca);
+        
+                            // Alterar o subtreino
+                            subtreinoBusca.setNome(subTreinoCadastro.getNome());
+                            subtreinoBusca.setTipoSubtreino(subTreinoCadastro.getTipoSubtreino());
+                            subtreinoBusca.setSexo(subTreinoCadastro.getSexo());
+                            subtreinoBusca.setLetra(subTreinoCadastro.getLetra());
+        
+                            System.out.println("Subtreino alterado:");
+                            SubMenus.verSubTreino(subtreinoBusca);
+                        } else {
+                            System.out.println("Operação cancelada, subtreino não foi alterado:");
+                            SubMenus.verSubTreino(subtreinoBusca);
+                        }
+                    }
+        
+                    sairOpcaoCadastroSubtreino = false; // Continua no menu
+                    break;
+                case 3: // DELETAR
+        
+                    // BUSCAR SUBTREINO
+                    idBusca = SubMenus.buscarSubTreino();
+                    subtreinoBusca = controllerSubtreino.buscaSubTreinoId(idBusca);
+        
+                    if (subtreinoBusca == null) {
+                        System.out.println("Subtreino não encontrado.");
+                    } else {
+                        System.out.println("Você deseja EXCLUIR o Subtreino?");
+                        SubMenus.verSubTreino(subtreinoBusca);
+        
+                        if (SubMenus.confimar()) {
+                            controllerSubtreino.deletarTreino(idBusca);
+                            System.out.println("Subtreino excluído.");
+                        } else {
+                            System.out.println("Operação cancelada, subtreino não foi deletado:");
+                            SubMenus.verSubTreino(subtreinoBusca);
+                        }
+                    }
+                    sairOpcaoCadastroSubtreino = false; // Continua no menu
+                    break;
+                case 4: // LISTA DE SUBTREINOS CADASTRADOS
+                    System.out.println("Lista de Subtreinos Cadastrados");
+                    controllerSubtreino.getSubTreinos().forEach(System.out::println);
+                    System.out.println("----------------\n\n");
+                    sairOpcaoCadastroSubtreino = false; // Continua no menu
+                    break;
+                default:
+                    sairOpcaoCadastroSubtreino = false; // Continua no menu
+                    break;
+            }
+        
+        } while (!sairOpcaoCadastroSubtreino); // Sai do menu se for true
+
         
 
 
@@ -635,6 +734,7 @@ public class academiaView {
             */
  
     }
+}
 
 
 
