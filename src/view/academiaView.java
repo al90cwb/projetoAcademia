@@ -69,8 +69,8 @@ public class academiaView {
         
 
             
-        /*CADASTRO EXERCICIO
-            do {
+        //CADASTRO EXERCICIO
+            /*  do {
                
                 SubMenus.opcoesCadastroExercicio();
                 opcaoCadastroExercicio = Entrada.entradaInt();
@@ -164,9 +164,8 @@ public class academiaView {
 
             } while (!sairOpcaoCadastroExercicio);//se for para true sai do menu
 
-            */
-
-
+            
+*/
 
 
 
@@ -178,7 +177,7 @@ public class academiaView {
             //ALGUM BUG NO CADASTRAR AQUECIMENTO, ESTÁ SENDO PULADO NA HORA DO CADASTRO.
             //Manti totalmente o padrão feito acima para mais fácil visualização.
 
-          /*    do {
+              do {
 
                 SubMenus.opcoesCadastroTreino();
                 opcaoCadastroTreino = Entrada.entradaInt();
@@ -276,7 +275,7 @@ public class academiaView {
         }
 
             
-        */
+       
 
         //CADASTRO SUBTREINOS 
         
@@ -287,5 +286,5 @@ public class academiaView {
             
     }
 
-}
+
 
