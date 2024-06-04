@@ -35,10 +35,10 @@ public class academiaView {
             }
 
         //MENU Exericio teste
-            MenusExercicio.cadastro(controllerExecicio);
+           MenusExercicio.cadastro(controllerExecicio);
 
         //MENU Treino teste
-            //MenusTreino.cadastro(controllerTreino);
+           MenusTreino.cadastro(controllerTreino);
             
 
     }

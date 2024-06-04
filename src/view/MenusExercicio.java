@@ -1,14 +1,10 @@
 package view;
 
-
 import controller.ExercicioController;
 import model.Exercicio;
 import util.Entrada;
 
 public abstract class MenusExercicio {
-
-
-
 
        //GERAL---------------------------- 
     public static boolean confimar(){
