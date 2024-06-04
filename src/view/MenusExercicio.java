@@ -6,6 +6,10 @@ import model.Exercicio;
 import util.Entrada;
 
 public abstract class MenusExercicio {
+
+
+
+
        //GERAL---------------------------- 
     public static boolean confimar(){
         //ver exercicio
@@ -66,7 +70,7 @@ public abstract class MenusExercicio {
             System.out.println(exercicio.toString());
     }
 
-    public static  void menuCadastro(ExercicioController controllerExecicio){
+    public static  void cadastro(ExercicioController controllerExecicio){
         
         int opcaoCadastroExercicio,idBusca = 0;
         boolean sairOpcaoCadastroExercicio= false;

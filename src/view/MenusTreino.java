@@ -3,7 +3,6 @@ package view;
 import java.time.LocalDate;
 
 import controller.TreinoController;
-import model.SubTreino;
 import model.Treino;
 import util.Entrada;
 
