@@ -2,9 +2,7 @@ package view;
 
 import java.time.LocalDate;
 
-import controller.ExercicioController;
 import controller.TreinoController;
-import model.Exercicio;
 import model.SubTreino;
 import model.Treino;
 import util.Entrada;
@@ -94,8 +92,8 @@ public abstract class MenusTreino {
        
         int opcaoCadastroTreino,idBusca = 0;
         boolean sairOpcaoCadastroTreino= false;
-        Treino treinoCadastro = new Treino(opcaoCadastroTreino, null, null, null, null, null, null);
-        Exercicio treinoBusca;
+        Treino treinoCadastro = new Treino();
+        Treino treinoBusca;
         
             //CADASTRO TREINO
            do {
@@ -128,7 +126,7 @@ public abstract class MenusTreino {
         
                         // BUSCAR TREINO
                         idBusca = MenusTreino.buscarTreino();
-                        
+
                        // treinoBusca = controllerTreino.buscaTreinoId(idBusca);
                          treinoBusca = controllerTreino.buscaTreinoId(idBusca);
 
@@ -197,7 +195,7 @@ public abstract class MenusTreino {
             } while (!sairOpcaoCadastroTreino);// se for para true sai do menu
         }
 
-    }
+ }
    
 
-}
+
