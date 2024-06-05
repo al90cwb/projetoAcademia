@@ -12,10 +12,8 @@ import model.Administrador;
 import model.Exercicio;
 import model.SubTreino;
 import model.Treino;
-import util.Entrada;
 import model.Aluno;
 import model.Professor;
-import model.Administrador;
 
 /**
  * Este programa é um exemplo simples de gestão de academia

@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import model.Administrador;
 import util.Entrada;
 
-public abstract class MenuAdminstrador {
+public abstract class MenuAdminstrador extends MenusStandard  {
     // ADMINISTRADOR-----------------------------
     public static void opcoesCadastroAdministrador() {
         System.out.println("\n\n");

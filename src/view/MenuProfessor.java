@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuProfessor {
+public abstract class MenuProfessor extends MenusStandard  {
 
     // PROFESSOR-----------------------------
     public static void opcoesCadastroProfessor() {

@@ -3,8 +3,6 @@ package view;
 import java.time.LocalDate;
 
 import controller.TreinoController;
-import javafx.scene.control.TreeItem;
-import model.Exercicio;
 import model.Treino;
 import util.Entrada;
 
