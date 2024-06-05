@@ -187,9 +187,10 @@ public abstract class SubMenus {
         System.out.println("2 - ALTERAR ALUNO:");
         System.out.println("3 - DELETAR ALUNO:");
         System.out.println("4 - LISTA ALUNO CADATRADOS:");
+       
 }
-    /*public static Aluno cadastroAluno(Aluno aluno){
-    // TREINO E AVANLIAÇÃO FISICA TÃO DANDO ERRO SE ALGUEM PUDER AJUDAR
+    public static Aluno cadastroAluno(Aluno aluno){
+     // TREINO E AVANLIAÇÃO FISICA TÃO DANDO ERRO SE ALGUEM PUDER AJUDAR
         Entrada.in.nextLine();
         System.out.println("\n\n");
         System.out.println("Cadastro de Aluno");
@@ -209,10 +210,6 @@ public abstract class SubMenus {
         aluno.setSenha(Entrada.entradaString());
         System.out.println("Digite a Data de Nascimento:");
         aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
-        System.out.println("Treino:");
-        aluno.setTrieno(Entrada.entradaTreino());
-        System.out.println("Avaliação Fisica:");
-        aluno.setAvaliacoesFisicas(Entrada.entradaString());
     return aluno;
 }
 
@@ -236,12 +233,8 @@ public abstract class SubMenus {
         aluno.setSenha(Entrada.entradaString());
         System.out.println("Altera a Data de Nascimento:");
         aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData) );
-        System.out.println("Altera o Treino:");
-        aluno.setTrieno(Entrada.entradaTreino());
-        System.out.println("Avaliação Fisica:");
-        aluno.setAvaliacoesFisicas(Entrada.entradaString());
     return aluno;
-}*/
+}
 
 public static int buscarAluno(){
     Entrada.in.nextLine();//LIMPA BUFFER
