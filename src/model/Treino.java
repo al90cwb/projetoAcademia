@@ -13,14 +13,15 @@ import java.util.List;
  * Data de criação: [28/05/2024]
  */
 public class Treino {
-    private int id,  duracao;
+    private int id, duracao;
     private String nome, aquecimento, sugestaoDiasTreino;
     private LocalDate dataInicio, dataFim;
     private List<SubTreino> subtreinos;
 
-    public Treino( ){
+    public Treino() {
     }
-    public Treino( int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
+
+    public Treino(int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
             LocalDate dataFim, List<SubTreino> subtreinos) {
         this.id = 0;
         this.duracao = duracao;
@@ -32,12 +33,9 @@ public class Treino {
         this.subtreinos = subtreinos;
     }
 
-
     public String getNome() {
         return nome;
     }
-
-
 
     public void setNome(String nome) {
         this.nome = nome;
@@ -47,21 +45,17 @@ public class Treino {
         return id;
     }
 
-
     public void setId(int id) {
         this.id = id;
     }
-
 
     public int getDuracao() {
         return duracao;
     }
 
-
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-
 
     public String getAquecimento() {
         return aquecimento;
@@ -79,16 +73,13 @@ public class Treino {
         this.sugestaoDiasTreino = sugestaoDiasTreino;
     }
 
-
     public LocalDate getDataInicio() {
         return dataInicio;
     }
 
-
     public void setDataInicio(LocalDate dataInicio) {
         this.dataInicio = dataInicio;
     }
-
 
     public LocalDate getDataFim() {
         return dataFim;
@@ -112,9 +103,5 @@ public class Treino {
                 + ", sugestaoDiasTreino=" + sugestaoDiasTreino + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
                 + ", subtreinos=" + subtreinos + "]";
     }
-
-
-
-
 
 }

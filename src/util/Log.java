@@ -18,13 +18,13 @@ import java.util.Scanner;
 public abstract class Log {
     private static final File ARQUIVO = new File("src/log/log.txt");
 
-
-    public static void escrever(String texto) throws Exception{
+    public static void escrever(String texto) throws Exception {
         List<String> log = new ArrayList<>();
         try {
             ARQUIVO.getParentFile().mkdirs();
 
-            if (ARQUIVO.exists()) log = ler();
+            if (ARQUIVO.exists())
+                log = ler();
             log.add(texto);
 
             PrintWriter print = new PrintWriter(new FileWriter(ARQUIVO));
@@ -38,7 +38,7 @@ public abstract class Log {
         }
     }
 
-    public static List<String> ler() throws Exception{
+    public static List<String> ler() throws Exception {
         List<String> textos = new ArrayList<>();
         try {
             Scanner scan = new Scanner(ARQUIVO);

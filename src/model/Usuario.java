@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+
 /**
  * Este Objeto contem os dados de usuário geral comuns para todos tipos
  * Aluno - Professor - Adminstrador herdam seus atributos
@@ -11,7 +12,7 @@ import java.time.LocalDate;
 
 public abstract class Usuario implements Comparable<Usuario> {
     private int id;
-    private String nome, cpf, endereco, celular, email,sexo, senha;
+    private String nome, cpf, endereco, celular, email, sexo, senha;
     private LocalDate dataNascimento;
 
     public Usuario() {

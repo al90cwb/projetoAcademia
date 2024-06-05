@@ -8,7 +8,7 @@ package model;
  * Data de criação: [28/05/2024]
  */
 
-public class AvaliacaoFisica  {
+public class AvaliacaoFisica {
     private int id;
     private float peso, altura, percentualGordura, iMC;
 
@@ -57,8 +57,8 @@ public class AvaliacaoFisica  {
     }
 
     public void calculaIMC() {
-        if (altura>0) {
-            this.iMC = peso/(altura*altura);
+        if (altura > 0) {
+            this.iMC = peso / (altura * altura);
         }
     }
 
@@ -67,5 +67,5 @@ public class AvaliacaoFisica  {
         return "AvaliacaoFisica [id=" + id + ", peso=" + peso + ", altura=" + altura + ", percentualGordura="
                 + percentualGordura + ", iMC=" + iMC + "]";
     }
-    
+
 }

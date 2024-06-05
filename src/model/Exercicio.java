@@ -1,18 +1,22 @@
 package model;
 
 /**
- * Este Objeto contem os dados de exercicio 
+ * Este Objeto contem os dados de exercicio
  * Os exercicios são comunus par todos os subtreinos
  * Versão: 1.0
  * Autor: [Alan Henrique de Souza]
  * Data de criação: [28/05/2024]
  */
 
-public class Exercicio implements Comparable<Exercicio>  {
+public class Exercicio implements Comparable<Exercicio> {
     private int id;
-    private String nomeExercicio, intervalo,repeticoes;
-    
-    public Exercicio( String nomeExercicio, String intervalo, String repeticoes) {
+    private String nomeExercicio, intervalo, repeticoes;
+
+    public Exercicio() {
+
+    }
+
+    public Exercicio(String nomeExercicio, String intervalo, String repeticoes) {
         this.id = 0;
         this.nomeExercicio = nomeExercicio;
         this.intervalo = intervalo;
@@ -56,7 +60,6 @@ public class Exercicio implements Comparable<Exercicio>  {
         return "Exercicio [id=" + id + ", nomeExercicio=" + nomeExercicio + ", intervalo=" + intervalo + ", repeticoes="
                 + repeticoes + "]";
     }
-
 
     @Override
     public int compareTo(Exercicio exercicio) {

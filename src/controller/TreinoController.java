@@ -8,11 +8,10 @@ import model.Treino;
  * Este Contrler Gerencia a lista de treinos cadastrados
  * Versão: 1.0
  * Autor: [Alan Henrique de Souza] Data de criação: [28/05/2024]
- * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024] 
+ * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024]
  * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
  * 
  */
-
 
 public class TreinoController {
     private List<Treino> trienos;
@@ -35,7 +34,7 @@ public class TreinoController {
     }
 
     public String cadastrarTreino(Treino treino) {
-        if (buscaTreinoId(treino.getId() ) == null) {
+        if (buscaTreinoId(treino.getId()) == null) {
             treino.setId(criarID());
             trienos.add(treino);
             return "Treino Cadastrado!";
@@ -43,11 +42,11 @@ public class TreinoController {
         return "Cliente Ja Existe!";
     }
 
-    public void deletarTreino(int id){
-        trienos.removeIf( t -> t.getId() == id);
+    public void deletarTreino(int id) {
+        trienos.removeIf(t -> t.getId() == id);
     }
 
-    public void limparTreinos(){
+    public void limparTreinos() {
         trienos.clear();
     }
 
@@ -63,7 +62,5 @@ public class TreinoController {
         }
         return ++res;
     }
-    
 
-    
 }

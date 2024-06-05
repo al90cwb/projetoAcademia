@@ -1,6 +1,7 @@
 package model;
 
 import java.util.List;
+
 /**
  * Este Objeto contem os dados de subtreino
  * Contem uma lista de exercicios e informações do subtrieno
@@ -11,8 +12,12 @@ import java.util.List;
  */
 public class SubTreino {
     private int id;
-    private String nome,tipoSubtreino, sexo, letra;
+    private String nome, tipoSubtreino, sexo, letra;
     private List<Exercicio> exercicios;
+
+    public SubTreino() {
+
+    }
 
     public SubTreino(String nome, String tipoSubtreino, String sexo, String letra, List<Exercicio> exercicios) {
         this.id = 0;
@@ -75,7 +80,7 @@ public class SubTreino {
         return exercicios.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public void limparExercicios(){
+    public void limparExercicios() {
         exercicios.clear();
     }
 
@@ -84,10 +89,5 @@ public class SubTreino {
         return "SubTreino [id=" + id + ", nome=" + nome + ", tipoSubtreino=" + tipoSubtreino + ", sexo=" + sexo
                 + ", letra=" + letra + ", exercicios=" + exercicios + "]";
     }
-
-
-    
-
-
 
 }
