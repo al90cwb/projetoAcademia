@@ -7,7 +7,6 @@ import util.Entrada;
 
 public abstract class MenuProfessor extends MenusStandard  {
 
-    // PROFESSOR-----------------------------
     public static void opcoesCadastroProfessor() {
         System.out.println("\n\n");
         System.out.println("Cadastro de professor, digite um numero correspondente:");
@@ -48,7 +47,7 @@ public abstract class MenuProfessor extends MenusStandard  {
         Entrada.in.nextLine();// LIMPA BUFFER
         System.out.println("\n\n");
         System.out.println("Alterar Aluno id: " + id);
-        professor.setId(id);// id selecionado
+        professor.setId(id);
         System.out.println("Alterar o CPF:");
         professor.setCpf(Entrada.entradaString());
         System.out.println("Altera o Endereço:");

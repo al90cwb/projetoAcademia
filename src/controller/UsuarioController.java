@@ -11,7 +11,7 @@ import model.Usuario;
  * Autor: [Leonardo Pilato] Revisão: [01/06/2024] 
  * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
  */
-public abstract class UsuarioController {
+public class UsuarioController {
     private List<Usuario> usuarios;
 
     public UsuarioController(List<Usuario> usuarios) {

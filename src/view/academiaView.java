@@ -48,15 +48,10 @@ public class academiaView {
             }
         }
 
-        // CADASTRO DE SUBTREINOS AUTOMATICO
 
-        // CADASTRO DE TRIENOS AUTOMATICO
 
-        // CADASTRO DE ALUNOS AUTOMATICO
-
-        // CADASTRO DE PROFESSORES AUTOMATICO
-
-        // CADASTRO DE ADMINAUTOMATICO
+        MenusExercicio.cadastro(controllerExecicio);
+        
 
     }
 }
