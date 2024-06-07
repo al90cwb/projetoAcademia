@@ -1,79 +1,56 @@
 package controller;
-
 import java.util.List;
-
-
 import model.Administrador;
 
-
-
-/**
- * Este Contrler Gerencia a lista de Administradores cadastrados
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
- */ 
-
 public class AdministradorController {
-    private List<Administrador> administradors;
+    private List<Administrador> administradores;
 
-    public AdministradorController(List<Administrador> administradors) {
-        this.administradors = administradors;
+    public AdministradorController(List<Administrador> administradores) {
+        this.administradores = administradores;
     }
 
-    public List<Administrador> getAdministrador() {
-        return administradors;
+    public List<Administrador> getAdministradores() {
+        return administradores;
     }
 
-    public void setAdministrador(List<Administrador> administradors) {
-        this.administradors = administradors;
+    public void setAdministradores(List<Administrador> administradores) {
+        this.administradores = administradores;
     }
 
     @Override
     public String toString() {
-        return "AdministradorContrller [administradors=" + administradors + "]";
+        return "AdministradorController [administradores=" + administradores + "]";
     }
 
-    public String cadastrarAdministrador(Administrador administradores ) {
-        if (buscaAlunoId(administradores.getId() ) == null) {
-            administradores.setId(criarID());
-            administradors.add(administradores);
-            return "Administrador Cadastrado!";
+    public String cadastrarAdministrador(Administrador administrador) {
+        if (buscaAdministradorId(administrador.getId() ) == null) {
+            administrador.setId(criarID());
+            administradores.add(administrador);
+            return "Aluno Cadastrado!";
         }
-        return "Administrador Já Existe!";
+        return "Aluno Ja Existe!";
     }
-
-    public Administrador buscaAdministradorPorCpf(String cpf) {
-        for (Administrador administradores : administradors) {
-            if (administradores.getCpf().equals(cpf)) {
-                return administradores;
-            }
-        }
-        return null;
-    }
-
 
     public void deletarAdministrador(int id){
-        administradors.removeIf( t -> t.getId() == id);
+        administradores.removeIf( t -> t.getId() == id);
     }
 
-    public void limparAdministrador(){
-        administradors.clear();
+    public Administrador buscaAdministradorId(int id) {
+        return administradores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public Administrador buscaAlunoId(int id) {
-        return administradors.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
+    public void limparAdministradores(){
+        administradores.clear();
     }
 
-    public int criarID() {
+     public int criarID() {
         int res = 0;
-        for (Administrador p : administradors) {
-            if (p.getId() > res)
-                res = p.getId();
+        for (Administrador a : administradores) {
+            if (a.getId() > res)
+                res = a.getId();
         }
         return ++res;
     }
-    
 
-    
+
 }

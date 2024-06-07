@@ -5,13 +5,13 @@ import java.util.List;
 import model.Aluno;
 
 /**
- * Este Contrler Gerencia a lista de Alunos cadastrados
+ * Este Contrler Gerencia a lista de alunos cadastrados
  * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Autor: [Leonardo Pilato] Data de criação: [01/06/2024]
+ * Autor: [Leonardo Pilato] Revisão: [01/06/2024] 
+ * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
  */
-
- public class AlunoController {
+public class AlunoController {
     private List<Aluno> alunos;
 
     public AlunoController(List<Aluno> alunos) {
@@ -22,13 +22,15 @@ import model.Aluno;
         return alunos;
     }
 
-    public void setAluno(List<Aluno> alunos) {
+
+    public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
-    }
+    } 
+    
 
     @Override
     public String toString() {
-        return "AlunoContrller [alunos=" + alunos + "]";
+        return "Alunocontroller [alunos=" + alunos + "]";
     }
 
     public String cadastrarAluno(Aluno aluno) {
@@ -37,39 +39,29 @@ import model.Aluno;
             alunos.add(aluno);
             return "Aluno Cadastrado!";
         }
-        return "Aluno Já Existe!";
-    }
-
-    public Aluno buscaAlunoPorCpf(String cpf) {
-        for (Aluno aluno : alunos) {
-            if (aluno.getCpf().equals(cpf)) {
-                return aluno;
-            }
-        }
-        return null;
+        return "Aluno Ja Existe!";
     }
 
     public void deletarAluno(int id){
         alunos.removeIf( t -> t.getId() == id);
     }
 
-    public void limparAluno(){
-        alunos.clear();
-    }
-
     public Aluno buscaAlunoId(int id) {
         return alunos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
+    public void limparAlunos(){
+        alunos.clear();
+    }
+
     public int criarID() {
         int res = 0;
-        for (Aluno p : alunos) {
-            if (p.getId() > res)
-                res = p.getId();
+        for (Aluno a : alunos) {
+            if (a.getId() > res)
+                res = a.getId();
         }
         return ++res;
     }
-    
 
-    
+   
 }
