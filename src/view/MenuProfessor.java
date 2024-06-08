@@ -52,9 +52,9 @@ public abstract class MenuProfessor extends MenusStandard  {
 
             if (MenusTreino.confimar()) {
                 controller.deletar(professor.getId());
-                System.out.println("Aluno Excluido:");
+                System.out.println("Professor Excluido:");
             } else {
-                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+                System.out.println("Operação Cancelada, Professor não foi deletado:");
             }
         }
     }
@@ -129,7 +129,7 @@ public abstract class MenuProfessor extends MenusStandard  {
                 professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
                 verProfessor( professor);
             }else{
-                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+                System.out.println("Operação Cancelada, Professor não foi deletado:");
             }
         }
     }

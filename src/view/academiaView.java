@@ -40,6 +40,7 @@ public class academiaView {
         Aluno aluno = null;
         Administrador administrador = null;
         int nivelAcesso=0;//0 sem acesso,1 aluno, 2 professor ,3 administrador
+        boolean sairPrincipal = false;
 
 
         boolean modoTeste = true;
@@ -65,78 +66,83 @@ public class academiaView {
 
         }
 
-        System.out.println("Sistema de Academia-------------------------");
-        
-        boolean sairOpcao= false;
         do{
-
-            professor = null;
-            administrador = null;
-            aluno = null;
-            nivelAcesso = 0;
-
+            System.out.println("\n\nSistema de Academia-------------------------");
             
-            System.out.println( "Login - Informe CPF");
-            cpf =  Entrada.entradaString();
-            System.out.println( "Informe senha");
-            senha =  Entrada.entradaString();
+            boolean sairOpcao= false;
+            do{
 
-            administrador = controllerAdministrador.buscaCpf(cpf);
-            professor = controllerProfessor.buscaCpf(cpf);
-            aluno = controllerAluno.buscaCpf(cpf);
-            
-            if (administrador!= null  ){
-                if (administrador.getSenha().equals(senha)){
-                    nivelAcesso = 3;
-                    sairOpcao = true;
-                }
-            }
-            if (professor!= null  ){
-                if (professor.getSenha().equals(senha)){
-                    nivelAcesso = 2;
-                    sairOpcao = true;
-                }
-            }
-            
-            if (aluno!= null  ){
-                if (aluno.getSenha().equals(senha)){
-                    nivelAcesso = 1;
-                    sairOpcao = true;
-                }
-            }
-    
-            if (nivelAcesso==0){
-                System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
-                sairOpcao = !MenusStandard.confimar();
-                Entrada.in.nextLine();
-            }
+                professor = null;
+                administrador = null;
+                aluno = null;
+                nivelAcesso = 0;
 
-
-        }while(!sairOpcao);
-
-
-
-
-        switch (nivelAcesso) {
-            case 1:
-
-                break;
-            case 2:
-                    
                 
-            break;
-            case 3:
-                    System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
-                    MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor);
-            break;
-            case 0:
-                break;
-        
-            default:
-                break;
-        }
-            
+                System.out.println( "Login - Informe CPF");
+                cpf =  Entrada.entradaString();
+                System.out.println( "Informe senha");
+                senha =  Entrada.entradaString();
 
+                administrador = controllerAdministrador.buscaCpf(cpf);
+                professor = controllerProfessor.buscaCpf(cpf);
+                aluno = controllerAluno.buscaCpf(cpf);
+                
+                if (administrador!= null  ){
+                    if (administrador.getSenha().equals(senha)){
+                        nivelAcesso = 3;
+                        sairOpcao = true;
+                    }
+                }
+                if (professor!= null  ){
+                    if (professor.getSenha().equals(senha)){
+                        nivelAcesso = 2;
+                        sairOpcao = true;
+                    }
+                }
+                
+                if (aluno!= null  ){
+                    if (aluno.getSenha().equals(senha)){
+                        nivelAcesso = 1;
+                        sairOpcao = true;
+                    }
+                }
+        
+                if (nivelAcesso==0){
+                    System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
+                    sairOpcao = !MenusStandard.confimar();
+                    sairPrincipal = sairOpcao;
+                    Entrada.in.nextLine();
+                }
+
+
+            }while(!sairOpcao);
+
+
+
+
+            switch (nivelAcesso) {
+                case 1:
+
+                    break;
+                case 2:
+                        
+                    
+                break;
+                case 3:
+                        System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
+                        sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor, controllerAdministrador);
+                break;
+                case 0:
+                    break;
+            
+                default:
+                    sairPrincipal= true;
+                    break;
+            }
+            
+            if (!sairPrincipal) Entrada.in.nextLine();
+
+        }while(!sairPrincipal);
         System.out.println( "SISTEMA ENCERRADO");
 
 
