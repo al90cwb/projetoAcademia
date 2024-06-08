@@ -48,11 +48,19 @@ public class academiaView {
                 controllerExecicio.cadastrarExercicio(new Exercicio("Exercicio" + i, i + "min", "10x"));
             }
 
-
-
             for (int i = 0; i < 10; i++) {
                 controllerAluno.cadastrar(new Aluno(0, "aluno"+i,"cpf"+i  ,"endereco"+i ,"celular"+i ,"email"+i ,"sexo"+i ,
                                             "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData),new Treino(), new ArrayList<AvaliacaoFisica>()  ));
+            }
+
+            for (int i = 0; i < 5; i++) {
+                controllerProfessor.cadastrar(new Professor(0, "prof"+i,"cpf"+i  ,"endereco"+i ,"celular"+i ,"email"+i ,"sexo"+i ,
+                                            "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData) ));
+            }
+
+            for (int i = 0; i < 5; i++) {
+                controllerAdministrador.cadastrar(new Administrador(0, "admin"+i,"cpf"+i  ,"endereco"+i ,"celular"+i ,"email"+i ,"sexo"+i ,
+                                            "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData) ));
             }
 
         }
@@ -107,6 +115,8 @@ public class academiaView {
         }while(!sairOpcao);
 
 
+
+
         switch (nivelAcesso) {
             case 1:
 
@@ -117,7 +127,7 @@ public class academiaView {
             break;
             case 3:
                     System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
-                    MenuAdminstrador.menuPrincipal(controllerAluno);
+                    MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor);
             break;
             case 0:
                 break;

@@ -2,188 +2,149 @@ package view;
 
 import java.time.LocalDate;
 
+import controller.ProfessorController;
 import model.Professor;
 import util.Entrada;
 
 public abstract class MenuProfessor extends MenusStandard  {
 
-    public static void opcoesCadastroProfessor() {
-        System.out.println("\n\n");
-        System.out.println("Cadastro de professor, digite um numero correspondente:");
-        System.out.println("0 - CANCELAR");
-        System.out.println("1 - CADASTRAR NOVO ALUNO:");
-        System.out.println("2 - ALTERAR ALUNO:");
-        System.out.println("3 - DELETAR ALUNO:");
-        System.out.println("4 - LISTA ALUNO CADATRADOS:");
+    public static void opcaoAlteracao(ProfessorController controller, Professor professor){
 
+        int opcao = 0;
+        boolean sair = false;
+       
+
+        do {
+            System.out.println("\n\n Informar opções");
+            System.out.println("0- Cancelar");
+            System.out.println("1- Alterar");
+            System.out.println("2- Deletar");
+            opcao = 0;
+            opcao = Entrada.entradaInt();
+
+            switch (opcao) {
+                case 0:
+                sair= true;
+                break;
+                case 1:
+                alterar(professor);
+                sair= true;
+                break;
+                case 2:
+                deletar(controller,professor);
+                sair= true;
+                break;
+                default:
+                System.out.println("Opção invalida");
+                sair= false;
+                break;
+            } 
+        } while (!sair);
     }
 
-    public static Professor cadastroProfessor(Professor professor) {
+
+    public static void deletar(ProfessorController controller, Professor professor){
+        if (professor == null) {
+            System.out.println("Aluno Não encontrado");
+        } else {
+            System.out.println("Você deseja deletar o Professor?");
+            MenuProfessor.verProfessor(professor);
+
+            if (MenusTreino.confimar()) {
+                controller.deletar(professor.getId());
+                System.out.println("Aluno Excluido:");
+            } else {
+                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+            }
+        }
+    }
+
+    public static Professor buscar(ProfessorController controlle) {
+        Entrada.in.nextLine();
+        System.out.println("Informar cpf do aluno");
+        return controlle.buscaCpf(Entrada.entradaCPF());
+    }
+
+    public static void cadastro(ProfessorController controller) {
+        Professor cadastro= new Professor();
 
         Entrada.in.nextLine();
         System.out.println("\n\n");
-        System.out.println("Cadastro de Professor");
-        System.out.println("Nome do Professor:");
-        professor.setNome(Entrada.entradaString());
+        System.out.println("1/ Cadastro de Professor");
+        System.out.println("Nome:");
+        cadastro.setNome(Entrada.entradaString());
         System.out.println("Digite o CPF:");
-        professor.setCpf(Entrada.entradaString());
+        cadastro.setCpf(Entrada.entradaString());
         System.out.println("Digite Endereço:");
-        professor.setEndereco(Entrada.entradaString());
+        cadastro.setEndereco(Entrada.entradaString());
         System.out.println("Digite o celular:");
-        professor.setCelular(Entrada.entradaString());
+        cadastro.setCelular(Entrada.entradaString());
         System.out.println("Digite o email:");
-        professor.setEmail(Entrada.entradaString());
+        cadastro.setEmail(Entrada.entradaString());
         System.out.println("Digite o Sexo:");
-        professor.setSexo(Entrada.entradaString());
+        cadastro.setSexo(Entrada.entradaString());
         System.out.println("Digite a Senha:");
-        professor.setSenha(Entrada.entradaString());
+        cadastro.setSenha(Entrada.entradaString());
         System.out.println("Digite a Data de Nascimento:");
-        professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-        return professor;
+        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+
+        System.out.println("Você deseja cadastrar o Professor?");
+        MenuProfessor.verProfessor(cadastro);
+
+        if (MenusTreino.confimar()) {
+            controller.cadastrar(new Professor(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
+            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
+            System.out.println("Professor Cadastrado:");
+        } else {
+             System.out.println("Professor Cancelada.");
+        }
+
     }
 
-    public static Professor alterarProfessor(Professor professor, int id) {
+    public static void alterar(Professor professor) {
+        if (professor == null) {
+            System.out.println("Professor Não encontrado");
+        } else {
+            System.out.println("Você deseja alterar o Professor?");
+            MenuProfessor.verProfessor(professor);
 
-        Entrada.in.nextLine();// LIMPA BUFFER
-        System.out.println("\n\n");
-        System.out.println("Alterar Aluno id: " + id);
-        professor.setId(id);
-        System.out.println("Alterar o CPF:");
-        professor.setCpf(Entrada.entradaString());
-        System.out.println("Altera o Endereço:");
-        professor.setEndereco(Entrada.entradaString());
-        System.out.println("Altera o Celular:");
-        professor.setCelular(Entrada.entradaString());
-        System.out.println("Altera o Email:");
-        professor.setEmail(Entrada.entradaString());
-        System.out.println("Altera o Sexo:");
-        professor.setSexo(Entrada.entradaString());
-        System.out.println("Altera a Senha:");
-        professor.setSenha(Entrada.entradaString());
-        System.out.println("Altera a Data de Nascimento:");
-        professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-
-        return professor;
-    }
-
-    public static int buscarProfessor() {
-        Entrada.in.nextLine();// LIMPA BUFFER
-        System.out.println("Informar id do professor que deseja alterar");
-        int id = Entrada.entradaInt();
-        return id;
+            if (MenuAluno.confimar()) {
+                Entrada.in.nextLine();
+                System.out.println("\n\n");
+                System.out.println("Alterar o Nome:");
+                professor.setNome(Entrada.entradaString());
+                System.out.println("Alterar o CPF:");
+                professor.setCpf(Entrada.entradaString());
+                System.out.println("Altera o Endereço:");
+                professor.setEndereco(Entrada.entradaString());
+                System.out.println("Altera o Celular:");
+                professor.setCelular(Entrada.entradaString());
+                System.out.println("Altera o Email:");
+                professor.setEmail(Entrada.entradaString());
+                System.out.println("Altera o Sexo:");
+                professor.setSexo(Entrada.entradaString());
+                System.out.println("Altera a Senha:");
+                professor.setSenha(Entrada.entradaString());
+                System.out.println("Altera a Data de Nascimento:");
+                professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+                verProfessor( professor);
+            }else{
+                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+            }
+        }
     }
 
     public static void verProfessor(Professor professor) {
-
-        System.out.println(professor.toString());
+        System.out.println("Dados do Professor");
+        System.out.println("CPF :"+ professor.getCpf() + ", Nome: " + professor.getNome());
     }
 
-    /*
-     * CADASTRO PROFESSOR
-     * do {
-     * 
-     * SubMenus.opcoesCadastroProfessor();
-     * opcaoCadastroProfessor = Entrada.entradaInt();
-     * sairOpcaoCadastroProfessor = false;//se for para true sai do menu
-     * 
-     * switch (opcaoCadastroProfessor) {
-     * case 0://SAIR
-     * sairOpcaoCadastroProfessor = true;//sai do menu
-     * break;
-     * case 1://CADASTRO PROFESSOR
-     * 
-     * SubMenus.cadastroProfessor(professorCadastro);
-     * System.out.println("Você deseja cadastrar o Professor?");
-     * SubMenus.verProfessor(professorCadastro);
-     * 
-     * if (SubMenus.confimar()){
-     * //alterar o professor pelo novo
-     * controllerProfessor.cadastrarProfessor(new
-     * Professor(professorCadastro.getid(), professorCadastro.getnome(),
-     * professorCadastro.getcpf(), professorCadastro.getendereco(),
-     * professorCadastro.getcelular(),professorCadastro.getemail(),
-     * professorCadastro.getsexo(), professorCadastro.getsenha(),
-     * professorCadastro.getdatanascimento()));
-     * 
-     * System.out.println("ProfessorCadastrado:");
-     * }else{
-     * System.out.println("Operação Cancelada.");
-     * }
-     * sairOpcaoCadastroProfessor = false;//continua no menu
-     * 
-     * break;
-     * case 2://ALTERAR
-     * 
-     * //BUSCAR PROFESSOR
-     * idBusca = SubMenus.buscarProfessor();
-     * professorBusca = controllerProfessor.buscaProfessorId(idBusca);
-     * 
-     * if (professorBusca==null) {
-     * System.out.println("Professor Não Encontrado");
-     * } else {
-     * System.out.println("Você deseja alterar o Professor?");
-     * SubMenus.verProfessor(ProfessorBusca);
-     * 
-     * if (SubMenus.confimar()){
-     * SubMenus.alterarProfessor(professorCadastro, idBusca);
-     * 
-     * //alterar o professor pelo novo
-     * professorBusca.setid(professorCadastro.getid());
-     * professorBusca.setnome(professorCadastro.getnome());
-     * professorBusca.setcpf(professorCadastro.getcpf());
-     * professorBusca.setendereco(professorCadastro.getendereco());
-     * professorBusca.setcelular(professorCadastro.getcelular());
-     * professorBusca.setemail(professorCadastro.getemail());
-     * professorBusca.setsexo(professorCadastro.getsexo());
-     * professorBusca.setsenha(professorCadastro.getsenha());
-     * professorBusca.setdatanascimento(professorCadastro.getdatanascimento());
-     * 
-     * System.out.println("Professor Alterado:");
-     * SubMenus.verProfessor(professorBusca);
-     * }else{
-     * System.out.println("Operação Cancelada, Professor não foi alterado:");
-     * SubMenus.verProfessor(professorBusca);
-     * }
-     * }
-     * 
-     * sairOpcaoCadastroProfessor = false;//continua no menu
-     * break;
-     * case 3://DELETAR
-     * 
-     * //BUSCAR PROFESSOR
-     * idBusca = SubMenus.buscarProfessor();
-     * professorBusca = controllerProfessor.buscaProfessorId(idBusca);
-     * 
-     * if (professorBusca==null) {
-     * System.out.println("Professor Não Encontrado");
-     * } else {
-     * System.out.println("Você deseja EXCLUIR o Professor?");
-     * SubMenus.verProfessor(professorBusca);
-     * 
-     * if (SubMenus.confimar()){
-     * controllerProfessor.deletarProfessor(idBusca);
-     * System.out.println("Professor Excluido:");
-     * }else{
-     * System.out.println("Operação Cancelada, Professor não foi deletado:");
-     * SubMenus.verProfessor(professorBusca);
-     * }
-     * }
-     * sairOpcaoCadastroProfessor = false;//continua no menu
-     * break;
-     * 
-     * case 4://LISTA DE PROFESSOR CADASTRADOS
-     * System.out.println("Lista de Professores Cadastrados");
-     * controllerProfessor.getProfessores().forEach(System.out::println);
-     * System.out.println("----------------\n\n");
-     * sairOpcaoCadastroProfessor = false;//continua no menu
-     * break;
-     * default:
-     * sairOpcaoCadastroProfessor = false;//continua no menu
-     * break;
-     * }
-     * 
-     * } while (!sairOpcaoCadastroProfessor);//se for para true sai do menu
-     * 
-     */
+    public static void verProfessores( ProfessorController controller){
+        System.out.println("Lista de Professores Cadastrados");
+        for (Professor professor : controller.getProfessores()) {
+            System.err.println("CPF :"+ professor.getCpf() + ", Nome: " + professor.getNome());
+        }
+        System.out.println("----------------\n\n");
+    }
 
 }
