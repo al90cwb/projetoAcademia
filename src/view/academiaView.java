@@ -3,15 +3,12 @@ package view;
 import java.util.ArrayList;
 
 import controller.ExercicioController;
-import controller.SubtreinoController;
-import controller.TreinoController;
 import controller.AdministradorController;
 import controller.AlunoController;
 import controller.ProfessorController;
 import model.Administrador;
 import model.Exercicio;
-import model.SubTreino;
-import model.Treino;
+import util.Entrada;
 import model.Aluno;
 import model.Professor;
 
@@ -25,22 +22,23 @@ import model.Professor;
 
 public class academiaView {
     public static void main(String[] args) throws Exception {
-        // DECLARAÇÃO DE VARIAVEIS
-        // CONTROLLER
+        
         ExercicioController controllerExecicio = new ExercicioController(new ArrayList<Exercicio>());
-        SubtreinoController controllerSubtreino = new SubtreinoController(new ArrayList<SubTreino>());
-        TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>());
         AlunoController controllerAluno = new AlunoController(new ArrayList<Aluno>());
         ProfessorController controllerProfessor = new ProfessorController(new ArrayList<Professor>());
         AdministradorController controllerAdministrador = new AdministradorController(new ArrayList<Administrador>());
 
-        // USUARIO DE INICIALIZAÇÃO
-        Administrador adminBase = new Administrador(1, "admin", null, null, null, "admin", null, "admin", null);
+        controllerAdministrador.cadastrar(new Administrador(0, "admin", "admin", null, null, null, null, "admin", null));
+        controllerProfessor.cadastrar(new Professor(0, "professor", "professor", null, null, null, null, "professor", null));
+        controllerAluno.cadastrar(new Aluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, null, null));
+        
+        String cpf, senha;
+        Professor professor = null;
+        Aluno aluno = null;
+        Administrador administrador = null;
+        int nivelAcesso=0;//0 sem acesso,1 aluno, 2 professor ,3 administrador
 
-        // INICIO DO SISTEMA-------------------------------------------------
-        System.out.println("Sistema de Academia-------------------------");
 
-        // CADASTRO BASICO DE EXERCICIOS MODO TESTE
         boolean modoTeste = true;
         if (modoTeste) {
             for (int i = 0; i < 25; i++) {
@@ -48,15 +46,76 @@ public class academiaView {
             }
         }
 
-        // CADASTRO DE SUBTREINOS AUTOMATICO
+        System.out.println("Sistema de Academia-------------------------");
+        
+        boolean sairOpcao= false;
+        do{
 
-        // CADASTRO DE TRIENOS AUTOMATICO
+            professor = null;
+            administrador = null;
+            aluno = null;
+            nivelAcesso = 0;
 
-        // CADASTRO DE ALUNOS AUTOMATICO
+            
+            System.out.println( "Login - Informe CPF");
+            cpf =  Entrada.entradaString();
+            System.out.println( "Informe senha");
+            senha =  Entrada.entradaString();
 
-        // CADASTRO DE PROFESSORES AUTOMATICO
+            administrador = controllerAdministrador.buscaCpf(cpf);
 
-        // CADASTRO DE ADMINAUTOMATICO
+            System.out.println( "cpf " + cpf + " senha " + senha);
+            System.out.println(administrador);
+            if (administrador!= null && administrador.getSenha() !=null ){
+                if (senha == administrador.getSenha()){
+                    nivelAcesso = 3;
+                    sairOpcao = true;
+                }
+            }
+            
+            if (nivelAcesso==0){
+                System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
+                sairOpcao = !MenusStandard.confimar();
+                Entrada.in.nextLine();
+            }
 
+
+        }while(!sairOpcao);
+
+
+
+
+        System.out.println( "Nivel de acesso " + nivelAcesso);
+
+        switch (nivelAcesso) {
+            case 1:
+
+                    System.out.println( aluno);
+                
+                break;
+                
+            case 2:
+
+                    System.out.println( professor);
+                
+            break;
+            case 3:
+
+                    System.out.println( administrador);
+                
+            break;
+            case 0:
+                    System.out.println( "SISTEMA ENCERRADO");
+                
+                break;
+        
+            default:
+                break;
+        }
+            
+
+
+
+        
     }
 }

@@ -1,6 +1,7 @@
 package controller;
 import java.util.List;
 import model.Administrador;
+import model.Aluno;
 
 public class AdministradorController {
     private List<Administrador> administradores;
@@ -22,8 +23,8 @@ public class AdministradorController {
         return "AdministradorController [administradores=" + administradores + "]";
     }
 
-    public String cadastrarAdministrador(Administrador administrador) {
-        if (buscaAdministradorId(administrador.getId() ) == null) {
+    public String cadastrar(Administrador administrador) {
+        if (buscarId(administrador.getId() ) == null) {
             administrador.setId(criarID());
             administradores.add(administrador);
             return "Aluno Cadastrado!";
@@ -31,15 +32,15 @@ public class AdministradorController {
         return "Aluno Ja Existe!";
     }
 
-    public void deletarAdministrador(int id){
+    public void deletar(int id){
         administradores.removeIf( t -> t.getId() == id);
     }
 
-    public Administrador buscaAdministradorId(int id) {
+    public Administrador buscarId(int id) {
         return administradores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public void limparAdministradores(){
+    public void limpar(){
         administradores.clear();
     }
 
@@ -52,5 +53,16 @@ public class AdministradorController {
         return ++res;
     }
 
+   public Administrador buscaCpf(String cpf) {
+        return administradores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
+    }
+
+    public Administrador verificarSenha(String cpf,String senha) {
+        Administrador a = administradores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
+        if (a.getSenha().equals(senha)){
+            return a;
+        }
+        return null;
+    }
 
 }
