@@ -3,7 +3,6 @@ package controller;
 import java.util.List;
 
 import model.Aluno;
-import model.Professor;
 
 /**
  * Este Contrler Gerencia a lista de alunos cadastrados

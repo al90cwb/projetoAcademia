@@ -20,6 +20,9 @@ public class Aluno extends Usuario {
     private Treino treino;
     private List<AvaliacaoFisica> avaliacoesFisicas;
 
+    public Aluno() {
+    }
+    
     public Aluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento, Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);

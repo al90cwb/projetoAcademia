@@ -1,6 +1,8 @@
 package view;
 
+import controller.AlunoController;
 import controller.ExercicioController;
+import model.Aluno;
 import model.Exercicio;
 import util.Entrada;
 
@@ -57,6 +59,14 @@ public abstract class MenusExercicio extends MenusStandard {
     public static void verExercicio(Exercicio exercicio) {
         // ver exercicio
         System.out.println(exercicio.toString());
+    }
+
+    public static void verExercicios( ExercicioController controller){
+        System.out.println("Lista de Exercicios Cadastrados");
+        for (Exercicio exercicio : controller.getExercicios()) {
+            System.err.println("id :"+ exercicio.getId() + ", Nome: " + exercicio.getNomeExercicio() + ", Intervalo "+ exercicio.getIntervalo()+ ", Repetições :" + exercicio.getRepeticoes());
+        }
+        System.out.println("----------------\n\n");
     }
 
     public static void cadastro(ExercicioController controllerExecicio) {
@@ -149,9 +159,7 @@ public abstract class MenusExercicio extends MenusStandard {
                     break;
 
                 case 4:// LISTA DE EXERCICIOS CADASTRADOS
-                    System.out.println("Lista de Exercicios Cadastrados");
-                    controllerExecicio.getExercicios().forEach(System.out::println);
-                    System.out.println("----------------\n\n");
+                    verExercicios(controllerExecicio);
                     sairOpcaoCadastro = false;// continua no menu
                     break;
                 default:

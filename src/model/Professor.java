@@ -16,6 +16,8 @@ import java.time.LocalDate;
 
 public class Professor extends Usuario {
 
+    public Professor() {
+    }
     public Professor(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);

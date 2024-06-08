@@ -1,5 +1,6 @@
 package view;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import controller.ExercicioController;
@@ -10,7 +11,9 @@ import model.Administrador;
 import model.Exercicio;
 import util.Entrada;
 import model.Aluno;
+import model.AvaliacaoFisica;
 import model.Professor;
+import model.Treino;
 
 /**
  * Este programa é um exemplo simples de gestão de academia
@@ -44,6 +47,14 @@ public class academiaView {
             for (int i = 0; i < 25; i++) {
                 controllerExecicio.cadastrarExercicio(new Exercicio("Exercicio" + i, i + "min", "10x"));
             }
+
+
+
+            for (int i = 0; i < 10; i++) {
+                controllerAluno.cadastrar(new Aluno(0, "aluno"+i,"cpf"+i  ,"endereco"+i ,"celular"+i ,"email"+i ,"sexo"+i ,
+                                            "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData),new Treino(), new ArrayList<AvaliacaoFisica>()  ));
+            }
+
         }
 
         System.out.println("Sistema de Academia-------------------------");
@@ -96,28 +107,19 @@ public class academiaView {
         }while(!sairOpcao);
 
 
-        System.out.println( "Nivel de acesso " + nivelAcesso);
-
         switch (nivelAcesso) {
             case 1:
 
-                    System.out.println( aluno);
-                
                 break;
-                
             case 2:
-
-                    System.out.println( professor);
+                    
                 
             break;
             case 3:
-
-                    System.out.println( administrador);
-                
+                    System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
+                    MenuAdminstrador.menuPrincipal(controllerAluno);
             break;
             case 0:
-                    System.out.println( "SISTEMA ENCERRADO");
-                
                 break;
         
             default:
@@ -125,6 +127,7 @@ public class academiaView {
         }
             
 
+        System.out.println( "SISTEMA ENCERRADO");
 
 
         
