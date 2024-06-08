@@ -63,16 +63,29 @@ public class academiaView {
             senha =  Entrada.entradaString();
 
             administrador = controllerAdministrador.buscaCpf(cpf);
-
-            System.out.println( "cpf " + cpf + " senha " + senha);
-            System.out.println(administrador);
-            if (administrador!= null && administrador.getSenha() !=null ){
-                if (senha == administrador.getSenha()){
+            professor = controllerProfessor.buscaCpf(cpf);
+            aluno = controllerAluno.buscaCpf(cpf);
+            
+            if (administrador!= null  ){
+                if (administrador.getSenha().equals(senha)){
                     nivelAcesso = 3;
                     sairOpcao = true;
                 }
             }
+            if (professor!= null  ){
+                if (professor.getSenha().equals(senha)){
+                    nivelAcesso = 2;
+                    sairOpcao = true;
+                }
+            }
             
+            if (aluno!= null  ){
+                if (aluno.getSenha().equals(senha)){
+                    nivelAcesso = 1;
+                    sairOpcao = true;
+                }
+            }
+    
             if (nivelAcesso==0){
                 System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
                 sairOpcao = !MenusStandard.confimar();
@@ -81,8 +94,6 @@ public class academiaView {
 
 
         }while(!sairOpcao);
-
-
 
 
         System.out.println( "Nivel de acesso " + nivelAcesso);
