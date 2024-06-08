@@ -3,6 +3,7 @@ package controller;
 import java.util.List;
 
 import model.Aluno;
+import model.Professor;
 
 /**
  * Este Contrler Gerencia a lista de alunos cadastrados
@@ -33,8 +34,8 @@ public class AlunoController {
         return "Alunocontroller [alunos=" + alunos + "]";
     }
 
-    public String cadastrarAluno(Aluno aluno) {
-        if (buscaAlunoId(aluno.getId() ) == null) {
+    public String cadastrar(Aluno aluno) {
+        if (buscaId(aluno.getId() ) == null) {
             aluno.setId(criarID());
             alunos.add(aluno);
             return "Aluno Cadastrado!";
@@ -42,13 +43,15 @@ public class AlunoController {
         return "Aluno Ja Existe!";
     }
 
-    public void deletarAluno(int id){
+
+    public void deletar(int id){
         alunos.removeIf( t -> t.getId() == id);
     }
 
-    public Aluno buscaAlunoId(int id) {
+    public Aluno buscaId(int id) {
         return alunos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
+
 
     public void limparAlunos(){
         alunos.clear();
@@ -63,5 +66,17 @@ public class AlunoController {
         return ++res;
     }
 
-   
+    public Aluno buscaCpf(String cpf) {
+        return alunos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
+    }
+
+
+    public Aluno verificarSenha(String cpf,String senha) {
+        Aluno a = alunos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
+        if (a.getSenha().equals(senha)){
+            return a;
+        }
+        return null;
+    }
+
 }
