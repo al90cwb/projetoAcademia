@@ -34,10 +34,6 @@ public abstract class MenusTreino extends MenusStandard {
         System.out.println("Nome do Treino");
         treino.setNome(Entrada.entradaString());
         System.out.println("Data Inicio");
-        treino.setDataInicio(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-        System.out.println("Data Fim");
-        treino.setDataFim(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-        System.out.println("Dias de duração");
         treino.setDuracao(Entrada.entradaInt());
         System.out.println("Aquecimento: \n");
         treino.setAquecimento(Entrada.entradaString());
@@ -56,9 +52,6 @@ public abstract class MenusTreino extends MenusStandard {
         System.out.println("Nome do treino");
         treino.setNome(Entrada.entradaString());
         System.out.println("Alterar Data de Inicio");
-        treino.setDataInicio(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-        System.out.println("Alterar Data do Fim");
-        treino.setDataFim(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
         System.out.println("Alterar dias de duração");
         treino.setDuracao(Entrada.entradaInt());
         System.out.println("Alterar Aquecimento");
@@ -106,8 +99,7 @@ public abstract class MenusTreino extends MenusStandard {
                     if (MenusTreino.confimar()) {
 
                         controllerTreino.cadastrarTreino(new Treino(cadastro.getDuracao(), cadastro.getNome(),
-                                cadastro.getAquecimento(), cadastro.getSugestaoDiasTreino(), cadastro.getDataInicio(),
-                                cadastro.getDataFim(), cadastro.getSubtreinos()));
+                                cadastro.getAquecimento(), cadastro.getSugestaoDiasTreino(), cadastro.getSubtreinos()));
 
                         System.out.println("Treino Cadastrado:");
                     } else {
@@ -135,8 +127,6 @@ public abstract class MenusTreino extends MenusStandard {
 
                             // Alterar o treino com os novos dados
                             busca.setNome(cadastro.getNome());
-                            busca.setDataInicio(cadastro.getDataInicio());
-                            busca.setDataFim(cadastro.getDataFim());
                             busca.setDuracao(cadastro.getDuracao());
                             busca.setAquecimento(cadastro.getAquecimento());
                             busca.setSugestaoDiasTreino(cadastro.getSugestaoDiasTreino());

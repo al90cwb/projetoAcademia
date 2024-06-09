@@ -1,8 +1,6 @@
 package view;
 
-import controller.AlunoController;
 import controller.ExercicioController;
-import model.Aluno;
 import model.Exercicio;
 import util.Entrada;
 

@@ -33,13 +33,13 @@ public class academiaView {
 
         controllerAdministrador.cadastrar(new Administrador(0, "admin", "admin", null, null, null, null, "admin", null));
         controllerProfessor.cadastrar(new Professor(0, "professor", "professor", null, null, null, null, "professor", null));
-        controllerAluno.cadastrar(new Aluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, null, null));
+        controllerAluno.cadastrar(new Aluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, null, null,false));
         
         String cpf, senha;
         Professor professor = null;
         Aluno aluno = null;
         Administrador administrador = null;
-        int nivelAcesso=0;//0 sem acesso,1 aluno, 2 professor ,3 administrador
+        int nivelAcesso=0;
         boolean sairPrincipal = false;
 
 
@@ -51,7 +51,7 @@ public class academiaView {
 
             for (int i = 0; i < 10; i++) {
                 controllerAluno.cadastrar(new Aluno(0, "aluno"+i,"cpf"+i  ,"endereco"+i ,"celular"+i ,"email"+i ,"sexo"+i ,
-                                            "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData),new Treino(), new ArrayList<AvaliacaoFisica>()  ));
+                                            "senha"+i ,LocalDate.parse("10/10/198"+i, Entrada.formatoData),null, new ArrayList<AvaliacaoFisica>() ,false ));
             }
 
             for (int i = 0; i < 5; i++) {
@@ -122,15 +122,16 @@ public class academiaView {
 
             switch (nivelAcesso) {
                 case 1:
-
+                    System.out.println("\n\nSeja Bem Vindo " + aluno.getNome());
+                    sairPrincipal = MenuAluno.menuPrincipal(aluno);
                     break;
                 case 2:
                         
                     
                 break;
                 case 3:
-                        System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
-                        sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor, controllerAdministrador);
+                    System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
+                    sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor, controllerAdministrador);
                 break;
                 case 0:
                     break;
@@ -144,8 +145,6 @@ public class academiaView {
 
         }while(!sairPrincipal);
         System.out.println( "SISTEMA ENCERRADO");
-
-
         
     }
 }

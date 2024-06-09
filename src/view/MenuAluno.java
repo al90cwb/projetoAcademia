@@ -9,6 +9,65 @@ import util.Entrada;
 
 public abstract class MenuAluno extends MenusStandard {
 
+    public static void opcoes() {
+        System.out.println("\n\n");
+        System.out.println("Menu Aluno:");
+        System.out.println("0 - FECHAR SISTEMA");
+        System.out.println("1 - LOGOUT");
+
+        System.out.println("\n10 - VISUALIZAR TREINO");
+        System.out.println("11 - SOLICTAR TREINO NOVO");
+    }
+
+    public static boolean menuPrincipal(Aluno aluno){
+
+        int opcao = 0;
+        boolean sair = false;
+        
+
+        do {
+
+            MenuAluno.opcoes();
+            opcao = Entrada.entradaInt();
+            sair = false;
+
+            switch (opcao) {
+                case 0:
+                    sair = true;
+                return true;
+                case 1:
+                    sair = true;
+                break;
+                
+
+                case 10:
+                    if (aluno.getTreino()==null){
+                        System.out.println("\nVocê não possui treino cadastrado");
+                    }else{
+                        MenusTreino.verTreino(aluno.getTreino());
+                    }
+                    sair = false;
+                break;
+
+                case 11:
+                    aluno.setSubstituirTreino(true);
+                    System.out.println("\nSolictação de treino confirmada");
+                    MenuAluno.verAluno(aluno);
+                    sair = false;
+                break;
+
+                default:
+                    sair = false;
+                    break;
+            }
+
+        } while (!sair);
+
+        return false;
+
+    }
+
+
     public static void opcaoAlteracao(AlunoController controller, Aluno aluno){
 
         int opcao = 0;
@@ -94,7 +153,7 @@ public abstract class MenuAluno extends MenusStandard {
 
         if (MenusTreino.confimar()) {
             controller.cadastrar(new Aluno(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
-            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(), null, null));
+            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(), null, null,false));
             System.out.println("Aluno Cadastrado:");
         } else {
              System.out.println("Operação Cancelada.");
@@ -138,7 +197,7 @@ public abstract class MenuAluno extends MenusStandard {
     public static void verAluno(Aluno aluno) {
         //System.out.println(aluno.toString());
         System.out.println("Dados do Aluno");
-        System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome());
+        System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: " + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
     }
 
     public static void verAlunos( AlunoController controller){

@@ -83,8 +83,9 @@ public abstract class MenuAdminstrador extends MenusStandard  {
                     sair = false;
                 break;
 
-                case 30:cadastro(controllerAdministrador);
-                sair = false;
+                case 30:
+                    cadastro(controllerAdministrador);
+                    sair = false;
                 break;
                 case 31:
                     verAdministradores(controllerAdministrador);

@@ -1,6 +1,5 @@
 package model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -15,24 +14,21 @@ import java.util.List;
 public class Treino {
     private int id, duracao;
     private String nome, aquecimento, sugestaoDiasTreino;
-    private LocalDate dataInicio, dataFim;
     private List<SubTreino> subtreinos;
 
     public Treino() {
     }
 
-    public Treino(int duracao, String nome, String aquecimento, String sugestaoDiasTreino, LocalDate dataInicio,
-            LocalDate dataFim, List<SubTreino> subtreinos) {
+    public Treino(int duracao, String nome, String aquecimento, String sugestaoDiasTreino, List<SubTreino> subtreinos) {
         this.id = 0;
         this.duracao = duracao;
         this.nome = nome;
         this.aquecimento = aquecimento;
         this.sugestaoDiasTreino = sugestaoDiasTreino;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
         this.subtreinos = subtreinos;
     }
 
+    
     public String getNome() {
         return nome;
     }
@@ -73,21 +69,6 @@ public class Treino {
         this.sugestaoDiasTreino = sugestaoDiasTreino;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public LocalDate getDataFim() {
-        return dataFim;
-    }
-
-    public void setDataFim(LocalDate dataFim) {
-        this.dataFim = dataFim;
-    }
 
     public List<SubTreino> getSubtreinos() {
         return subtreinos;
@@ -96,12 +77,13 @@ public class Treino {
     public void setSubtreinos(List<SubTreino> subtreinos) {
         this.subtreinos = subtreinos;
     }
+    
+ 
 
     @Override
     public String toString() {
         return "Treino [id=" + id + ", duracao=" + duracao + ", nome=" + nome + ", aquecimento=" + aquecimento
-                + ", sugestaoDiasTreino=" + sugestaoDiasTreino + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim
-                + ", subtreinos=" + subtreinos + "]";
+                + ", sugestaoDiasTreino=" + sugestaoDiasTreino + ", dataInicio="+ ", subtreinos=" + subtreinos +  "]";
     }
 
 }

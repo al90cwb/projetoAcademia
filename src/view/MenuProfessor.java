@@ -6,13 +6,12 @@ import controller.ProfessorController;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuProfessor extends MenusStandard  {
+public abstract class MenuProfessor extends MenusStandard {
 
-    public static void opcaoAlteracao(ProfessorController controller, Professor professor){
+    public static void opcaoAlteracao(ProfessorController controller, Professor professor) {
 
         int opcao = 0;
         boolean sair = false;
-       
 
         do {
             System.out.println("\n\n Informar opções");
@@ -24,26 +23,25 @@ public abstract class MenuProfessor extends MenusStandard  {
 
             switch (opcao) {
                 case 0:
-                sair= true;
-                break;
+                    sair = true;
+                    break;
                 case 1:
-                alterar(professor);
-                sair= true;
-                break;
+                    alterar(professor);
+                    sair = true;
+                    break;
                 case 2:
-                deletar(controller,professor);
-                sair= true;
-                break;
+                    deletar(controller, professor);
+                    sair = true;
+                    break;
                 default:
-                System.out.println("Opção invalida");
-                sair= false;
-                break;
-            } 
+                    System.out.println("Opção invalida");
+                    sair = false;
+                    break;
+            }
         } while (!sair);
     }
 
-
-    public static void deletar(ProfessorController controller, Professor professor){
+    public static void deletar(ProfessorController controller, Professor professor) {
         if (professor == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -66,7 +64,7 @@ public abstract class MenuProfessor extends MenusStandard  {
     }
 
     public static void cadastro(ProfessorController controller) {
-        Professor cadastro= new Professor();
+        Professor cadastro = new Professor();
 
         Entrada.in.nextLine();
         System.out.println("\n\n");
@@ -92,11 +90,12 @@ public abstract class MenuProfessor extends MenusStandard  {
         MenuProfessor.verProfessor(cadastro);
 
         if (MenusTreino.confimar()) {
-            controller.cadastrar(new Professor(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
-            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
+            controller.cadastrar(new Professor(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
+                    cadastro.getCelular(), cadastro.getEmail(),
+                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
             System.out.println("Professor Cadastrado:");
         } else {
-             System.out.println("Professor Cancelada.");
+            System.out.println("Professor Cancelada.");
         }
 
     }
@@ -127,8 +126,8 @@ public abstract class MenuProfessor extends MenusStandard  {
                 professor.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
                 professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-                verProfessor( professor);
-            }else{
+                verProfessor(professor);
+            } else {
                 System.out.println("Operação Cancelada, Professor não foi deletado:");
             }
         }
@@ -136,13 +135,13 @@ public abstract class MenuProfessor extends MenusStandard  {
 
     public static void verProfessor(Professor professor) {
         System.out.println("Dados do Professor");
-        System.out.println("CPF :"+ professor.getCpf() + ", Nome: " + professor.getNome());
+        System.out.println("CPF :" + professor.getCpf() + ", Nome: " + professor.getNome());
     }
 
-    public static void verProfessores( ProfessorController controller){
+    public static void verProfessores(ProfessorController controller) {
         System.out.println("Lista de Professores Cadastrados");
         for (Professor professor : controller.getProfessores()) {
-            System.err.println("CPF :"+ professor.getCpf() + ", Nome: " + professor.getNome());
+            System.err.println("CPF :" + professor.getCpf() + ", Nome: " + professor.getNome());
         }
         System.out.println("----------------\n\n");
     }

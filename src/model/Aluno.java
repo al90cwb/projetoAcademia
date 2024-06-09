@@ -19,24 +19,54 @@ public class Aluno extends Usuario {
 
     private Treino treino;
     private List<AvaliacaoFisica> avaliacoesFisicas;
+    private boolean substituirTreino;
+    private LocalDate dataAtual ;
+    private LocalDate dataInicio, dataFim;
 
     public Aluno() {
     }
     
     public Aluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
-            String senha, LocalDate dataNascimento, Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas) {
+            String senha, LocalDate dataNascimento, Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas,
+            boolean substituirTreino) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);
         this.treino = trieno;
         this.avaliacoesFisicas = avaliacoesFisicas;
+        this.substituirTreino = substituirTreino;
     }
 
-    public Treino getTrieno() {
-        return treino;
+
+    public LocalDate getDataAtual() {
+        return dataAtual;
+    }
+
+    public void setDataAtual(LocalDate dataAtual) {
+        this.dataAtual = dataAtual;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
     }
 
     public void setTrieno(Treino trieno) {
         this.treino = trieno;
+        dataInicio =LocalDate.now();
+        dataFim = dataInicio.plusDays(treino.getDuracao());
+        isSubstituirTreino();
     }
+
+    public Treino getTreino() {
+        return treino;
+    }
+
 
     public List<AvaliacaoFisica> getAvaliacoesFisicas() {
         return avaliacoesFisicas;
@@ -61,21 +91,24 @@ public class Aluno extends Usuario {
         return "Avaliação Cadastrada";
     }
 
+    public boolean isSubstituirTreino() {
+        return substituirTreino;
+    }
+
+    public void setSubstituirTreino(boolean substituirTreino) {
+        this.substituirTreino = substituirTreino;
+    }
+
     @Override
     public String toString() {
+
         return "Aluno [id=" + super.getId() + ", nome=" + super.getNome() + ", cpf=" + super.getCpf() + ", endereco="
                 + super.getEndereco() + ", celular="
                 + super.getCelular() + ", email=" + super.getEmail() + ", sexo=" + super.getSexo() + ", senha="
                 + super.getSenha() + ", dataNascimento="
-                + super.getDataNascimento() + ", treino=" + treino + ", avaliacoesFisicas=" + avaliacoesFisicas + "]";
+                + super.getDataNascimento() + ", treino=" + treino + ", avaliacoesFisicas=" + avaliacoesFisicas + ", substituirTreino="  + substituirTreino + "]";
     }
 
-    public Treino getTreino() {
-        return treino;
-    }
 
-    public void setTreino(Treino treino) {
-        this.treino = treino;
-    }
 
 }
