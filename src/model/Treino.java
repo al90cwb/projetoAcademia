@@ -4,37 +4,26 @@ import java.util.List;
 
 /**
  * Este Objeto contem os dados de subtreino
- * Contem uma lista de subtrienos
- * com informações gerais sobre aquele treino
- * Os treinos servem de base , e são copiados para os alunos
+ * Contem uma lista de exercicios e informações do subtrieno
+ * Os subtreinos são comuns para todos os treinos
  * Versão: 1.0
  * Autor: [Alan Henrique de Souza]
  * Data de criação: [28/05/2024]
  */
 public class Treino {
-    private int id, duracao;
-    private String nome, aquecimento, sugestaoDiasTreino;
-    private List<SubTreino> subtreinos;
+    private int id;
+    private String nome, tipoTreino;
+    private List<Exercicio> exercicios;
 
     public Treino() {
+
     }
 
-    public Treino(int duracao, String nome, String aquecimento, String sugestaoDiasTreino, List<SubTreino> subtreinos) {
+    public Treino(String nome, String tipoTreino, List<Exercicio> exercicios) {
         this.id = 0;
-        this.duracao = duracao;
         this.nome = nome;
-        this.aquecimento = aquecimento;
-        this.sugestaoDiasTreino = sugestaoDiasTreino;
-        this.subtreinos = subtreinos;
-    }
-
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+        this.tipoTreino = tipoTreino;
+        this.exercicios = exercicios;
     }
 
     public int getId() {
@@ -45,45 +34,49 @@ public class Treino {
         this.id = id;
     }
 
-    public int getDuracao() {
-        return duracao;
+    public String getNome() {
+        return nome;
     }
 
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getAquecimento() {
-        return aquecimento;
+    public String getTipoTreino() {
+        return tipoTreino;
     }
 
-    public void setAquecimento(String aquecimento) {
-        this.aquecimento = aquecimento;
-    }
-
-    public String getSugestaoDiasTreino() {
-        return sugestaoDiasTreino;
-    }
-
-    public void setSugestaoDiasTreino(String sugestaoDiasTreino) {
-        this.sugestaoDiasTreino = sugestaoDiasTreino;
+    public void setTipoTreino(String tipoTreino) {
+        this.tipoTreino = tipoTreino;
     }
 
 
-    public List<SubTreino> getSubtreinos() {
-        return subtreinos;
+    public List<Exercicio> getExercicios() {
+        return exercicios;
     }
 
-    public void setSubtreinos(List<SubTreino> subtreinos) {
-        this.subtreinos = subtreinos;
+    public void setExercicios(List<Exercicio> exercicios) {
+        this.exercicios = exercicios;
     }
-    
- 
+
+
+    public void limparExercicios() {
+        exercicios.clear();
+    }
+
+    public void adicionarExercicio(Exercicio exercicio){
+        if (exercicio!= null){
+            this.exercicios.add(exercicio);
+        }
+    }
 
     @Override
     public String toString() {
-        return "Treino [id=" + id + ", duracao=" + duracao + ", nome=" + nome + ", aquecimento=" + aquecimento
-                + ", sugestaoDiasTreino=" + sugestaoDiasTreino + ", dataInicio="+ ", subtreinos=" + subtreinos +  "]";
+        return "Treino [id=" + id + ", nome=" + nome + ", tipoTreino=" + tipoTreino + ", exercicios=" + exercicios
+                + "]";
     }
+
+
+
 
 }

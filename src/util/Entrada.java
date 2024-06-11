@@ -4,7 +4,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import model.Treino;
 
 /**
  * Este Objeto filtra as entradas do teclado, todos tratamento
@@ -63,7 +62,7 @@ public abstract class Entrada {
         while (!entradaValida) {
             try {
                 numero = in.nextInt();
-                if (numero >= min && numero >= max) {
+                if (numero >= min && numero <= max) {
                     entradaValida = true; // Se a entrada for válida, saímos do loop
                 } else {
                     entradaValida = false; // Se a entrada for válida, saímos do loop
@@ -120,6 +119,20 @@ public abstract class Entrada {
         }
         return frase;
     }
+    public static String entradaTipoTreino() {
+        boolean entradaValida = false;
+        String frase = "";
+        while (!entradaValida) {
+            try {
+                frase = in.nextLine();
+                entradaValida = true; 
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                in.nextLine();
+            }
+        }
+        return frase;
+    }
 
     public static String entradaData() {
         String dataFormatada = "";
@@ -150,6 +163,5 @@ public abstract class Entrada {
         return dataFormatada;
     }
 
-    protected abstract Treino entradaTreino();
 
 }

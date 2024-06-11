@@ -9,7 +9,6 @@ package model;
  */
 
 public class Exercicio implements Comparable<Exercicio> {
-    private int id;
     private String nomeExercicio, intervalo, repeticoes;
 
     public Exercicio() {
@@ -17,19 +16,12 @@ public class Exercicio implements Comparable<Exercicio> {
     }
 
     public Exercicio(String nomeExercicio, String intervalo, String repeticoes) {
-        this.id = 0;
         this.nomeExercicio = nomeExercicio;
         this.intervalo = intervalo;
         this.repeticoes = repeticoes;
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNomeExercicio() {
         return nomeExercicio;
@@ -57,7 +49,7 @@ public class Exercicio implements Comparable<Exercicio> {
 
     @Override
     public String toString() {
-        return "Exercicio [id=" + id + ", nomeExercicio=" + nomeExercicio + ", intervalo=" + intervalo + ", repeticoes="
+        return "Exercicio [ nomeExercicio=" + nomeExercicio + ", intervalo=" + intervalo + ", repeticoes="
                 + repeticoes + "]";
     }
 

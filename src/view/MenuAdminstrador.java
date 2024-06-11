@@ -43,7 +43,7 @@ public abstract class MenuAdminstrador extends MenusStandard  {
 
         do {
 
-            MenuAdminstrador.opcoes();
+            opcoes();
             opcao = Entrada.entradaInt();
             sair = false;
 
@@ -153,7 +153,7 @@ public abstract class MenuAdminstrador extends MenusStandard  {
             System.out.println("Você deseja deletar o administrador?");
             verAdministrador(administrador);
 
-            if (MenusTreino.confimar()) {
+            if (MenuAdminstrador.confimar()) {
                 controller.deletar(administrador.getId());
                 System.out.println("administrador Excluido:");
             } else {
@@ -194,7 +194,7 @@ public abstract class MenuAdminstrador extends MenusStandard  {
         System.out.println("Você deseja cadastrar o Professor?");
         MenuProfessor.verProfessor(cadastro);
 
-        if (MenusTreino.confimar()) {
+        if (MenuAdminstrador.confimar()) {
             controller.cadastrar(new Administrador(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
             cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
             System.out.println("Professor Cadastrado:");

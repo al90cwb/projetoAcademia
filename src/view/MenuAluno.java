@@ -2,9 +2,12 @@ package view;
 
 
 import java.time.LocalDate;
+import java.util.List;
 
 import controller.AlunoController;
+import controller.TreinoController;
 import model.Aluno;
+import model.Treino;
 import util.Entrada;
 
 public abstract class MenuAluno extends MenusStandard {
@@ -27,7 +30,7 @@ public abstract class MenuAluno extends MenusStandard {
 
         do {
 
-            MenuAluno.opcoes();
+            opcoes();
             opcao = Entrada.entradaInt();
             sair = false;
 
@@ -44,11 +47,10 @@ public abstract class MenuAluno extends MenusStandard {
                     if (aluno.getTreino()==null){
                         System.out.println("\nVocê não possui treino cadastrado");
                     }else{
-                        MenusTreino.verTreino(aluno.getTreino());
+                        MenuTreino.verTreino(aluno.getTreino());
                     }
                     sair = false;
                 break;
-
                 case 11:
                     aluno.setSubstituirTreino(true);
                     System.out.println("\nSolictação de treino confirmada");
@@ -102,7 +104,6 @@ public abstract class MenuAluno extends MenusStandard {
         } while (!sair);
     }
 
-
     public static void deletar(AlunoController controller,Aluno aluno){
         if (aluno == null) {
             System.out.println("Aluno Não encontrado");
@@ -110,7 +111,7 @@ public abstract class MenuAluno extends MenusStandard {
             System.out.println("Você deseja deletar o Aluno?");
             MenuAluno.verAluno(aluno);
 
-            if (MenusTreino.confimar()) {
+            if (MenuAdminstrador.confimar()) {
                 controller.deletar(aluno.getId());
                 System.out.println("Aluno Excluido:");
             } else {
@@ -151,14 +152,63 @@ public abstract class MenuAluno extends MenusStandard {
         System.out.println("Você deseja cadastrar o Aluno?");
         MenuAluno.verAluno(cadastro);
 
-        if (MenusTreino.confimar()) {
+        if (MenuAluno.confimar()) {
             controller.cadastrar(new Aluno(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
-            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(), null, null,false));
+            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(),false,null,10,null,null ));
             System.out.println("Aluno Cadastrado:");
         } else {
              System.out.println("Operação Cancelada.");
         }
+    }
 
+
+    public static void cadastroTreino(TreinoController controller,Aluno aluno){
+        
+        List<Treino> treinos;
+        Treino busca;
+        int duracaoTreino, id;
+        String  aquecimento, sugestaoDiasTreino ;
+        boolean sair = false;
+        
+        System.out.println("\n\n");
+        verAluno(aluno);
+        System.out.println("Cadastro de Treino");
+        System.out.println("Duração do trieno em dias entre 10 e 90 dias");
+        duracaoTreino= Entrada.entradaMinMax(10, 90);
+        System.out.println("Descrição de aquecimento");
+        Entrada.in.nextLine();
+        aquecimento= Entrada.entradaString();
+
+        do {
+            System.out.println("Treinos disponiveis");
+            MenuTreino.verTreinos(controller.getTreinos());
+            
+            busca = MenuTreino.buscarTreinoId(controller);
+
+            if (busca == null) {
+                System.out.println("Treino não encontrado, Deseja buscar novamente.");
+                sair = !confimar();
+            } else {
+                System.out.println("Adicioanr o treino?");
+                MenuTreino.verTreino(busca);
+                if (confimar()) {
+                    aluno.setTreino(busca);          
+                } else {
+                    System.out.println("Operação cancelada, Treino não foi adicionado:");
+                }
+                sair = true;
+            } 
+        } while (!sair);
+            
+        System.out.println("Descrição de dias de treino");
+        sugestaoDiasTreino= Entrada.entradaString();
+    }
+
+    public static void verTreino(Aluno aluno){
+        Entrada.in.nextLine();
+        System.out.println("\n\n");
+        verAluno(aluno);
+        MenuTreino.verTreino(aluno.getTreino());
     }
 
     public static void alterar(Aluno aluno) {
@@ -195,7 +245,6 @@ public abstract class MenuAluno extends MenusStandard {
     }
 
     public static void verAluno(Aluno aluno) {
-        //System.out.println(aluno.toString());
         System.out.println("Dados do Aluno");
         System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: " + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
     }
@@ -203,7 +252,7 @@ public abstract class MenuAluno extends MenusStandard {
     public static void verAlunos( AlunoController controller){
         System.out.println("Lista de Alunos Cadastrados");
         for (Aluno aluno : controller.getAlunos()) {
-            System.err.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome());
+            System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: " + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
         }
         System.out.println("----------------\n\n");
     }

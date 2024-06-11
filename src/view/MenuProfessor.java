@@ -2,11 +2,78 @@ package view;
 
 import java.time.LocalDate;
 
+import controller.AlunoController;
 import controller.ProfessorController;
+import controller.TreinoController;
+import model.Aluno;
 import model.Professor;
 import util.Entrada;
 
 public abstract class MenuProfessor extends MenusStandard {
+
+    public static void opcoes() {
+        System.out.println("\n\n");
+        System.out.println("Menu Professor:");
+        System.out.println("0 - FECHAR SISTEMA");
+        System.out.println("1 - LOGOUT");
+
+        System.out.println("\n10 - MENU TREINO");
+        System.out.println("11 - LISTA DE ALUNOS");
+        System.out.println("12 - BUSCAR ALUNO");
+
+    }
+
+
+        public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno){
+
+        int opcao = 0;
+        boolean sair = false;
+        Aluno alunoBusca;
+
+        do {
+
+            opcoes();
+            opcao = Entrada.entradaInt();
+            sair = false;
+
+            switch (opcao) {
+                case 0:
+                    sair = true;
+                return true;
+                case 1:
+                    sair = true;
+                break;
+
+                case 10: 
+                    MenuTreino.cadastro(controllerTreino);
+                    sair = false;
+                break;
+                case 11: 
+                    System.out.println("Lista de alunos Cadastrados");
+                    MenuAluno.verAlunos(controllerAluno);
+                break;
+                case 12: 
+                    alunoBusca = MenuAluno.buscar(controllerAluno);
+                    MenuAluno.verAluno(alunoBusca);
+                    MenuTreino.verTreino(alunoBusca.getTreino());
+                    System.out.println("Deseja alterar treino?");
+                    if (confimar())MenuAluno.cadastroTreino(controllerTreino, alunoBusca);
+
+                    sair = false;
+                break;
+                
+
+
+                default:
+                    sair = false;
+                    break;
+            }
+
+        } while (!sair);
+
+        return false;
+
+    }
 
     public static void opcaoAlteracao(ProfessorController controller, Professor professor) {
 
@@ -48,7 +115,7 @@ public abstract class MenuProfessor extends MenusStandard {
             System.out.println("Você deseja deletar o Professor?");
             MenuProfessor.verProfessor(professor);
 
-            if (MenusTreino.confimar()) {
+            if (MenuProfessor.confimar()) {
                 controller.deletar(professor.getId());
                 System.out.println("Professor Excluido:");
             } else {
@@ -89,7 +156,7 @@ public abstract class MenuProfessor extends MenusStandard {
         System.out.println("Você deseja cadastrar o Professor?");
         MenuProfessor.verProfessor(cadastro);
 
-        if (MenusTreino.confimar()) {
+        if (MenuProfessor.confimar()) {
             controller.cadastrar(new Professor(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
                     cadastro.getCelular(), cadastro.getEmail(),
                     cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));

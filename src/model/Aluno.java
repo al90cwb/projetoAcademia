@@ -17,54 +17,26 @@ import java.util.List;
 
 public class Aluno extends Usuario {
 
-    private Treino treino;
     private List<AvaliacaoFisica> avaliacoesFisicas;
     private boolean substituirTreino;
-    private LocalDate dataAtual ;
     private LocalDate dataInicio, dataFim;
+    private Treino treino;
+    private int duracaoTreino;
+    private String  aquecimento, sugestaoDiasTreino;
+
 
     public Aluno() {
     }
-    
+
     public Aluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
-            String senha, LocalDate dataNascimento, Treino trieno, List<AvaliacaoFisica> avaliacoesFisicas,
-            boolean substituirTreino) {
+            String senha, LocalDate dataNascimento,
+            boolean substituirTreino,Treino treino, int duracaoTreino, String aquecimento, String sugestaoDiasTreino) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);
-        this.treino = trieno;
-        this.avaliacoesFisicas = avaliacoesFisicas;
         this.substituirTreino = substituirTreino;
-    }
-
-
-    public LocalDate getDataAtual() {
-        return dataAtual;
-    }
-
-    public void setDataAtual(LocalDate dataAtual) {
-        this.dataAtual = dataAtual;
-    }
-
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public LocalDate getDataFim() {
-        return dataFim;
-    }
-
-    public void setTrieno(Treino trieno) {
-        this.treino = trieno;
-        dataInicio =LocalDate.now();
-        dataFim = dataInicio.plusDays(treino.getDuracao());
-        isSubstituirTreino();
-    }
-
-    public Treino getTreino() {
-        return treino;
+        this.treino = treino;
+        this.duracaoTreino = duracaoTreino;
+        this.aquecimento = aquecimento;
+        this.sugestaoDiasTreino = sugestaoDiasTreino;
     }
 
 
@@ -76,39 +48,80 @@ public class Aluno extends Usuario {
         this.avaliacoesFisicas = avaliacoesFisicas;
     }
 
-    public int criarID() {
-        int res = 0;
-        for (AvaliacaoFisica p : avaliacoesFisicas) {
-            if (p.getId() > res)
-                res = p.getId();
-        }
-        return ++res;
-    }
-
-    public String cadastrarAvaliacaoFisica(AvaliacaoFisica avaliacaoFisica) {
-        avaliacaoFisica.setId(criarID());
-        avaliacoesFisicas.add(avaliacaoFisica);
-        return "Avaliação Cadastrada";
-    }
-
     public boolean isSubstituirTreino() {
         return substituirTreino;
     }
+
 
     public void setSubstituirTreino(boolean substituirTreino) {
         this.substituirTreino = substituirTreino;
     }
 
-    @Override
-    public String toString() {
 
-        return "Aluno [id=" + super.getId() + ", nome=" + super.getNome() + ", cpf=" + super.getCpf() + ", endereco="
-                + super.getEndereco() + ", celular="
-                + super.getCelular() + ", email=" + super.getEmail() + ", sexo=" + super.getSexo() + ", senha="
-                + super.getSenha() + ", dataNascimento="
-                + super.getDataNascimento() + ", treino=" + treino + ", avaliacoesFisicas=" + avaliacoesFisicas + ", substituirTreino="  + substituirTreino + "]";
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public LocalDate getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
     }
 
 
+    public int getDuracaoTreino() {
+        return duracaoTreino;
+    }
+
+
+    public void setDuracaoTreino(int duracaoTreino) {
+        this.duracaoTreino = duracaoTreino;
+        dataFim = dataInicio.plusDays(duracaoTreino);
+    }
+
+
+    public String getAquecimento() {
+        return aquecimento;
+    }
+
+
+    public void setAquecimento(String aquecimento) {
+        this.aquecimento = aquecimento;
+    }
+
+
+    public String getSugestaoDiasTreino() {
+        return sugestaoDiasTreino;
+    }
+
+
+    public void setSugestaoDiasTreino(String sugestaoDiasTreino) {
+        this.sugestaoDiasTreino = sugestaoDiasTreino;
+    }
+
+ 
+
+    public Treino getTreino() {
+        return treino;
+    }
+
+    public void setTreino(Treino treino) {
+        this.treino = treino;
+    }
+
+    public void atualizarDataHoje() {
+        dataInicio =LocalDate.now();
+        dataFim = dataInicio.plusDays(duracaoTreino);
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno [avaliacoesFisicas=" + avaliacoesFisicas + ", substituirTreino=" + substituirTreino
+                + ", dataInicio=" + dataInicio + ", dataFim=" + dataFim + ", treino=" + treino
+                + ", duracaoTreino=" + duracaoTreino + ", aquecimento=" + aquecimento + ", sugestaoDiasTreino="
+                + sugestaoDiasTreino + "]";
+    }
 
 }
