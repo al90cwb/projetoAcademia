@@ -36,7 +36,7 @@ public class TreinoController {
         this.treinos = treinos;
     }
 
-    public void deletarTreino(int id){
+    public void deletar(int id){
         treinos.removeIf( t -> t.getId() == id);
     }
 

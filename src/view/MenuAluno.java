@@ -183,7 +183,7 @@ public abstract class MenuAluno extends MenusStandard {
             System.out.println("Treinos disponiveis");
             MenuTreino.verTreinos(controller.getTreinos());
             
-            busca = MenuTreino.buscarTreinoId(controller);
+            busca = MenuTreino.buscar(controller);
 
             if (busca == null) {
                 System.out.println("Treino não encontrado, Deseja buscar novamente.");

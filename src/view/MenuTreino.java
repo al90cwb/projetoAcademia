@@ -2,9 +2,7 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import controller.TreinoController;
-import model.Aluno;
 import model.Exercicio;
 import model.Treino;
 import util.Entrada;
@@ -15,11 +13,10 @@ public class MenuTreino extends MenusStandard {
         System.out.println("\n\n");
         System.out.println("OPCOES CADASTRO DE TREINOS, digite um numero correspondente:");
         System.out.println("0 - CANCELAR");
-        System.out.println("1 - CADASTRAR NOVO Treino:");
-        System.out.println("2 - ALTERAR Treino:");
-        System.out.println("3 - DELETAR Treino:");
-        System.out.println("4 - LISTA TREINOS CADASTRADOS:");
-        System.out.println("5 - VER TREINO:");
+        System.out.println("1 - CADASTRAR NOVO TRIENO");
+        System.out.println("2 - BUSCAR TREINO - DELETAR/ALTERAR");
+        System.out.println("3 - LISTA TREINOS CADASTRADOS");
+        System.out.println("4 - VER TREINO");
 
     }
 
@@ -28,6 +25,7 @@ public class MenuTreino extends MenusStandard {
 
         int opcaoCadastro;
         boolean sairOpcaoCadastro = false;
+        Treino busca;
 
         do {
             MenuTreino.opcoesCadastroTreino();
@@ -40,24 +38,23 @@ public class MenuTreino extends MenusStandard {
                     break;
                 case 1:
                     System.out.println("Cadastrar novo Treino");
+                    cadastroTreino(controller);
                     sairOpcaoCadastro = false; 
                     break;
                 case 2:
-                    System.out.println("Não funciona");
-                    sairOpcaoCadastro = false;
-                    break;
+                    busca = buscar(controller);
+                    verTreino(busca);
+                    opcaoAlteracao(controller, busca);
+                break;
+                
                 case 3:
-                    System.out.println("Não funciona");
-                    sairOpcaoCadastro = false;
-                    break;
-                case 4:
                     System.out.println("Lista de TREINOS Cadastrados");
                     verTreinos(controller.getTreinos());
                     System.out.println("----------------\n\n");
                     sairOpcaoCadastro = false;
                     break;
-                case 5:
-                    verTreino( buscarTreinoId(controller));
+                case 4:
+                    verTreino( buscar(controller));
                     System.out.println("----------------\n\n");
                     sairOpcaoCadastro = false;
                     break;
@@ -70,17 +67,107 @@ public class MenuTreino extends MenusStandard {
 
     }
 
-    public static void cadastroTreino(TreinoController controller) {
-        Treino cadastro= new Treino();
+    public static void opcaoAlteracao(TreinoController controller, Treino treino){
+
+        int opcao = 0;
+        boolean sair = false;
+       
+
+        do {
+            System.out.println("\n\n Informar opções");
+            System.out.println("0- Cancelar");
+            System.out.println("1- Alterar");
+            System.out.println("2- Deletar");
+            opcao = 0;
+            opcao = Entrada.entradaInt();
+
+            switch (opcao) {
+                case 0:
+                sair= true;
+                break;
+                case 1:
+                alterar(treino);
+                sair= true;
+                break;
+                case 2:
+                deletar(controller,treino);
+                sair= true;
+                break;
+                default:
+                System.out.println("Opção invalida");
+                sair= false;
+                break;
+            } 
+        } while (!sair);
+    }
+
+    public static Treino cadastroTreino(TreinoController controller) {
+        
+        String nomeTreino,tipoTreino;
+
         Entrada.in.nextLine();
         System.out.println("\n\n");
         System.out.println("Cadastro de Treino");
         System.out.println("Nome do Treino");
-        cadastro.setNome(Entrada.entradaString());
+        nomeTreino=Entrada.entradaString();
         System.out.println("Tipo Grupo Muscular");
-        cadastro.setTipoTreino(Entrada.entradaTipoTreino());
-        System.out.println("Tipo Grupo Muscular");
+        tipoTreino=Entrada.entradaTipoTreino();
+        Treino cadastro = new Treino( nomeTreino, tipoTreino, new ArrayList<Exercicio>()) ;
+        controller.cadastrarTreino(cadastro);
+
+        cadastroExercicio(cadastro);
+
+        return cadastro;
     }
+
+    public static void alterar(Treino treino) {
+        if (treino == null) {
+            System.out.println("Aluno Não encontrado");
+        } else {
+            System.out.println("Você deseja alterar o Treino?");
+            verTreino(treino);
+
+            if (confimar()) {
+                Entrada.in.nextLine();
+                System.out.println("\n\n");
+                System.out.println("Alterar o Nome:");
+                treino.setNome(Entrada.entradaString());
+                System.out.println("Tipo Grupo Muscular");
+                treino.setTipoTreino(Entrada.entradaTipoTreino());
+                cadastroExercicio(treino);
+                verTreino( treino);
+            }else{
+                System.out.println("Operação Cancelada, Exercicio não foi deletado:");
+            }
+        }
+    }
+
+    public static void cadastroExercicio(Treino treino) {
+        
+        String nomeExercicio,intervalo,repticoes;
+        boolean sair=false;
+        do {
+            treino.limparExercicios();
+
+            Entrada.in.nextLine();
+            System.out.println("\n\n");
+            System.out.println("Adicionar Exercicio");
+            System.out.println("Nome do Exercicio");
+            nomeExercicio=Entrada.entradaString();
+            System.out.println("Intervalo");
+            intervalo=Entrada.entradaString();
+            System.out.println("Repticoes");
+            repticoes=Entrada.entradaString();
+            
+            Exercicio cadastro = new Exercicio(nomeExercicio, intervalo, repticoes);
+            treino.adicionarExercicio(cadastro);
+
+            System.out.println("Deseja adicioanr mais exercicios?");
+            sair = !confimar();
+
+        } while (!sair);
+    }
+
 
     public static Treino alterarTreino(Treino treino, int id) {
         Entrada.in.nextLine();
@@ -100,14 +187,25 @@ public class MenuTreino extends MenusStandard {
     }
     
 
-    public static Treino buscarTreinoId(TreinoController controller){
-        int idBusca = 0;
-        Treino busca;
-        idBusca = MenuTreino.informarId();
-        busca = controller.buscaTreinoId(idBusca);
-        return busca;
+    public static Treino buscar(TreinoController controller){
+        return controller.buscaTreinoId(MenuTreino.informarId());
     }
 
+    public static void deletar(TreinoController controller,Treino trieno){
+        if (trieno == null) {
+            System.out.println("Treino não encontrado");
+        } else {
+            System.out.println("Você deseja deletar o Trino?");
+            verTreino(trieno);
+
+            if (MenuAdminstrador.confimar()) {
+                controller.deletar(trieno.getId());
+                System.out.println("Treino Excluido:");
+            } else {
+                System.out.println("Operação Cancelada, Treino não foi deletado:");
+            }
+        }
+    }
   
     public static void buscarTreinos(TreinoController controller) {
         String tipo ;
