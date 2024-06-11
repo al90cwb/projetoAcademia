@@ -1,7 +1,17 @@
 package controller;
+
 import java.util.List;
 import model.Administrador;
-import model.Aluno;
+
+/**
+ * A classe {@code AdministradorContrller} é responsável por gerenciar as
+ * operações
+ * relacionadas aos administradores, como criação, atualização, exclusão e
+ * recuperação de professores e aluno.
+ * 
+ * @version 1.0
+ * @since 2024-06-07
+ */
 
 public class AdministradorController {
     private List<Administrador> administradores;
@@ -24,7 +34,7 @@ public class AdministradorController {
     }
 
     public String cadastrar(Administrador administrador) {
-        if (buscarId(administrador.getId() ) == null) {
+        if (buscarId(administrador.getId()) == null) {
             administrador.setId(criarID());
             administradores.add(administrador);
             return "Aluno Cadastrado!";
@@ -32,19 +42,19 @@ public class AdministradorController {
         return "Aluno Ja Existe!";
     }
 
-    public void deletar(int id){
-        administradores.removeIf( t -> t.getId() == id);
+    public void deletar(int id) {
+        administradores.removeIf(t -> t.getId() == id);
     }
 
     public Administrador buscarId(int id) {
         return administradores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public void limpar(){
+    public void limpar() {
         administradores.clear();
     }
 
-     public int criarID() {
+    public int criarID() {
         int res = 0;
         for (Administrador a : administradores) {
             if (a.getId() > res)
@@ -53,13 +63,13 @@ public class AdministradorController {
         return ++res;
     }
 
-   public Administrador buscaCpf(String cpf) {
+    public Administrador buscaCpf(String cpf) {
         return administradores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
     }
 
-    public Administrador verificarSenha(String cpf,String senha) {
+    public Administrador verificarSenha(String cpf, String senha) {
         Administrador a = administradores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
-        if (a.getSenha().equals(senha)){
+        if (a.getSenha().equals(senha)) {
             return a;
         }
         return null;

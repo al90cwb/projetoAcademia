@@ -3,21 +3,19 @@ package model;
 import java.time.LocalDate;
 
 /**
- * Este Objeto contem os dados de Professor
- * Contem todos os dados herdados de usuario
- * Tem acesso a cadastro de alunos
- * Tem acesos a cadastro de exercios/trienos/subtreinos
- * Tem acesso a relatorios de alunos
- * Tem acesso a relatorios de treinos
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Classe para objetos do tipo {@code Professor}, onde serão contidos dados dos
+ * professores da academia
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
  */
 
 public class Professor extends Usuario {
 
     public Professor() {
     }
+
     public Professor(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento) {
         super(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);

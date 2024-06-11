@@ -1,5 +1,5 @@
 public class App {
     public static void main(String[] args) throws Exception {
-        view.academiaView.main(args);
+        view.AcademiaView.main(args);
     }
 }

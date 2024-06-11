@@ -9,7 +9,7 @@ import model.Aluno;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuProfessor extends MenusStandard {
+public abstract class MenuProfessor extends MenuPadrao {
 
     public static void opcoes() {
         System.out.println("\n\n");
@@ -23,8 +23,7 @@ public abstract class MenuProfessor extends MenusStandard {
 
     }
 
-
-        public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno){
+    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno) {
 
         int opcao = 0;
         boolean sair = false;
@@ -39,30 +38,29 @@ public abstract class MenuProfessor extends MenusStandard {
             switch (opcao) {
                 case 0:
                     sair = true;
-                return true;
+                    return true;
                 case 1:
                     sair = true;
-                break;
+                    break;
 
-                case 10: 
+                case 10:
                     MenuTreino.cadastro(controllerTreino);
                     sair = false;
-                break;
-                case 11: 
+                    break;
+                case 11:
                     System.out.println("Lista de alunos Cadastrados");
-                    MenuAluno.verAlunos(controllerAluno);
-                break;
-                case 12: 
+                    MenuAluno.verListaDeUsuarios(controllerAluno);
+                    break;
+                case 12:
                     alunoBusca = MenuAluno.buscar(controllerAluno);
-                    MenuAluno.verAluno(alunoBusca);
+                    MenuAluno.verUsuario(alunoBusca);
                     MenuTreino.verTreino(alunoBusca.getTreino());
                     System.out.println("Deseja alterar treino?");
-                    if (confimar())MenuAluno.cadastroTreino(controllerTreino, alunoBusca);
+                    if (confimar())
+                        MenuAluno.cadastroTreino(controllerTreino, alunoBusca);
 
                     sair = false;
-                break;
-                
-
+                    break;
 
                 default:
                     sair = false;

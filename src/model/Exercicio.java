@@ -1,13 +1,12 @@
 package model;
 
 /**
- * Este Objeto contem os dados de exercicio
- * Os exercicios são comunus par todos os subtreinos
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Classe para objetos do tipo {@code Exercicio} com dados do exercicio
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
  */
-
 public class Exercicio implements Comparable<Exercicio> {
     private String nomeExercicio, intervalo, repeticoes;
 
@@ -20,8 +19,6 @@ public class Exercicio implements Comparable<Exercicio> {
         this.intervalo = intervalo;
         this.repeticoes = repeticoes;
     }
-
-
 
     public String getNomeExercicio() {
         return nomeExercicio;

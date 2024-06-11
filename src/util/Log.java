@@ -8,11 +8,12 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Modelo de LOG em arquivo de texto
- * Ele realiza gravação de dados em um arquivo de texto
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Classe para objetos do tipo {@code Entrada}, onde filtra e processa os erros
+ * de entrada
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
  */
 
 public abstract class Log {

@@ -1,16 +1,17 @@
 package controller;
 
 import java.util.List;
-
 import model.Aluno;
 
 /**
- * Este Contrler Gerencia a lista de alunos cadastrados
- * Versão: 1.0
- * Autor: [Leonardo Pilato] Data de criação: [01/06/2024]
- * Autor: [Leonardo Pilato] Revisão: [01/06/2024] 
- * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
+ * A classe {@code AlunoController} é responsável por gerenciar as operações
+ * relacionadas aos professores, como criação, atualização, exclusão e
+ * recuperação de aluno.
+ * 
+ * @version 1.0
+ * @since 2024-06-07
  */
+
 public class AlunoController {
     private List<Aluno> alunos;
 
@@ -22,11 +23,9 @@ public class AlunoController {
         return alunos;
     }
 
-
     public void setAlunos(List<Aluno> alunos) {
         this.alunos = alunos;
-    } 
-    
+    }
 
     @Override
     public String toString() {
@@ -34,7 +33,7 @@ public class AlunoController {
     }
 
     public String cadastrar(Aluno aluno) {
-        if (buscaId(aluno.getId() ) == null) {
+        if (buscaId(aluno.getId()) == null) {
             aluno.setId(criarID());
             alunos.add(aluno);
             return "Aluno Cadastrado!";
@@ -42,17 +41,15 @@ public class AlunoController {
         return "Aluno Ja Existe!";
     }
 
-
-    public void deletar(int id){
-        alunos.removeIf( t -> t.getId() == id);
+    public void deletar(int id) {
+        alunos.removeIf(t -> t.getId() == id);
     }
 
     public Aluno buscaId(int id) {
         return alunos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-
-    public void limparAlunos(){
+    public void limparAlunos() {
         alunos.clear();
     }
 
@@ -69,10 +66,9 @@ public class AlunoController {
         return alunos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
     }
 
-
-    public Aluno verificarSenha(String cpf,String senha) {
+    public Aluno verificarSenha(String cpf, String senha) {
         Aluno a = alunos.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
-        if (a.getSenha().equals(senha)){
+        if (a.getSenha().equals(senha)) {
             return a;
         }
         return null;

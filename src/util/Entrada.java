@@ -4,14 +4,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-
 /**
- * Este Objeto filtra as entradas do teclado, todos tratamento
- * poderm ser feitos aqui
- * Ele lealiza oprações do Scanner(System.in);
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Classe para objetos do tipo {@code Entrada}, onde filtra e processa os erros
+ * de entrada
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
  */
 
 public abstract class Entrada {
@@ -55,7 +54,7 @@ public abstract class Entrada {
         }
         return numero;
     }
-    
+
     public static int entradaMinMax(int min, int max) {
         boolean entradaValida = false;
         int numero = 0;
@@ -111,7 +110,7 @@ public abstract class Entrada {
         while (!entradaValida) {
             try {
                 frase = in.nextLine();
-                entradaValida = true; 
+                entradaValida = true;
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine();
@@ -119,13 +118,14 @@ public abstract class Entrada {
         }
         return frase;
     }
+
     public static String entradaTipoTreino() {
         boolean entradaValida = false;
         String frase = "";
         while (!entradaValida) {
             try {
                 frase = in.nextLine();
-                entradaValida = true; 
+                entradaValida = true;
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine();
@@ -162,6 +162,5 @@ public abstract class Entrada {
 
         return dataFormatada;
     }
-
 
 }

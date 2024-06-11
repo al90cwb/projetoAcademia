@@ -1,6 +1,5 @@
 package view;
 
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,7 +9,7 @@ import model.Aluno;
 import model.Treino;
 import util.Entrada;
 
-public abstract class MenuAluno extends MenusStandard {
+public abstract class MenuAluno extends MenuPadrao {
 
     public static void opcoes() {
         System.out.println("\n\n");
@@ -22,11 +21,10 @@ public abstract class MenuAluno extends MenusStandard {
         System.out.println("11 - SOLICTAR TREINO NOVO");
     }
 
-    public static boolean menuPrincipal(Aluno aluno){
+    public static boolean menuPrincipal(Aluno aluno) {
 
         int opcao = 0;
         boolean sair = false;
-        
 
         do {
 
@@ -37,26 +35,25 @@ public abstract class MenuAluno extends MenusStandard {
             switch (opcao) {
                 case 0:
                     sair = true;
-                return true;
+                    return true;
                 case 1:
                     sair = true;
-                break;
-                
+                    break;
 
                 case 10:
-                    if (aluno.getTreino()==null){
+                    if (aluno.getTreino() == null) {
                         System.out.println("\nVocê não possui treino cadastrado");
-                    }else{
+                    } else {
                         MenuTreino.verTreino(aluno.getTreino());
                     }
                     sair = false;
-                break;
+                    break;
                 case 11:
                     aluno.setSubstituirTreino(true);
                     System.out.println("\nSolictação de treino confirmada");
-                    MenuAluno.verAluno(aluno);
+                    verUsuario(aluno);
                     sair = false;
-                break;
+                    break;
 
                 default:
                     sair = false;
@@ -69,12 +66,10 @@ public abstract class MenuAluno extends MenusStandard {
 
     }
 
-
-    public static void opcaoAlteracao(AlunoController controller, Aluno aluno){
+    public static void opcaoAlteracao(AlunoController controller, Aluno aluno) {
 
         int opcao = 0;
         boolean sair = false;
-       
 
         do {
             System.out.println("\n\n Informar opções");
@@ -86,30 +81,30 @@ public abstract class MenuAluno extends MenusStandard {
 
             switch (opcao) {
                 case 0:
-                sair= true;
-                break;
+                    sair = true;
+                    break;
                 case 1:
-                alterar(aluno);
-                sair= true;
-                break;
+                    alterar(aluno);
+                    sair = true;
+                    break;
                 case 2:
-                deletar(controller,aluno);
-                sair= true;
-                break;
+                    deletar(controller, aluno);
+                    sair = true;
+                    break;
                 default:
-                System.out.println("Opção invalida");
-                sair= false;
-                break;
-            } 
+                    System.out.println("Opção invalida");
+                    sair = false;
+                    break;
+            }
         } while (!sair);
     }
 
-    public static void deletar(AlunoController controller,Aluno aluno){
+    public static void deletar(AlunoController controller, Aluno aluno) {
         if (aluno == null) {
             System.out.println("Aluno Não encontrado");
         } else {
             System.out.println("Você deseja deletar o Aluno?");
-            MenuAluno.verAluno(aluno);
+            verUsuario(aluno);
 
             if (MenuAdminstrador.confimar()) {
                 controller.deletar(aluno.getId());
@@ -127,7 +122,7 @@ public abstract class MenuAluno extends MenusStandard {
     }
 
     public static void cadastro(AlunoController controller) {
-        Aluno cadastro= new Aluno();
+        Aluno cadastro = new Aluno();
 
         Entrada.in.nextLine();
         System.out.println("\n\n");
@@ -150,39 +145,39 @@ public abstract class MenuAluno extends MenusStandard {
         cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
 
         System.out.println("Você deseja cadastrar o Aluno?");
-        MenuAluno.verAluno(cadastro);
+        MenuAluno.verUsuario(cadastro);
 
         if (MenuAluno.confimar()) {
-            controller.cadastrar(new Aluno(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
-            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(),false,null,10,null,null ));
+            controller.cadastrar(new Aluno(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
+                    cadastro.getCelular(), cadastro.getEmail(),
+                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(), false, null, 10, null,
+                    null));
             System.out.println("Aluno Cadastrado:");
         } else {
-             System.out.println("Operação Cancelada.");
+            System.out.println("Operação Cancelada.");
         }
     }
 
+    public static void cadastroTreino(TreinoController controller, Aluno aluno) {
 
-    public static void cadastroTreino(TreinoController controller,Aluno aluno){
-        
-        List<Treino> treinos;
         Treino busca;
-        int duracaoTreino, id;
-        String  aquecimento, sugestaoDiasTreino ;
+        int duracaoTreino;
+        String aquecimento, sugestaoDiasTreino;
         boolean sair = false;
-        
+
         System.out.println("\n\n");
-        verAluno(aluno);
+        verUsuario(aluno);
         System.out.println("Cadastro de Treino");
         System.out.println("Duração do trieno em dias entre 10 e 90 dias");
-        duracaoTreino= Entrada.entradaMinMax(10, 90);
+        duracaoTreino = Entrada.entradaMinMax(10, 90);
         System.out.println("Descrição de aquecimento");
         Entrada.in.nextLine();
-        aquecimento= Entrada.entradaString();
+        aquecimento = Entrada.entradaString();
 
         do {
             System.out.println("Treinos disponiveis");
             MenuTreino.verTreinos(controller.getTreinos());
-            
+
             busca = MenuTreino.buscar(controller);
 
             if (busca == null) {
@@ -192,22 +187,22 @@ public abstract class MenuAluno extends MenusStandard {
                 System.out.println("Adicioanr o treino?");
                 MenuTreino.verTreino(busca);
                 if (confimar()) {
-                    aluno.setTreino(busca);          
+                    aluno.setTreino(busca);
                 } else {
                     System.out.println("Operação cancelada, Treino não foi adicionado:");
                 }
                 sair = true;
-            } 
+            }
         } while (!sair);
-            
+
         System.out.println("Descrição de dias de treino");
-        sugestaoDiasTreino= Entrada.entradaString();
+        sugestaoDiasTreino = Entrada.entradaString();
     }
 
-    public static void verTreino(Aluno aluno){
+    public static void verTreino(Aluno aluno) {
         Entrada.in.nextLine();
         System.out.println("\n\n");
-        verAluno(aluno);
+        verUsuario(aluno);
         MenuTreino.verTreino(aluno.getTreino());
     }
 
@@ -216,9 +211,9 @@ public abstract class MenuAluno extends MenusStandard {
             System.out.println("Aluno Não encontrado");
         } else {
             System.out.println("Você deseja alterar o Aluno?");
-            MenuAluno.verAluno(aluno);
+            verUsuario(aluno);
 
-            if (MenuAluno.confimar()) {
+            if (confimar()) {
                 Entrada.in.nextLine();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
@@ -237,22 +232,24 @@ public abstract class MenuAluno extends MenusStandard {
                 aluno.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
                 aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-                verAluno( aluno);
-            }else{
+                verUsuario(aluno);
+            } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
             }
         }
     }
 
-    public static void verAluno(Aluno aluno) {
+    public static void verUsuario(Aluno aluno) {
         System.out.println("Dados do Aluno");
-        System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: " + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
+        System.out.println("CPF :" + aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: "
+                + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
     }
 
-    public static void verAlunos( AlunoController controller){
+    public static void verListaDeUsuarios(AlunoController controller) {
         System.out.println("Lista de Alunos Cadastrados");
         for (Aluno aluno : controller.getAlunos()) {
-            System.out.println("CPF :"+ aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: " + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
+            System.out.println("CPF :" + aluno.getCpf() + ", Nome: " + aluno.getNome() + ", Substituir Treino: "
+                    + ((aluno.isSubstituirTreino()) ? "Sim" : "Não"));
         }
         System.out.println("----------------\n\n");
     }

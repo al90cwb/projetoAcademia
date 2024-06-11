@@ -5,12 +5,14 @@ import java.util.List;
 import model.Treino;
 
 /**
- * Este Contrler Gerencia a lista de Subtrienos cadastrados
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza] Data de criação: [28/05/2024]
- * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024] 
- * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
+ * A classe {@code TreinoController} é responsável por gerenciar as operações
+ * relacionadas aos treinos, como criação, atualização, exclusão e recuperação
+ * de treinos.
+ * 
+ * @version 1.0
+ * @since 2024-06-07
  */
+
 public class TreinoController {
     private List<Treino> treinos;
     private List<Treino> listaBusca;
@@ -20,7 +22,7 @@ public class TreinoController {
     }
 
     public String cadastrarTreino(Treino treino) {
-        if (buscaTreinoId(treino.getId() ) == null) {
+        if (buscaTreinoId(treino.getId()) == null) {
             treino.setId(criarID());
             treinos.add(treino);
             return "Treino Cadastrado!";
@@ -36,15 +38,15 @@ public class TreinoController {
         this.treinos = treinos;
     }
 
-    public void deletar(int id){
-        treinos.removeIf( t -> t.getId() == id);
+    public void deletar(int id) {
+        treinos.removeIf(t -> t.getId() == id);
     }
 
     public Treino buscaTreinoId(int id) {
         return treinos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public void limparTreinos(){
+    public void limparTreinos() {
         treinos.clear();
     }
 
@@ -58,7 +60,7 @@ public class TreinoController {
     }
 
     public List<Treino> pesquisaPorTipo(String tipo) {
-        if (listaBusca!=null){
+        if (listaBusca != null) {
             listaBusca.clear();
         }
         for (Treino treino : treinos) {
@@ -68,7 +70,5 @@ public class TreinoController {
         }
         return listaBusca;
     }
-   
-
 
 }

@@ -4,11 +4,12 @@ import java.util.List;
 import model.Professor;
 
 /**
- * Este Contrler Gerencia a lista de professores cadastrados
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza] Data de criação: [28/05/2024]
- * Autor: [Alan Henrique de Souza] Revisão: [29/05/2024] 
- * Criação da lista , metodos buscar, cadastrar, excluir, criar codigo
+ * A classe {@code ProfessorController} é responsável por gerenciar as operações
+ * relacionadas aos professores, como criação, atualização, exclusão e
+ * recuperação de professores.
+ * 
+ * @version 1.0
+ * @since 2024-06-07
  */
 public class ProfessorController {
     private List<Professor> professores;
@@ -21,11 +22,9 @@ public class ProfessorController {
         return professores;
     }
 
-
     public void setProfessores(List<Professor> professores) {
         this.professores = professores;
-    } 
-    
+    }
 
     @Override
     public String toString() {
@@ -33,7 +32,7 @@ public class ProfessorController {
     }
 
     public String cadastrar(Professor professor) {
-        if (buscaId(professor.getId() ) == null) {
+        if (buscaId(professor.getId()) == null) {
             professor.setId(criarID());
             professores.add(professor);
             return "Professor Cadastrado!";
@@ -41,15 +40,15 @@ public class ProfessorController {
         return "Professor Ja Existe!";
     }
 
-    public void deletar(int id){
-        professores.removeIf( t -> t.getId() == id);
+    public void deletar(int id) {
+        professores.removeIf(t -> t.getId() == id);
     }
 
     public Professor buscaId(int id) {
         return professores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
     }
 
-    public void limpar(){
+    public void limpar() {
         professores.clear();
     }
 
@@ -66,12 +65,12 @@ public class ProfessorController {
         return professores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
     }
 
-    public Professor verificarSenha(String cpf,String senha) {
+    public Professor verificarSenha(String cpf, String senha) {
         Professor a = professores.stream().filter(c -> c.getCpf().equals(cpf)).findFirst().orElse(null);
-        if (a.getSenha().equals(senha)){
+        if (a.getSenha().equals(senha)) {
             return a;
         }
         return null;
     }
-    
+
 }

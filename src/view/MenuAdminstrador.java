@@ -1,6 +1,5 @@
 package view;
 
-
 import java.time.LocalDate;
 
 import controller.AdministradorController;
@@ -11,29 +10,37 @@ import model.Aluno;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuAdminstrador extends MenusStandard  {
- 
+/**
+ * A classe {@code MenuAdministrador} exibe opções de menu e executa operações
+ * relacionadas aos administradores, alunos e professores.
+ * <p>
+ * Esta classe faz parte da camada de visualização na arquitetura MVC.
+ * </p>
+ *
+ * @version 1.0
+ * @since 2024-06-07
+ */
+
+public abstract class MenuAdminstrador extends MenuPadrao {
+
     public static void opcoes() {
         System.out.println("\n\n");
         System.out.println("Menu Administrador:");
         System.out.println("0 - FECHAR SISTEMA");
         System.out.println("1 - LOGOUT");
-
         System.out.println("\n10 - CADASTRO DE ALUNO");
         System.out.println("11 - VER ALUNOS CADASTRADOS");
         System.out.println("12 - BUSCAR ALUNO - DELETAR/ALTERAR");
-
         System.out.println("\n20 - CADASTRO DE PROFESSOR");
         System.out.println("21 - VER PROFESSORES CADASTRADOS");
         System.out.println("22 - BUSCAR PROFESSORES - DELETAR/ALTERAR");
-
         System.out.println("\n30 - CADASTRO DE ADMINISTRADORES");
         System.out.println("31 - VER ADMINISTRADORES CADASTRADOS");
         System.out.println("32 - BUSCAR ADMINISTRADORES - DELETAR/ALTERAR");
     }
 
-
-    public static boolean menuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor, AdministradorController controllerAdministrador){
+    public static boolean menuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
+            AdministradorController controllerAdministrador) {
 
         int opcao = 0;
         boolean sair = false;
@@ -50,54 +57,54 @@ public abstract class MenuAdminstrador extends MenusStandard  {
             switch (opcao) {
                 case 0:
                     sair = true;
-                return true;
+                    return true;
                 case 1:
                     sair = true;
-                break;
-                case 10:MenuAluno.cadastro(controllerAluno);
+                    break;
+                case 10:
+                    MenuAluno.cadastro(controllerAluno);
                     sair = false;
                     break;
                 case 11:
-                    MenuAluno.verAlunos(controllerAluno);
+                    MenuAluno.verListaDeUsuarios(controllerAluno);
                     sair = false;
-                break;
+                    break;
                 case 12:
                     alunoBusca = MenuAluno.buscar(controllerAluno);
-                    MenuAluno.verAluno(alunoBusca);
+                    MenuAluno.verUsuario(alunoBusca);
                     MenuAluno.opcaoAlteracao(controllerAluno, alunoBusca);
                     sair = false;
-                break;
+                    break;
 
-
-                case 20:MenuProfessor.cadastro(controllerProfessor);
+                case 20:
+                    MenuProfessor.cadastro(controllerProfessor);
                     sair = false;
                     break;
                 case 21:
                     MenuProfessor.verProfessores(controllerProfessor);
                     sair = false;
-                break;
+                    break;
                 case 22:
                     professorBusca = MenuProfessor.buscar(controllerProfessor);
                     MenuProfessor.verProfessor(professorBusca);
                     MenuProfessor.opcaoAlteracao(controllerProfessor, professorBusca);
                     sair = false;
-                break;
+                    break;
 
                 case 30:
                     cadastro(controllerAdministrador);
                     sair = false;
-                break;
+                    break;
                 case 31:
                     verAdministradores(controllerAdministrador);
                     sair = false;
-                break;
+                    break;
                 case 32:
                     administradorBusca = buscar(controllerAdministrador);
                     verAdministrador(administradorBusca);
                     opcaoAlteracao(controllerAdministrador, administradorBusca);
                     sair = false;
-                break;
-
+                    break;
 
                 default:
                     sair = false;
@@ -110,12 +117,10 @@ public abstract class MenuAdminstrador extends MenusStandard  {
 
     }
 
-
-    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador){
+    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador) {
 
         int opcao = 0;
         boolean sair = false;
-       
 
         do {
             System.out.println("\n\n Informar opções");
@@ -127,26 +132,25 @@ public abstract class MenuAdminstrador extends MenusStandard  {
 
             switch (opcao) {
                 case 0:
-                sair= true;
-                break;
+                    sair = true;
+                    break;
                 case 1:
-                alterar(administrador);
-                sair= true;
-                break;
+                    alterar(administrador);
+                    sair = true;
+                    break;
                 case 2:
-                deletar(controller,administrador);
-                sair= true;
-                break;
+                    deletar(controller, administrador);
+                    sair = true;
+                    break;
                 default:
-                System.out.println("Opção invalida");
-                sair= false;
-                break;
-            } 
+                    System.out.println("Opção invalida");
+                    sair = false;
+                    break;
+            }
         } while (!sair);
     }
 
-
-    public static void deletar(AdministradorController controller, Administrador administrador){
+    public static void deletar(AdministradorController controller, Administrador administrador) {
         if (administrador == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -162,14 +166,14 @@ public abstract class MenuAdminstrador extends MenusStandard  {
         }
     }
 
-    public static Administrador buscar(AdministradorController controller){
+    public static Administrador buscar(AdministradorController controller) {
         Entrada.in.nextLine();
         System.out.println("Informar cpf do Administrador");
         return controller.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AdministradorController controller){
-        Professor cadastro= new Professor();
+    public static void cadastro(AdministradorController controller) {
+        Professor cadastro = new Professor();
 
         Entrada.in.nextLine();
         System.out.println("\n\n");
@@ -195,16 +199,17 @@ public abstract class MenuAdminstrador extends MenusStandard  {
         MenuProfessor.verProfessor(cadastro);
 
         if (MenuAdminstrador.confimar()) {
-            controller.cadastrar(new Administrador(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(), cadastro.getCelular(), cadastro.getEmail(),
-            cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
+            controller.cadastrar(new Administrador(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
+                    cadastro.getCelular(), cadastro.getEmail(),
+                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
             System.out.println("Professor Cadastrado:");
         } else {
-             System.out.println("Professor Cancelada.");
+            System.out.println("Professor Cancelada.");
         }
 
     }
 
-    public static void alterar(Administrador administrador){
+    public static void alterar(Administrador administrador) {
         if (administrador == null) {
             System.out.println("Professor Não encontrado");
         } else {
@@ -230,25 +235,24 @@ public abstract class MenuAdminstrador extends MenusStandard  {
                 administrador.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
                 administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
-                verAdministrador( administrador);
-            }else{
+                verAdministrador(administrador);
+            } else {
                 System.out.println("Operação Cancelada, Administrador não foi deletado:");
             }
         }
     }
 
-    public static void verAdministrador(Administrador administrador){
+    public static void verAdministrador(Administrador administrador) {
         System.out.println("Dados do Administrador");
-        System.out.println("CPF :"+ administrador.getCpf() + ", Nome: " + administrador.getNome());
+        System.out.println("CPF :" + administrador.getCpf() + ", Nome: " + administrador.getNome());
     }
 
-    public static void verAdministradores(AdministradorController controller){
+    public static void verAdministradores(AdministradorController controller) {
         System.out.println("Lista de Administrador Cadastrados");
         for (Administrador administrador : controller.getAdministradores()) {
-            System.err.println("CPF :"+ administrador.getCpf() + ", Nome: " + administrador.getNome());
+            System.err.println("CPF :" + administrador.getCpf() + ", Nome: " + administrador.getNome());
         }
         System.out.println("----------------\n\n");
     }
-
 
 }

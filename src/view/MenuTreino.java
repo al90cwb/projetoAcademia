@@ -7,7 +7,16 @@ import model.Exercicio;
 import model.Treino;
 import util.Entrada;
 
-public class MenuTreino extends MenusStandard {
+/**
+ * Classe para objetos do tipo Treino, onde serão contidos, valores e métodos
+ * para o mesmo.
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
+ */
+
+public class MenuTreino extends MenuPadrao {
 
     public static void opcoesCadastroTreino() {
         System.out.println("\n\n");
@@ -20,7 +29,6 @@ public class MenuTreino extends MenusStandard {
 
     }
 
-    
     public static void cadastro(TreinoController controller) {
 
         int opcaoCadastro;
@@ -30,7 +38,7 @@ public class MenuTreino extends MenusStandard {
         do {
             MenuTreino.opcoesCadastroTreino();
             opcaoCadastro = Entrada.entradaInt();
-            sairOpcaoCadastro = false; 
+            sairOpcaoCadastro = false;
 
             switch (opcaoCadastro) {
                 case 0:
@@ -39,14 +47,14 @@ public class MenuTreino extends MenusStandard {
                 case 1:
                     System.out.println("Cadastrar novo Treino");
                     cadastroTreino(controller);
-                    sairOpcaoCadastro = false; 
+                    sairOpcaoCadastro = false;
                     break;
                 case 2:
                     busca = buscar(controller);
                     verTreino(busca);
                     opcaoAlteracao(controller, busca);
-                break;
-                
+                    break;
+
                 case 3:
                     System.out.println("Lista de TREINOS Cadastrados");
                     verTreinos(controller.getTreinos());
@@ -54,7 +62,7 @@ public class MenuTreino extends MenusStandard {
                     sairOpcaoCadastro = false;
                     break;
                 case 4:
-                    verTreino( buscar(controller));
+                    verTreino(buscar(controller));
                     System.out.println("----------------\n\n");
                     sairOpcaoCadastro = false;
                     break;
@@ -67,11 +75,10 @@ public class MenuTreino extends MenusStandard {
 
     }
 
-    public static void opcaoAlteracao(TreinoController controller, Treino treino){
+    public static void opcaoAlteracao(TreinoController controller, Treino treino) {
 
         int opcao = 0;
         boolean sair = false;
-       
 
         do {
             System.out.println("\n\n Informar opções");
@@ -83,36 +90,36 @@ public class MenuTreino extends MenusStandard {
 
             switch (opcao) {
                 case 0:
-                sair= true;
-                break;
+                    sair = true;
+                    break;
                 case 1:
-                alterar(treino);
-                sair= true;
-                break;
+                    alterar(treino);
+                    sair = true;
+                    break;
                 case 2:
-                deletar(controller,treino);
-                sair= true;
-                break;
+                    deletar(controller, treino);
+                    sair = true;
+                    break;
                 default:
-                System.out.println("Opção invalida");
-                sair= false;
-                break;
-            } 
+                    System.out.println("Opção invalida");
+                    sair = false;
+                    break;
+            }
         } while (!sair);
     }
 
     public static Treino cadastroTreino(TreinoController controller) {
-        
-        String nomeTreino,tipoTreino;
+
+        String nomeTreino, tipoTreino;
 
         Entrada.in.nextLine();
         System.out.println("\n\n");
         System.out.println("Cadastro de Treino");
         System.out.println("Nome do Treino");
-        nomeTreino=Entrada.entradaString();
+        nomeTreino = Entrada.entradaString();
         System.out.println("Tipo Grupo Muscular");
-        tipoTreino=Entrada.entradaTipoTreino();
-        Treino cadastro = new Treino( nomeTreino, tipoTreino, new ArrayList<Exercicio>()) ;
+        tipoTreino = Entrada.entradaTipoTreino();
+        Treino cadastro = new Treino(nomeTreino, tipoTreino, new ArrayList<Exercicio>());
         controller.cadastrarTreino(cadastro);
 
         cadastroExercicio(cadastro);
@@ -135,17 +142,17 @@ public class MenuTreino extends MenusStandard {
                 System.out.println("Tipo Grupo Muscular");
                 treino.setTipoTreino(Entrada.entradaTipoTreino());
                 cadastroExercicio(treino);
-                verTreino( treino);
-            }else{
+                verTreino(treino);
+            } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
             }
         }
     }
 
     public static void cadastroExercicio(Treino treino) {
-        
-        String nomeExercicio,intervalo,repticoes;
-        boolean sair=false;
+
+        String nomeExercicio, intervalo, repticoes;
+        boolean sair = false;
         do {
             treino.limparExercicios();
 
@@ -153,12 +160,12 @@ public class MenuTreino extends MenusStandard {
             System.out.println("\n\n");
             System.out.println("Adicionar Exercicio");
             System.out.println("Nome do Exercicio");
-            nomeExercicio=Entrada.entradaString();
+            nomeExercicio = Entrada.entradaString();
             System.out.println("Intervalo");
-            intervalo=Entrada.entradaString();
+            intervalo = Entrada.entradaString();
             System.out.println("Repticoes");
-            repticoes=Entrada.entradaString();
-            
+            repticoes = Entrada.entradaString();
+
             Exercicio cadastro = new Exercicio(nomeExercicio, intervalo, repticoes);
             treino.adicionarExercicio(cadastro);
 
@@ -167,7 +174,6 @@ public class MenuTreino extends MenusStandard {
 
         } while (!sair);
     }
-
 
     public static Treino alterarTreino(Treino treino, int id) {
         Entrada.in.nextLine();
@@ -185,13 +191,12 @@ public class MenuTreino extends MenusStandard {
         System.out.println("Informar ID do treino:");
         return Entrada.entradaInt();
     }
-    
 
-    public static Treino buscar(TreinoController controller){
+    public static Treino buscar(TreinoController controller) {
         return controller.buscaTreinoId(MenuTreino.informarId());
     }
 
-    public static void deletar(TreinoController controller,Treino trieno){
+    public static void deletar(TreinoController controller, Treino trieno) {
         if (trieno == null) {
             System.out.println("Treino não encontrado");
         } else {
@@ -206,46 +211,45 @@ public class MenuTreino extends MenusStandard {
             }
         }
     }
-  
+
     public static void buscarTreinos(TreinoController controller) {
-        String tipo ;
+        String tipo;
         List<Treino> treinos;
         System.out.println("Informar o Tipo do treino");
         Entrada.in.nextLine();
         tipo = Entrada.entradaTipoTreino();
         treinos = controller.pesquisaPorTipo(tipo);
-        if (treinos!= null){
+        if (treinos != null) {
             for (Treino treino : treinos) {
-                System.out.println("Id:"+ treino.getId() +", nome do treino "+ treino.getNome() );
+                System.out.println("Id:" + treino.getId() + ", nome do treino " + treino.getNome());
             }
-        }else{
+        } else {
             System.out.println("Lista de trienos vazia");
         }
-        return  ;
+        return;
     }
 
     public static void verTreino(Treino treino) {
-        if (treino!= null){
+        if (treino != null) {
             List<Exercicio> exercicios = treino.getExercicios();
             for (Exercicio exercicio : exercicios) {
-                System.out.println("Nome do Exercicio:"+ exercicio.getNomeExercicio()+ ", repetições:"+ exercicio.getRepeticoes() + ", intervalo:"+ exercicio.getIntervalo()+ "." );
+                System.out.println("Nome do Exercicio:" + exercicio.getNomeExercicio() + ", repetições:"
+                        + exercicio.getRepeticoes() + ", intervalo:" + exercicio.getIntervalo() + ".");
             }
-        }else{
+        } else {
             System.out.println("Lista de exercicios vazia");
         }
     }
 
     public static void verTreinos(List<Treino> treinos) {
-        if (treinos!= null){
+        if (treinos != null) {
             for (Treino treino : treinos) {
-                System.out.println("Id " + treino.getId() + ", nome "+treino.getNome()+ ", tipo: "+ treino.getTipoTreino() );
+                System.out.println(
+                        "Id " + treino.getId() + ", nome " + treino.getNome() + ", tipo: " + treino.getTipoTreino());
             }
-        }else{
+        } else {
             System.out.println("Lista de trienos vazia");
         }
     }
-
-   
-
 
 }

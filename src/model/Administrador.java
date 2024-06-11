@@ -3,11 +3,12 @@ package model;
 import java.time.LocalDate;
 
 /**
- * Este Objeto contem os dados de administrador
- * Tem acesso de criação, edição e exclusão de usuarios
- * Versão: 1.0
- * Autor: [Alan Henrique de Souza]
- * Data de criação: [28/05/2024]
+ * Classe para objetos do tipo {@code Administrador} com dados do administrador
+ * da academia
+ * 
+ * @author Alan Souza
+ * @version 1.00
+ * @since 11/06/2024
  */
 
 public class Administrador extends Usuario {
