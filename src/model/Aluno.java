@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDate;
  * @since 11/06/2024
  */
 
-public class Aluno extends Usuario {
+public class Aluno extends Usuario  implements Serializable{
 
     private boolean substituirTreino;
     private LocalDate dataInicio, dataFim;

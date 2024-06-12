@@ -2,6 +2,9 @@ package controller;
 
 import java.util.List;
 import model.Professor;
+import util.Log;
+import util.SerAluno;
+import util.SerProfessor;
 
 /**
  * A classe {@code ProfessorController} é responsável por gerenciar as operações
@@ -15,15 +18,15 @@ public class ProfessorController {
     private List<Professor> professores;
 
     public ProfessorController(List<Professor> professores) {
-        this.professores = professores;
+        this.professores = professores;  try {
+            carregarDados();
+        } catch (Exception e) {
+            System.err.println("ERRO AO CARREGAR DADOS");
+        }
     }
 
     public List<Professor> getProfessores() {
         return professores;
-    }
-
-    public void setProfessores(List<Professor> professores) {
-        this.professores = professores;
     }
 
     @Override
@@ -31,25 +34,25 @@ public class ProfessorController {
         return "Professorcontroller [professores=" + professores + "]";
     }
 
-    public String cadastrar(Professor professor) {
+    public void cadastrar(Professor professor) throws Exception {
         if (buscaId(professor.getId()) == null) {
             professor.setId(criarID());
             professores.add(professor);
-            return "Professor Cadastrado!";
+            Log.gravar("Cadastro Professor " +professor.getNome());
+        }else{
+            Log.gravar("Falha no cadastro professor");
         }
-        return "Professor Ja Existe!";
+        salvarDados();
     }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws Exception {
         professores.removeIf(t -> t.getId() == id);
+        salvarDados();
+        Log.gravar("Professor Deletado ");
     }
 
     public Professor buscaId(int id) {
         return professores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-    }
-
-    public void limpar() {
-        professores.clear();
     }
 
     public int criarID() {
@@ -71,6 +74,14 @@ public class ProfessorController {
             return a;
         }
         return null;
+    }
+
+    public void salvarDados() throws Exception{
+        SerProfessor.salvar(professores);
+    }
+
+    private void carregarDados() throws Exception{
+        professores = SerProfessor.ler();
     }
 
 }

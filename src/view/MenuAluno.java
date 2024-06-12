@@ -66,7 +66,7 @@ public abstract class MenuAluno extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(AlunoController controller, Aluno aluno) {
+    public static void opcaoAlteracao(AlunoController controller, Aluno aluno) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -99,7 +99,7 @@ public abstract class MenuAluno extends MenuPadrao {
         } while (!sair);
     }
 
-    public static void deletar(AlunoController controller, Aluno aluno) {
+    public static void deletar(AlunoController controller, Aluno aluno) throws Exception {
         if (aluno == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -116,15 +116,15 @@ public abstract class MenuAluno extends MenuPadrao {
     }
 
     public static Aluno buscar(AlunoController controlle) {
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("Informar cpf do aluno");
         return controlle.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AlunoController controller) {
+    public static void cadastro(AlunoController controller) throws Exception {
         Aluno cadastro = new Aluno();
 
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Aluno");
         System.out.println("Nome do Aluno:");
@@ -142,7 +142,7 @@ public abstract class MenuAluno extends MenuPadrao {
         System.out.println("Digite a Senha:");
         cadastro.setSenha(Entrada.entradaString());
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
 
         System.out.println("Você deseja cadastrar o Aluno?");
         MenuAluno.verUsuario(cadastro);
@@ -171,7 +171,7 @@ public abstract class MenuAluno extends MenuPadrao {
         System.out.println("Duração do trieno em dias entre 10 e 90 dias");
         duracaoTreino = Entrada.entradaMinMax(10, 90);
         System.out.println("Descrição de aquecimento");
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         aquecimento = Entrada.entradaString();
 
         do {
@@ -200,7 +200,7 @@ public abstract class MenuAluno extends MenuPadrao {
     }
 
     public static void verTreino(Aluno aluno) {
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         verUsuario(aluno);
         MenuTreino.verTreino(aluno.getTreino());
@@ -214,7 +214,7 @@ public abstract class MenuAluno extends MenuPadrao {
             verUsuario(aluno);
 
             if (confimar()) {
-                Entrada.in.nextLine();
+                Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
                 aluno.setNome(Entrada.entradaString());
@@ -231,7 +231,7 @@ public abstract class MenuAluno extends MenuPadrao {
                 System.out.println("Altera a Senha:");
                 aluno.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
-                aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+                aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 verUsuario(aluno);
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");

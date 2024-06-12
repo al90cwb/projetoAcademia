@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 import model.Aluno;
+import util.Log;
+import util.SerAluno;
 
 /**
  * A classe {@code AlunoController} é responsável por gerenciar as operações
@@ -17,14 +19,15 @@ public class AlunoController {
 
     public AlunoController(List<Aluno> alunos) {
         this.alunos = alunos;
+        try {
+            carregarDados();
+        } catch (Exception e) {
+            System.err.println("ERRO AO CARREGAR DADOS");
+        }
     }
 
     public List<Aluno> getAlunos() {
         return alunos;
-    }
-
-    public void setAlunos(List<Aluno> alunos) {
-        this.alunos = alunos;
     }
 
     @Override
@@ -32,25 +35,25 @@ public class AlunoController {
         return "Alunocontroller [alunos=" + alunos + "]";
     }
 
-    public String cadastrar(Aluno aluno) {
+    public void cadastrar(Aluno aluno) throws Exception {
         if (buscaId(aluno.getId()) == null) {
             aluno.setId(criarID());
             alunos.add(aluno);
-            return "Aluno Cadastrado!";
+            Log.gravar("Cadastro Aluno " +aluno.getNome());
+        }else{
+            Log.gravar("Falha no cadastro aluno");
         }
-        return "Aluno Ja Existe!";
+        salvarDados();
     }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws Exception {
         alunos.removeIf(t -> t.getId() == id);
+        salvarDados();
+        Log.gravar("Aluno Deletado ");
     }
 
     public Aluno buscaId(int id) {
         return alunos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-    }
-
-    public void limparAlunos() {
-        alunos.clear();
     }
 
     public int criarID() {
@@ -72,6 +75,14 @@ public class AlunoController {
             return a;
         }
         return null;
+    }
+
+    public void salvarDados() throws Exception{
+        SerAluno.salvar(alunos);
+    }
+
+    private void carregarDados() throws Exception{
+        alunos = SerAluno.ler();
     }
 
 }

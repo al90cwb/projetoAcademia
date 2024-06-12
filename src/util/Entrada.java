@@ -14,21 +14,33 @@ import java.util.Scanner;
  */
 
 public abstract class Entrada {
-    // formatação entradas
-    public static DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
-    public static Scanner in = new Scanner(System.in);
+    
+    private static DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
+    private static Scanner in = new Scanner(System.in);
 
-    // tratamento entradas
+  
+    public static Scanner getEntrada(){
+        return in;
+    }
+
+    public static void limparBuffer(){
+        in.nextLine();
+    }
+
+    public static DateTimeFormatter getFormatoData(){
+        return formatoData;
+    }
+    
     public static int entradaInt() {
         boolean entradaValida = false;
         int numero = 0;
         while (!entradaValida) {
             try {
                 numero = in.nextInt();
-                entradaValida = true; // Se a entrada for válida, saímos do loop
+                entradaValida = true; 
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                in.nextLine(); // Limpa o buffer do scanner
+                in.nextLine(); 
             }
         }
         return numero;
@@ -41,15 +53,15 @@ public abstract class Entrada {
             try {
                 numero = in.nextInt();
                 if (numero == 0 || numero == 1) {
-                    entradaValida = true; // Se a entrada for válida, saímos do loop
+                    entradaValida = true; 
                 } else {
-                    entradaValida = false; // Se a entrada for válida, saímos do loop
+                    entradaValida = false; 
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                    in.nextLine(); // Limpa o buffer do scanner
+                    in.nextLine(); 
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                in.nextLine(); // Limpa o buffer do scanner
+                in.nextLine(); 
             }
         }
         return numero;
@@ -62,15 +74,15 @@ public abstract class Entrada {
             try {
                 numero = in.nextInt();
                 if (numero >= min && numero <= max) {
-                    entradaValida = true; // Se a entrada for válida, saímos do loop
+                    entradaValida = true;
                 } else {
-                    entradaValida = false; // Se a entrada for válida, saímos do loop
+                    entradaValida = false; 
                     System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                    in.nextLine(); // Limpa o buffer do scanner
+                    in.nextLine();
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                in.nextLine(); // Limpa o buffer do scanner
+                in.nextLine();
             }
         }
         return numero;
@@ -83,10 +95,10 @@ public abstract class Entrada {
         while (!entradaValida) {
             try {
                 numero = in.nextFloat();
-                entradaValida = true; // Se a entrada for válida, saímos do loop
+                entradaValida = true; 
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida. Por favor, digite um número válido.");
-                in.nextLine(); // Limpa o buffer do scanner
+                in.nextLine(); 
             }
         }
         return numero;

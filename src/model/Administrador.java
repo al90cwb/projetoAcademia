@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -11,7 +12,7 @@ import java.time.LocalDate;
  * @since 11/06/2024
  */
 
-public class Administrador extends Usuario {
+public class Administrador extends Usuario implements Serializable {
 
     public Administrador() {
     }

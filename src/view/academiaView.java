@@ -56,13 +56,13 @@ public class AcademiaView {
             for (int i = 0; i < 5; i++) {
                 controllerProfessor.cadastrar(
                         new Professor(0, "prof" + i, "cpf" + i, "endereco" + i, "celular" + i, "email" + i, "sexo" + i,
-                                "senha" + i, LocalDate.parse("10/10/198" + i, Entrada.formatoData)));
+                                "senha" + i, LocalDate.parse("10/10/198" + i, Entrada.getFormatoData())));
             }
 
             for (int i = 0; i < 5; i++) {
                 controllerAdministrador.cadastrar(new Administrador(0, "admin" + i, "cpf" + i, "endereco" + i,
                         "celular" + i, "email" + i, "sexo" + i,
-                        "senha" + i, LocalDate.parse("10/10/198" + i, Entrada.formatoData)));
+                        "senha" + i, LocalDate.parse("10/10/198" + i, Entrada.getFormatoData())));
             }
 
             ArrayList<Exercicio> exerciciosPerna1 = new ArrayList<Exercicio>();
@@ -98,15 +98,15 @@ public class AcademiaView {
             controllerTreino.buscaTreinoId(4);
 
             controllerAluno.cadastrar(new Aluno(0, "aluno1", "cpf1", "endereco1", "celular1", "email", "sexo",
-                    "senha1", LocalDate.parse("10/10/1981", Entrada.formatoData), false,
+                    "senha1", LocalDate.parse("10/10/1981", Entrada.getFormatoData()), false,
                     controllerTreino.buscaTreinoId(0), 10, "10min esteira", "Segunda Quarta Sexta"));
 
             controllerAluno.cadastrar(new Aluno(0, "aluno2", "cpf2", "endereco2", "celular2", "email", "sexo",
-                    "senha2", LocalDate.parse("10/10/1990", Entrada.formatoData), false,
+                    "senha2", LocalDate.parse("10/10/1990", Entrada.getFormatoData()), false,
                     controllerTreino.buscaTreinoId(1), 10, "10min esteira", "Segunda a Sexta"));
 
             controllerAluno.cadastrar(new Aluno(0, "aluno3", "cpf3", "endereco3", "celular3", "email", "sexo",
-                    "senha3", LocalDate.parse("10/10/1995", Entrada.formatoData), false,
+                    "senha3", LocalDate.parse("10/10/1995", Entrada.getFormatoData()), false,
                     controllerTreino.buscaTreinoId(2), 10, "10min esteira", "Segunda a Sexta"));
         }
 
@@ -154,7 +154,7 @@ public class AcademiaView {
                     System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
                     sairOpcao = !MenuPadrao.confimar();
                     sairPrincipal = sairOpcao;
-                    Entrada.in.nextLine();
+                    Entrada.limparBuffer();
                 }
 
             } while (!sairOpcao);
@@ -179,7 +179,7 @@ public class AcademiaView {
             }
 
             if (!sairPrincipal)
-                Entrada.in.nextLine();
+                Entrada.limparBuffer();
 
         } while (!sairPrincipal);
         System.out.println("SISTEMA ENCERRADO");

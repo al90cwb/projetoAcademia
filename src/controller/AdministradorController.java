@@ -2,6 +2,8 @@ package controller;
 
 import java.util.List;
 import model.Administrador;
+import util.Log;
+import util.SerAdministrador;
 
 /**
  * A classe {@code AdministradorContrller} é responsável por gerenciar as
@@ -18,14 +20,15 @@ public class AdministradorController {
 
     public AdministradorController(List<Administrador> administradores) {
         this.administradores = administradores;
+        try {
+            carregarDados();
+        } catch (Exception e) {
+            System.err.println("ERRO AO CARREGAR DADOS");
+        }
     }
 
     public List<Administrador> getAdministradores() {
         return administradores;
-    }
-
-    public void setAdministradores(List<Administrador> administradores) {
-        this.administradores = administradores;
     }
 
     @Override
@@ -33,25 +36,25 @@ public class AdministradorController {
         return "AdministradorController [administradores=" + administradores + "]";
     }
 
-    public String cadastrar(Administrador administrador) {
+    public void cadastrar(Administrador administrador) throws Exception {
         if (buscarId(administrador.getId()) == null) {
             administrador.setId(criarID());
             administradores.add(administrador);
-            return "Aluno Cadastrado!";
+            Log.gravar("Cadastro Adminstrador " +administrador.getNome());
+        }else{
+            Log.gravar("Falha no cadastro administrador");
         }
-        return "Aluno Ja Existe!";
+        salvarDados();
     }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws Exception {
         administradores.removeIf(t -> t.getId() == id);
+        salvarDados();
+        Log.gravar("Administrador Deletado ");
     }
 
     public Administrador buscarId(int id) {
         return administradores.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-    }
-
-    public void limpar() {
-        administradores.clear();
     }
 
     public int criarID() {
@@ -73,6 +76,14 @@ public class AdministradorController {
             return a;
         }
         return null;
+    }
+
+    public void salvarDados() throws Exception{
+        SerAdministrador.salvar(administradores);
+    }
+
+    private void carregarDados() throws Exception{
+        administradores = SerAdministrador.ler();
     }
 
 }

@@ -29,7 +29,7 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void cadastro(TreinoController controller) {
+    public static void cadastro(TreinoController controller) throws Exception {
 
         int opcaoCadastro;
         boolean sairOpcaoCadastro = false;
@@ -75,7 +75,7 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(TreinoController controller, Treino treino) {
+    public static void opcaoAlteracao(TreinoController controller, Treino treino) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -108,11 +108,11 @@ public class MenuTreino extends MenuPadrao {
         } while (!sair);
     }
 
-    public static Treino cadastroTreino(TreinoController controller) {
+    public static Treino cadastroTreino(TreinoController controller) throws Exception {
 
         String nomeTreino, tipoTreino;
 
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("Cadastro de Treino");
         System.out.println("Nome do Treino");
@@ -135,7 +135,7 @@ public class MenuTreino extends MenuPadrao {
             verTreino(treino);
 
             if (confimar()) {
-                Entrada.in.nextLine();
+                Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
                 treino.setNome(Entrada.entradaString());
@@ -156,7 +156,7 @@ public class MenuTreino extends MenuPadrao {
         do {
             treino.limparExercicios();
 
-            Entrada.in.nextLine();
+            Entrada.limparBuffer();
             System.out.println("\n\n");
             System.out.println("Adicionar Exercicio");
             System.out.println("Nome do Exercicio");
@@ -176,7 +176,7 @@ public class MenuTreino extends MenuPadrao {
     }
 
     public static Treino alterarTreino(Treino treino, int id) {
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("Alterar Treino ID: " + id);
         treino.setId(id);
@@ -196,7 +196,7 @@ public class MenuTreino extends MenuPadrao {
         return controller.buscaTreinoId(MenuTreino.informarId());
     }
 
-    public static void deletar(TreinoController controller, Treino trieno) {
+    public static void deletar(TreinoController controller, Treino trieno) throws Exception {
         if (trieno == null) {
             System.out.println("Treino não encontrado");
         } else {
@@ -216,7 +216,7 @@ public class MenuTreino extends MenuPadrao {
         String tipo;
         List<Treino> treinos;
         System.out.println("Informar o Tipo do treino");
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         tipo = Entrada.entradaTipoTreino();
         treinos = controller.pesquisaPorTipo(tipo);
         if (treinos != null) {

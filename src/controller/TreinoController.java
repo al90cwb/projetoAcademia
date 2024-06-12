@@ -3,6 +3,9 @@ package controller;
 import java.util.List;
 
 import model.Treino;
+import util.Log;
+import util.SerProfessor;
+import util.SerTreino;
 
 /**
  * A classe {@code TreinoController} é responsável por gerenciar as operações
@@ -19,35 +22,37 @@ public class TreinoController {
 
     public TreinoController(List<Treino> treinos) {
         this.treinos = treinos;
+         try {
+            carregarDados();
+        } catch (Exception e) {
+            System.err.println("ERRO AO CARREGAR DADOS");
+        }
     }
 
-    public String cadastrarTreino(Treino treino) {
+    public void cadastrarTreino(Treino treino) throws Exception {
         if (buscaTreinoId(treino.getId()) == null) {
             treino.setId(criarID());
             treinos.add(treino);
-            return "Treino Cadastrado!";
+            Log.gravar("Cadastro treino " +treino.getNome());
+        }else{
+            Log.gravar("Falha no cadastro treino");
         }
-        return "Treino Ja Existe!";
+        salvarDados();
     }
 
     public List<Treino> getTreinos() {
         return treinos;
     }
 
-    public void setTreinos(List<Treino> treinos) {
-        this.treinos = treinos;
-    }
 
-    public void deletar(int id) {
+    public void deletar(int id) throws Exception {
         treinos.removeIf(t -> t.getId() == id);
+        salvarDados();
+        Log.gravar("Treino Deletado ");
     }
 
     public Treino buscaTreinoId(int id) {
         return treinos.stream().filter(c -> c.getId() == id).findFirst().orElse(null);
-    }
-
-    public void limparTreinos() {
-        treinos.clear();
     }
 
     public int criarID() {
@@ -71,4 +76,11 @@ public class TreinoController {
         return listaBusca;
     }
 
+    public void salvarDados() throws Exception{
+        SerTreino.salvar(treinos);
+    }
+
+    private void carregarDados() throws Exception{
+        treinos = SerTreino.ler();
+    }
 }

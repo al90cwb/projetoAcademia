@@ -40,7 +40,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
     }
 
     public static boolean menuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
-            AdministradorController controllerAdministrador) {
+            AdministradorController controllerAdministrador) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -117,7 +117,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador) {
+    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -150,7 +150,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
         } while (!sair);
     }
 
-    public static void deletar(AdministradorController controller, Administrador administrador) {
+    public static void deletar(AdministradorController controller, Administrador administrador) throws Exception {
         if (administrador == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -167,15 +167,15 @@ public abstract class MenuAdminstrador extends MenuPadrao {
     }
 
     public static Administrador buscar(AdministradorController controller) {
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("Informar cpf do Administrador");
         return controller.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AdministradorController controller) {
+    public static void cadastro(AdministradorController controller) throws Exception {
         Professor cadastro = new Professor();
 
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Administrador");
         System.out.println("Nome:");
@@ -193,7 +193,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
         System.out.println("Digite a Senha:");
         cadastro.setSenha(Entrada.entradaString());
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
 
         System.out.println("Você deseja cadastrar o Professor?");
         MenuProfessor.verProfessor(cadastro);
@@ -217,7 +217,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
             verAdministrador(administrador);
 
             if (MenuAluno.confimar()) {
-                Entrada.in.nextLine();
+                Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
                 administrador.setNome(Entrada.entradaString());
@@ -234,7 +234,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                 System.out.println("Altera a Senha:");
                 administrador.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
-                administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+                administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 verAdministrador(administrador);
             } else {
                 System.out.println("Operação Cancelada, Administrador não foi deletado:");

@@ -19,7 +19,7 @@ import java.util.Scanner;
 public abstract class Log {
     private static final File ARQUIVO = new File("src/log/log.txt");
 
-    public static void escrever(String texto) throws Exception {
+    public static void gravar(String texto) throws Exception {
         List<String> log = new ArrayList<>();
         try {
             ARQUIVO.getParentFile().mkdirs();

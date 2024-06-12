@@ -23,7 +23,7 @@ public abstract class MenuProfessor extends MenuPadrao {
 
     }
 
-    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno) {
+    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -73,7 +73,7 @@ public abstract class MenuProfessor extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(ProfessorController controller, Professor professor) {
+    public static void opcaoAlteracao(ProfessorController controller, Professor professor) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -106,7 +106,7 @@ public abstract class MenuProfessor extends MenuPadrao {
         } while (!sair);
     }
 
-    public static void deletar(ProfessorController controller, Professor professor) {
+    public static void deletar(ProfessorController controller, Professor professor) throws Exception {
         if (professor == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -123,15 +123,15 @@ public abstract class MenuProfessor extends MenuPadrao {
     }
 
     public static Professor buscar(ProfessorController controlle) {
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("Informar cpf do aluno");
         return controlle.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(ProfessorController controller) {
+    public static void cadastro(ProfessorController controller) throws Exception {
         Professor cadastro = new Professor();
 
-        Entrada.in.nextLine();
+        Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Professor");
         System.out.println("Nome:");
@@ -149,7 +149,7 @@ public abstract class MenuProfessor extends MenuPadrao {
         System.out.println("Digite a Senha:");
         cadastro.setSenha(Entrada.entradaString());
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
 
         System.out.println("Você deseja cadastrar o Professor?");
         MenuProfessor.verProfessor(cadastro);
@@ -173,7 +173,7 @@ public abstract class MenuProfessor extends MenuPadrao {
             MenuProfessor.verProfessor(professor);
 
             if (MenuAluno.confimar()) {
-                Entrada.in.nextLine();
+                Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
                 professor.setNome(Entrada.entradaString());
@@ -190,7 +190,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                 System.out.println("Altera a Senha:");
                 professor.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
-                professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.formatoData));
+                professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 verProfessor(professor);
             } else {
                 System.out.println("Operação Cancelada, Professor não foi deletado:");

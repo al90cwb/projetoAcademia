@@ -13,7 +13,7 @@ public class Exercicio implements Comparable<Exercicio> {
     public Exercicio() {
 
     }
-
+    
     public Exercicio(String nomeExercicio, String intervalo, String repeticoes) {
         this.nomeExercicio = nomeExercicio;
         this.intervalo = intervalo;

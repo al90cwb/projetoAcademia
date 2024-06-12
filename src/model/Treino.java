@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -11,7 +12,7 @@ import java.util.List;
  * @since 11/06/2024
  */
 
-public class Treino {
+public class Treino implements Serializable {
     private int id;
     private String nome, tipoTreino;
     private List<Exercicio> exercicios;
