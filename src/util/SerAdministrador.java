@@ -10,7 +10,7 @@ import java.util.List;
 import model.Administrador;
 
 public abstract class SerAdministrador {
-    private static final File ADMINISTRADOR_ARQUIVO = new File("src/obj/administrador.ser");
+    private static final File ADMINISTRADOR_ARQUIVO = new File("src/obj/administrador.bin");
 
     public static void salvar(List<Administrador> lista) throws Exception {
         try {

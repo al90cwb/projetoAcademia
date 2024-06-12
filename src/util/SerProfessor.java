@@ -10,7 +10,7 @@ import java.util.List;
 import model.Professor;
 
 public abstract class SerProfessor {
-    private static final File PROFESSOR_ARQUIVO = new File("src/obj/administrador.ser");
+    private static final File PROFESSOR_ARQUIVO = new File("src/obj/professor.bin");
     public static void salvar(List<Professor> lista) throws Exception {
         try {
             PROFESSOR_ARQUIVO.getParentFile().mkdirs();

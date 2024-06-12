@@ -173,7 +173,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
     }
 
     public static void cadastro(AdministradorController controller) throws Exception {
-        Professor cadastro = new Professor();
+        Administrador cadastro = new Administrador();
 
         Entrada.limparBuffer();
         System.out.println("\n\n");
@@ -195,8 +195,8 @@ public abstract class MenuAdminstrador extends MenuPadrao {
         System.out.println("Digite a Data de Nascimento:");
         cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
 
-        System.out.println("Você deseja cadastrar o Professor?");
-        MenuProfessor.verProfessor(cadastro);
+        System.out.println("Você deseja cadastrar o Administrador?");
+        verAdministrador(cadastro);
 
         if (MenuAdminstrador.confimar()) {
             controller.cadastrar(new Administrador(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),

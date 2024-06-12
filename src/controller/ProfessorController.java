@@ -18,10 +18,11 @@ public class ProfessorController {
     private List<Professor> professores;
 
     public ProfessorController(List<Professor> professores) {
-        this.professores = professores;  try {
+        this.professores = professores;
+          try {
             carregarDados();
         } catch (Exception e) {
-            System.err.println("ERRO AO CARREGAR DADOS");
+            System.err.println("ERRO AO CARREGAR DADOS PROFESSOR");
         }
     }
 

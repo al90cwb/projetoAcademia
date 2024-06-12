@@ -10,7 +10,7 @@ import java.util.List;
 import model.Aluno;
 
 public abstract class SerAluno {
-    private static final File ALUNO_ARQUIVO = new File("src/obj/aluno.ser");
+    private static final File ALUNO_ARQUIVO = new File("src/obj/aluno.bin");
 
     public static void salvar(List<Aluno> lista) throws Exception {
         try {

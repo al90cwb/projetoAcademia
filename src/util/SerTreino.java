@@ -10,7 +10,7 @@ import java.util.List;
 import model.Treino;
 
 public abstract class SerTreino {
-    private static final File TREINO_ARQUIVO = new File("src/obj/treino.ser");
+    private static final File TREINO_ARQUIVO = new File("src/obj/treino.bin");
 
     public static void salvar(List<Treino> lista) throws Exception {
         try {

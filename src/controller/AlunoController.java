@@ -22,7 +22,7 @@ public class AlunoController {
         try {
             carregarDados();
         } catch (Exception e) {
-            System.err.println("ERRO AO CARREGAR DADOS");
+            System.err.println("ERRO AO CARREGAR DADOS ALUNO");
         }
     }
 

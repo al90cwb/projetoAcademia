@@ -30,5 +30,4 @@ public class Professor extends Usuario implements Serializable  {
                 + super.getSenha() + ", dataNascimento="
                 + super.getDataNascimento() + "]";
     }
-
 }

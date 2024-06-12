@@ -25,7 +25,7 @@ public class TreinoController {
          try {
             carregarDados();
         } catch (Exception e) {
-            System.err.println("ERRO AO CARREGAR DADOS");
+            System.err.println("ERRO AO CARREGAR DADOS TRIENO");
         }
     }
 
@@ -47,8 +47,8 @@ public class TreinoController {
 
     public void deletar(int id) throws Exception {
         treinos.removeIf(t -> t.getId() == id);
-        salvarDados();
         Log.gravar("Treino Deletado ");
+        salvarDados();
     }
 
     public Treino buscaTreinoId(int id) {
@@ -83,4 +83,6 @@ public class TreinoController {
     private void carregarDados() throws Exception{
         treinos = SerTreino.ler();
     }
+
+
 }

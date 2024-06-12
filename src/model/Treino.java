@@ -17,10 +17,6 @@ public class Treino implements Serializable {
     private String nome, tipoTreino;
     private List<Exercicio> exercicios;
 
-    public Treino() {
-
-    }
-
     public Treino(String nome, String tipoTreino, List<Exercicio> exercicios) {
         this.id = 0;
         this.nome = nome;

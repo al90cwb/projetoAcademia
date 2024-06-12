@@ -23,7 +23,7 @@ public class AdministradorController {
         try {
             carregarDados();
         } catch (Exception e) {
-            System.err.println("ERRO AO CARREGAR DADOS");
+            System.err.println("ERRO AO CARREGAR DADOS ADMINISTRADOR");
         }
     }
 
