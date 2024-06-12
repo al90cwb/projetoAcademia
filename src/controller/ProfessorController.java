@@ -3,7 +3,6 @@ package controller;
 import java.util.List;
 import model.Professor;
 import util.Log;
-import util.SerAluno;
 import util.SerProfessor;
 
 /**
@@ -19,7 +18,7 @@ public class ProfessorController {
 
     public ProfessorController(List<Professor> professores) {
         this.professores = professores;
-          try {
+        try {
             carregarDados();
         } catch (Exception e) {
             System.err.println("ERRO AO CARREGAR DADOS PROFESSOR");
@@ -82,7 +81,7 @@ public class ProfessorController {
     }
 
     private void carregarDados() throws Exception{
-        professores = SerProfessor.ler();
+        professores.addAll(SerProfessor.ler());
     }
 
 }

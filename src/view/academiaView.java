@@ -33,7 +33,7 @@ public class AcademiaView {
         AlunoController controllerAluno = new AlunoController(new ArrayList<Aluno>());
         ProfessorController controllerProfessor = new ProfessorController(new ArrayList<Professor>());
         AdministradorController controllerAdministrador = new AdministradorController(new ArrayList<Administrador>());
-
+        
         controllerAdministrador
                 .cadastrar(new Administrador(0, "admin", "admin", null, null, null, null, "admin", null));
         controllerProfessor
@@ -41,12 +41,20 @@ public class AcademiaView {
         controllerAluno.cadastrar(
                 new Aluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false, null, 10, null, null));
 
+        System.out.println(controllerProfessor); 
+        System.out.println(controllerAluno); 
+
+        System.exit(0);
+
+
         String cpf, senha;
         Professor professor = null;
         Aluno aluno = null;
         Administrador administrador = null;
         int nivelAcesso = 0;
         boolean sairPrincipal = false;
+
+        
 
         do {
             System.out.println("\n\nSistema de Academia-------------------------");

@@ -4,6 +4,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+
 /**
  * Classe para objetos do tipo {@code Entrada}, onde filtra e processa os erros
  * de entrada
@@ -18,7 +19,7 @@ public abstract class Entrada {
     private static DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("dd/MM/yyy");
     private static Scanner in = new Scanner(System.in);
 
-  
+    
     public static Scanner getEntrada(){
         return in;
     }
@@ -39,7 +40,7 @@ public abstract class Entrada {
                 numero = in.nextInt();
                 entradaValida = true; 
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                System.err.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine(); 
             }
         }
@@ -55,8 +56,7 @@ public abstract class Entrada {
                 if (numero == 0 || numero == 1) {
                     entradaValida = true; 
                 } else {
-                    entradaValida = false; 
-                    System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                    System.err.println("Entrada inválida. Por favor, digite um número válido.");
                     in.nextLine(); 
                 }
             } catch (InputMismatchException e) {
@@ -76,12 +76,11 @@ public abstract class Entrada {
                 if (numero >= min && numero <= max) {
                     entradaValida = true;
                 } else {
-                    entradaValida = false; 
-                    System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                    System.err.println("Entrada inválida. Por favor, digite um número válido.");
                     in.nextLine();
                 }
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                System.err.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine();
             }
         }

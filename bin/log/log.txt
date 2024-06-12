@@ -1,0 +1,17 @@
+Cadastro Adminstrador admin
+Cadastro Professor professor
+Cadastro Aluno aluno
+Cadastro Adminstrador admin
+Cadastro Professor professor
+Cadastro Aluno aluno
+Cadastro Aluno Alan
+Falha no cadastro administrador
+Falha no cadastro professor
+Falha no cadastro aluno
+Cadastro Adminstrador admin
+Cadastro Professor professor
+Cadastro Aluno aluno
+Cadastro Adminstrador admin
+Cadastro Professor professor
+Cadastro Adminstrador admin
+Cadastro Professor professor

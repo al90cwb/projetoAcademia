@@ -4,7 +4,6 @@ import java.util.List;
 
 import model.Treino;
 import util.Log;
-import util.SerProfessor;
 import util.SerTreino;
 
 /**
