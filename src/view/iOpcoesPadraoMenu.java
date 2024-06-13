@@ -14,7 +14,7 @@ package view;
  * @version 1.0
  * @since 2024-06-07
  */
-public interface iMenu {
+public interface iOpcoesPadraoMenu {
     /**
      * Exibe as opções disponíveis no menu.
      */
@@ -62,4 +62,5 @@ public interface iMenu {
      */
     public static void verListaDeUsuarios() {
     };
+
 }

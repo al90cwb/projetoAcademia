@@ -9,6 +9,7 @@ import controller.ProfessorController;
 import controller.TreinoController;
 import model.Administrador;
 import util.Entrada;
+import util.Log;
 import model.Aluno;
 import model.FactoryClasses;
 import model.Professor;
@@ -32,24 +33,24 @@ public class AcademiaView {
     public static void main(String[] args) throws Exception {
 
         FactoryController factoryController = new FactoryController();
+        FactoryClasses factoryClasses = new FactoryClasses();
+
         TreinoController controllerTreino = factoryController.criarTreinoController();
         AlunoController controllerAluno = factoryController.ciarAlunoController();
         ProfessorController controllerProfessor = factoryController.criarProfessorController();
         AdministradorController controllerAdministrador = factoryController.criarAdministradorController();
-        
-        FactoryClasses factoryClasses = new FactoryClasses();
 
-        controllerAdministrador.cadastrar(factoryClasses.criarAdministrador(0, null, null, null, null, null, null, null, null));
-        controllerAluno.cadastrar(factoryClasses.ciarAluno(0, null, null, null, null, null, null, null, null, false, null, 0, null, null) );
-        controllerProfessor.cadastrar(factoryClasses.criarProfessor(0, null, null, null, null, null, null, null, null));
-        controllerTreino.cadastrar(factoryClasses.criarTreino(null, null));
+        controllerAdministrador
+                .cadastrar(factoryClasses.criarAdministrador(0, "admin", "admin", null, null, null, null, "admin", null));
+        controllerAluno.cadastrar(factoryClasses.ciarAluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false,
+                null, 0, null, null));
+        controllerProfessor.cadastrar(factoryClasses.criarProfessor(0, "professor", "professor", null, null, null, null, "professor", null));
+        controllerTreino.cadastrar(factoryClasses.criarTreino("treino", null));
 
-
-        System.out.println(controllerProfessor); 
-        System.out.println(controllerAluno); 
-
-        System.exit(0);
-
+        System.out.println(controllerProfessor);
+        System.out.println(controllerAluno);
+        System.out.println(controllerAdministrador);
+        System.out.println(controllerTreino);
 
         String cpf, senha;
         Professor professor = null;
@@ -57,8 +58,6 @@ public class AcademiaView {
         Administrador administrador = null;
         int nivelAcesso = 0;
         boolean sairPrincipal = false;
-
-        
 
         do {
             System.out.println("\n\nSistema de Academia-------------------------");
@@ -79,17 +78,17 @@ public class AcademiaView {
                 try {
                     administrador = controllerAdministrador.buscaCpf(cpf);
                 } catch (Exception e) {
-                    throw new Exception(e+"Falha na busca de administrador");
+                    throw new Exception(e + "Falha na busca de administrador");
                 }
                 try {
                     professor = controllerProfessor.buscaCpf(cpf);
                 } catch (Exception e) {
-                    throw new Exception(e+"Falha na busca de professor");
+                    throw new Exception(e + "Falha na busca de professor");
                 }
                 try {
                     aluno = controllerAluno.buscaCpf(cpf);
                 } catch (Exception e) {
-                    throw new Exception(e+"Falha na busca de aluno");
+                    throw new Exception(e + "Falha na busca de aluno");
                 }
 
                 if (administrador != null) {
@@ -113,7 +112,8 @@ public class AcademiaView {
                 }
 
                 if (nivelAcesso == 0) {
-                    System.out.println("Usuario Não encontrador, deseja efetuar novo login:");
+                    Log.gravar("Usuario Não encontrador");
+                    System.err.println("Usuario Não encontrador, deseja efetuar novo login");
                     sairOpcao = !MenuPadrao.confimar();
                     sairPrincipal = sairOpcao;
                     Entrada.limparBuffer();
@@ -123,20 +123,24 @@ public class AcademiaView {
 
             switch (nivelAcesso) {
                 case 1:
+                    Log.gravar("Login " + aluno.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + aluno.getNome());
                     sairPrincipal = MenuAluno.menuPrincipal(aluno);
                     break;
                 case 2:
+                    Log.gravar("Login " + professor.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + professor.getNome());
-                    sairPrincipal = MenuProfessor.menuPrincipal(controllerTreino, controllerAluno,factoryClasses);
+                    sairPrincipal = MenuProfessor.menuPrincipal(controllerTreino, controllerAluno, factoryClasses);
                     break;
                 case 3:
+                    Log.gravar("Login " + administrador.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
                     sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor,
-                            controllerAdministrador,factoryClasses);
+                            controllerAdministrador, factoryClasses);
                     break;
                 default:
                     sairPrincipal = true;
+                    Log.gravar("Sistema Encerrado");
                     break;
             }
 

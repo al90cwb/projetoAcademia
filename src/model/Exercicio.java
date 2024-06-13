@@ -1,5 +1,7 @@
 package model;
 
+import java.io.Serializable;
+
 /**
  * Classe para objetos do tipo {@code Exercicio} com dados do exercicio
  * 
@@ -7,7 +9,7 @@ package model;
  * @version 1.00
  * @since 11/06/2024
  */
-public class Exercicio implements Comparable<Exercicio> {
+public class Exercicio implements Comparable<Exercicio>,Serializable {
     private String nomeExercicio, intervalo, repeticoes;
 
     public Exercicio() {

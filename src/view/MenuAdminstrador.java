@@ -22,7 +22,7 @@ import util.Entrada;
  * @since 2024-06-07
  */
 
-public abstract class MenuAdminstrador extends MenuPadrao {
+public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadraoMenu {
 
     public static void opcoes() {
         System.out.println("\n\n");
@@ -63,7 +63,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     sair = true;
                     break;
                 case 10:
-                    MenuAluno.cadastro(controllerAluno,factory);
+                    MenuAluno.cadastro(controllerAluno, factory);
                     sair = false;
                     break;
                 case 11:
@@ -78,7 +78,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     break;
 
                 case 20:
-                    MenuProfessor.cadastro(controllerProfessor,factory);
+                    MenuProfessor.cadastro(controllerProfessor, factory);
                     sair = false;
                     break;
                 case 21:
@@ -97,7 +97,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     sair = false;
                     break;
                 case 31:
-                    verAdministradores(controllerAdministrador );
+                    verAdministradores(controllerAdministrador);
                     sair = false;
                     break;
                 case 32:
@@ -118,7 +118,8 @@ public abstract class MenuAdminstrador extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador) throws Exception {
+    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador)
+            throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -179,25 +180,26 @@ public abstract class MenuAdminstrador extends MenuPadrao {
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Administrador");
         System.out.println("Nome:");
-        String nome= Entrada.entradaString();
+        String nome = Entrada.entradaString();
         System.out.println("Digite o CPF:");
         String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
         String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        String celular =Entrada.entradaString();
+        String celular = Entrada.entradaString();
         System.out.println("Digite o email:");
-        String email=Entrada.entradaString();
+        String email = Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        String sexo=Entrada.entradaString();
+        String sexo = Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        String senha=Entrada.entradaString();
+        String senha = Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
+        LocalDate dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
         System.out.println("Você deseja cadastrar o Administrador?" + nome);
         if (MenuAdminstrador.confimar()) {
-            controller.cadastrar(factory.criarAdministrador(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento));
+            controller.cadastrar(
+                    factory.criarAdministrador(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
         } else {
             System.out.println("Professor Cancelada.");

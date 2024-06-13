@@ -26,9 +26,6 @@ public abstract class SerProfessor {
         try {
             if (PROFESSOR_ARQUIVO.exists() && PROFESSOR_ARQUIVO.isFile()) {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PROFESSOR_ARQUIVO));
- 
-                System.out.println(ois.readObject());
-                System.exit(0);
                 return (List<T>) ois.readObject();
             } else {
                 throw new Exception("Arquivo inválido");

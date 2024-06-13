@@ -10,7 +10,7 @@ import model.FactoryClasses;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuProfessor extends MenuPadrao {
+public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoMenu {
 
     public static void opcoes() {
         System.out.println("\n\n");
@@ -24,7 +24,8 @@ public abstract class MenuProfessor extends MenuPadrao {
 
     }
 
-    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno,FactoryClasses factory) throws Exception {
+    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno,
+            FactoryClasses factory) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -45,7 +46,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                     break;
 
                 case 10:
-                    MenuTreino.cadastro(controllerTreino,factory);
+                    MenuTreino.cadastro(controllerTreino, factory);
                     sair = false;
                     break;
                 case 11:
@@ -135,26 +136,27 @@ public abstract class MenuProfessor extends MenuPadrao {
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Professor");
         System.out.println("Nome:");
-        String nome= Entrada.entradaString();
+        String nome = Entrada.entradaString();
         System.out.println("Digite o CPF:");
         String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
         String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        String celular =Entrada.entradaString();
+        String celular = Entrada.entradaString();
         System.out.println("Digite o email:");
-        String email=Entrada.entradaString();
+        String email = Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        String sexo=Entrada.entradaString();
+        String sexo = Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        String senha=Entrada.entradaString();
+        String senha = Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
+        LocalDate dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
         System.out.println("Você deseja cadastrar o Professor?" + nome);
 
         if (MenuProfessor.confimar()) {
-            controller.cadastrar(factory.criarProfessor(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento));
+            controller.cadastrar(
+                    factory.criarProfessor(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
         } else {
             System.out.println("Professor Cancelada.");

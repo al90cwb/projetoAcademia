@@ -9,7 +9,7 @@ import model.FactoryClasses;
 import model.Treino;
 import util.Entrada;
 
-public abstract class MenuAluno extends MenuPadrao {
+public abstract class MenuAluno extends MenuPadrao implements iOpcoesPadraoMenu {
 
     public static void opcoes() {
         System.out.println("\n\n");
@@ -126,27 +126,28 @@ public abstract class MenuAluno extends MenuPadrao {
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Aluno");
         System.out.println("Nome:");
-        String nome= Entrada.entradaString();
+        String nome = Entrada.entradaString();
         System.out.println("Digite o CPF:");
         String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
         String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        String celular =Entrada.entradaString();
+        String celular = Entrada.entradaString();
         System.out.println("Digite o email:");
-        String email=Entrada.entradaString();
+        String email = Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        String sexo=Entrada.entradaString();
+        String sexo = Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        String senha=Entrada.entradaString();
+        String senha = Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
+        LocalDate dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
         System.out.println("Você deseja cadastrar o Aluno?" + nome);
 
         if (MenuAluno.confimar()) {
-            controller.cadastrar(factory.ciarAluno(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento, false, null, 10, null,
-            null));
+            controller.cadastrar(factory.ciarAluno(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento,
+                    false, null, 10, null,
+                    null));
             System.out.println("Aluno Cadastrado:");
         } else {
             System.out.println("Operação Cancelada.");

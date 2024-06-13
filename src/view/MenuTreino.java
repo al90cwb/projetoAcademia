@@ -16,7 +16,7 @@ import util.Entrada;
  * @since 11/06/2024
  */
 
-public class MenuTreino extends MenuPadrao {
+public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
 
     public static void opcoesCadastroTreino() {
         System.out.println("\n\n");
@@ -29,7 +29,7 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void cadastro(TreinoController controller,FactoryClasses factory) throws Exception {
+    public static void cadastro(TreinoController controller, FactoryClasses factory) throws Exception {
 
         int opcaoCadastro;
         boolean sairOpcaoCadastro = false;
@@ -46,13 +46,13 @@ public class MenuTreino extends MenuPadrao {
                     break;
                 case 1:
                     System.out.println("Cadastrar novo Treino");
-                    cadastroTreino(controller,factory);
+                    cadastroTreino(controller, factory);
                     sairOpcaoCadastro = false;
                     break;
                 case 2:
                     busca = buscar(controller);
                     verTreino(busca);
-                    opcaoAlteracao(controller, busca,factory);
+                    opcaoAlteracao(controller, busca, factory);
                     break;
 
                 case 3:
@@ -75,7 +75,8 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(TreinoController controller, Treino treino,FactoryClasses factory) throws Exception {
+    public static void opcaoAlteracao(TreinoController controller, Treino treino, FactoryClasses factory)
+            throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -108,7 +109,7 @@ public class MenuTreino extends MenuPadrao {
         } while (!sair);
     }
 
-    public static Treino cadastroTreino(TreinoController controller,FactoryClasses factory) throws Exception {
+    public static Treino cadastroTreino(TreinoController controller, FactoryClasses factory) throws Exception {
 
         String nomeTreino, tipoTreino;
         Entrada.limparBuffer();
@@ -120,12 +121,12 @@ public class MenuTreino extends MenuPadrao {
         tipoTreino = Entrada.entradaTipoTreino();
         Treino cadastro = factory.criarTreino(nomeTreino, tipoTreino);
         controller.cadastrar(cadastro);
-        cadastroExercicio(cadastro,factory);
+        cadastroExercicio(cadastro, factory);
 
         return cadastro;
     }
 
-    public static void alterar(Treino treino,FactoryClasses factory) {
+    public static void alterar(Treino treino, FactoryClasses factory) {
         if (treino == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -139,7 +140,7 @@ public class MenuTreino extends MenuPadrao {
                 treino.setNome(Entrada.entradaString());
                 System.out.println("Tipo Grupo Muscular");
                 treino.setTipoTreino(Entrada.entradaTipoTreino());
-                cadastroExercicio(treino,factory);
+                cadastroExercicio(treino, factory);
                 verTreino(treino);
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");

@@ -14,7 +14,7 @@ import util.Entrada;
  * @since 2024-06-07
  */
 
-public abstract class MenuPadrao implements iMenu {
+public abstract class MenuPadrao  {
 
     public static boolean confimar() {
         System.out.println("0=NÃO,1=SIM");
