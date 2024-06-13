@@ -1,11 +1,10 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Factory implements iEntidadeFactory {
-    
-    private Factory(){}
+public class FactoryClasses implements iEntidadeFactory {
 
     @Override
     public Aluno ciarAluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
@@ -15,29 +14,29 @@ public abstract class Factory implements iEntidadeFactory {
     }
 
     @Override
-    public Professor criarProfessopr(int id, String nome, String cpf, String endereco, String celular, String email,
+    public Professor criarProfessor(int id, String nome, String cpf, String endereco, String celular, String email,
             String sexo, String senha, LocalDate dataNascimento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criarProfessopr'");
+        
+        return new Professor(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);
     }
 
     @Override
     public Administrador criarAdministrador(int id, String nome, String cpf, String endereco, String celular,
             String email, String sexo, String senha, LocalDate dataNascimento) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criarAdministrador'");
+        return new Administrador(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento);
     }
 
     @Override
     public Exercicio criarExercicio(String nomeExercicio, String intervalo, String repeticoes) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criarExercicio'");
+        return new Exercicio(nomeExercicio, intervalo, repeticoes);
     }
 
     @Override
-    public Treino criarTreino(String nome, String tipoTreino, List<Exercicio> exercicios) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'criarTreino'");
+    public Treino criarTreino(String nome, String tipoTreino) {
+        List exercicios = new ArrayList<Exercicio>();
+        return new Treino(nome, tipoTreino, exercicios);
     }
+
+  
 
 }

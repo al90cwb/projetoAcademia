@@ -1,11 +1,11 @@
 package view;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import controller.AlunoController;
 import controller.TreinoController;
 import model.Aluno;
+import model.FactoryClasses;
 import model.Treino;
 import util.Entrada;
 
@@ -121,37 +121,32 @@ public abstract class MenuAluno extends MenuPadrao {
         return controlle.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AlunoController controller) throws Exception {
-        Aluno cadastro = new Aluno();
-
+    public static void cadastro(AlunoController controller, FactoryClasses factory) throws Exception {
         Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Aluno");
-        System.out.println("Nome do Aluno:");
-        cadastro.setNome(Entrada.entradaString());
+        System.out.println("Nome:");
+        String nome= Entrada.entradaString();
         System.out.println("Digite o CPF:");
-        cadastro.setCpf(Entrada.entradaString());
+        String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
-        cadastro.setEndereco(Entrada.entradaString());
+        String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        cadastro.setCelular(Entrada.entradaString());
+        String celular =Entrada.entradaString();
         System.out.println("Digite o email:");
-        cadastro.setEmail(Entrada.entradaString());
+        String email=Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        cadastro.setSexo(Entrada.entradaString());
+        String sexo=Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        cadastro.setSenha(Entrada.entradaString());
+        String senha=Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
+        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
-        System.out.println("Você deseja cadastrar o Aluno?");
-        MenuAluno.verUsuario(cadastro);
+        System.out.println("Você deseja cadastrar o Aluno?" + nome);
 
         if (MenuAluno.confimar()) {
-            controller.cadastrar(new Aluno(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
-                    cadastro.getCelular(), cadastro.getEmail(),
-                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento(), false, null, 10, null,
-                    null));
+            controller.cadastrar(factory.ciarAluno(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento, false, null, 10, null,
+            null));
             System.out.println("Aluno Cadastrado:");
         } else {
             System.out.println("Operação Cancelada.");

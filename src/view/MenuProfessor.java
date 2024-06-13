@@ -6,6 +6,7 @@ import controller.AlunoController;
 import controller.ProfessorController;
 import controller.TreinoController;
 import model.Aluno;
+import model.FactoryClasses;
 import model.Professor;
 import util.Entrada;
 
@@ -23,7 +24,7 @@ public abstract class MenuProfessor extends MenuPadrao {
 
     }
 
-    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno) throws Exception {
+    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno,FactoryClasses factory) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -44,7 +45,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                     break;
 
                 case 10:
-                    MenuTreino.cadastro(controllerTreino);
+                    MenuTreino.cadastro(controllerTreino,factory);
                     sair = false;
                     break;
                 case 11:
@@ -128,36 +129,32 @@ public abstract class MenuProfessor extends MenuPadrao {
         return controlle.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(ProfessorController controller) throws Exception {
-        Professor cadastro = new Professor();
+    public static void cadastro(ProfessorController controller, FactoryClasses factory) throws Exception {
 
         Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Professor");
         System.out.println("Nome:");
-        cadastro.setNome(Entrada.entradaString());
+        String nome= Entrada.entradaString();
         System.out.println("Digite o CPF:");
-        cadastro.setCpf(Entrada.entradaString());
+        String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
-        cadastro.setEndereco(Entrada.entradaString());
+        String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        cadastro.setCelular(Entrada.entradaString());
+        String celular =Entrada.entradaString();
         System.out.println("Digite o email:");
-        cadastro.setEmail(Entrada.entradaString());
+        String email=Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        cadastro.setSexo(Entrada.entradaString());
+        String sexo=Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        cadastro.setSenha(Entrada.entradaString());
+        String senha=Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
+        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
-        System.out.println("Você deseja cadastrar o Professor?");
-        MenuProfessor.verProfessor(cadastro);
+        System.out.println("Você deseja cadastrar o Professor?" + nome);
 
         if (MenuProfessor.confimar()) {
-            controller.cadastrar(new Professor(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
-                    cadastro.getCelular(), cadastro.getEmail(),
-                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
+            controller.cadastrar(factory.criarProfessor(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
         } else {
             System.out.println("Professor Cancelada.");

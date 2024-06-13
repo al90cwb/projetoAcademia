@@ -7,6 +7,7 @@ import controller.AlunoController;
 import controller.ProfessorController;
 import model.Administrador;
 import model.Aluno;
+import model.FactoryClasses;
 import model.Professor;
 import util.Entrada;
 
@@ -40,7 +41,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
     }
 
     public static boolean menuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
-            AdministradorController controllerAdministrador) throws Exception {
+            AdministradorController controllerAdministrador, FactoryClasses factory) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -62,7 +63,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     sair = true;
                     break;
                 case 10:
-                    MenuAluno.cadastro(controllerAluno);
+                    MenuAluno.cadastro(controllerAluno,factory);
                     sair = false;
                     break;
                 case 11:
@@ -77,7 +78,7 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     break;
 
                 case 20:
-                    MenuProfessor.cadastro(controllerProfessor);
+                    MenuProfessor.cadastro(controllerProfessor,factory);
                     sair = false;
                     break;
                 case 21:
@@ -92,11 +93,11 @@ public abstract class MenuAdminstrador extends MenuPadrao {
                     break;
 
                 case 30:
-                    cadastro(controllerAdministrador);
+                    cadastro(controllerAdministrador, factory);
                     sair = false;
                     break;
                 case 31:
-                    verAdministradores(controllerAdministrador);
+                    verAdministradores(controllerAdministrador );
                     sair = false;
                     break;
                 case 32:
@@ -172,36 +173,31 @@ public abstract class MenuAdminstrador extends MenuPadrao {
         return controller.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AdministradorController controller) throws Exception {
-        Administrador cadastro = new Administrador();
+    public static void cadastro(AdministradorController controller, FactoryClasses factory) throws Exception {
 
         Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("1/ Cadastro de Administrador");
         System.out.println("Nome:");
-        cadastro.setNome(Entrada.entradaString());
+        String nome= Entrada.entradaString();
         System.out.println("Digite o CPF:");
-        cadastro.setCpf(Entrada.entradaString());
+        String cpf = Entrada.entradaString();
         System.out.println("Digite Endereço:");
-        cadastro.setEndereco(Entrada.entradaString());
+        String endereco = Entrada.entradaString();
         System.out.println("Digite o celular:");
-        cadastro.setCelular(Entrada.entradaString());
+        String celular =Entrada.entradaString();
         System.out.println("Digite o email:");
-        cadastro.setEmail(Entrada.entradaString());
+        String email=Entrada.entradaString();
         System.out.println("Digite o Sexo:");
-        cadastro.setSexo(Entrada.entradaString());
+        String sexo=Entrada.entradaString();
         System.out.println("Digite a Senha:");
-        cadastro.setSenha(Entrada.entradaString());
+        String senha=Entrada.entradaString();
         System.out.println("Digite a Data de Nascimento:");
-        cadastro.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
+        LocalDate  dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
-        System.out.println("Você deseja cadastrar o Administrador?");
-        verAdministrador(cadastro);
-
+        System.out.println("Você deseja cadastrar o Administrador?" + nome);
         if (MenuAdminstrador.confimar()) {
-            controller.cadastrar(new Administrador(0, cadastro.getNome(), cadastro.getCpf(), cadastro.getEndereco(),
-                    cadastro.getCelular(), cadastro.getEmail(),
-                    cadastro.getSexo(), cadastro.getSenha(), cadastro.getDataNascimento()));
+            controller.cadastrar(factory.criarAdministrador(0, nome, cpf, endereco,celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
         } else {
             System.out.println("Professor Cancelada.");

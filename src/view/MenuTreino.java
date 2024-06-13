@@ -1,9 +1,9 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 import controller.TreinoController;
 import model.Exercicio;
+import model.FactoryClasses;
 import model.Treino;
 import util.Entrada;
 
@@ -29,7 +29,7 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void cadastro(TreinoController controller) throws Exception {
+    public static void cadastro(TreinoController controller,FactoryClasses factory) throws Exception {
 
         int opcaoCadastro;
         boolean sairOpcaoCadastro = false;
@@ -46,13 +46,13 @@ public class MenuTreino extends MenuPadrao {
                     break;
                 case 1:
                     System.out.println("Cadastrar novo Treino");
-                    cadastroTreino(controller);
+                    cadastroTreino(controller,factory);
                     sairOpcaoCadastro = false;
                     break;
                 case 2:
                     busca = buscar(controller);
                     verTreino(busca);
-                    opcaoAlteracao(controller, busca);
+                    opcaoAlteracao(controller, busca,factory);
                     break;
 
                 case 3:
@@ -75,7 +75,7 @@ public class MenuTreino extends MenuPadrao {
 
     }
 
-    public static void opcaoAlteracao(TreinoController controller, Treino treino) throws Exception {
+    public static void opcaoAlteracao(TreinoController controller, Treino treino,FactoryClasses factory) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -93,7 +93,7 @@ public class MenuTreino extends MenuPadrao {
                     sair = true;
                     break;
                 case 1:
-                    alterar(treino);
+                    alterar(treino, factory);
                     sair = true;
                     break;
                 case 2:
@@ -108,10 +108,9 @@ public class MenuTreino extends MenuPadrao {
         } while (!sair);
     }
 
-    public static Treino cadastroTreino(TreinoController controller) throws Exception {
+    public static Treino cadastroTreino(TreinoController controller,FactoryClasses factory) throws Exception {
 
         String nomeTreino, tipoTreino;
-
         Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("Cadastro de Treino");
@@ -119,15 +118,14 @@ public class MenuTreino extends MenuPadrao {
         nomeTreino = Entrada.entradaString();
         System.out.println("Tipo Grupo Muscular");
         tipoTreino = Entrada.entradaTipoTreino();
-        Treino cadastro = new Treino(nomeTreino, tipoTreino, new ArrayList<Exercicio>());
-        controller.cadastrarTreino(cadastro);
-
-        cadastroExercicio(cadastro);
+        Treino cadastro = factory.criarTreino(nomeTreino, tipoTreino);
+        controller.cadastrar(cadastro);
+        cadastroExercicio(cadastro,factory);
 
         return cadastro;
     }
 
-    public static void alterar(Treino treino) {
+    public static void alterar(Treino treino,FactoryClasses factory) {
         if (treino == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -141,7 +139,7 @@ public class MenuTreino extends MenuPadrao {
                 treino.setNome(Entrada.entradaString());
                 System.out.println("Tipo Grupo Muscular");
                 treino.setTipoTreino(Entrada.entradaTipoTreino());
-                cadastroExercicio(treino);
+                cadastroExercicio(treino,factory);
                 verTreino(treino);
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
@@ -149,13 +147,12 @@ public class MenuTreino extends MenuPadrao {
         }
     }
 
-    public static void cadastroExercicio(Treino treino) {
+    public static void cadastroExercicio(Treino treino, FactoryClasses factory) {
 
         String nomeExercicio, intervalo, repticoes;
         boolean sair = false;
         do {
             treino.limparExercicios();
-
             Entrada.limparBuffer();
             System.out.println("\n\n");
             System.out.println("Adicionar Exercicio");
@@ -165,13 +162,9 @@ public class MenuTreino extends MenuPadrao {
             intervalo = Entrada.entradaString();
             System.out.println("Repticoes");
             repticoes = Entrada.entradaString();
-
-            Exercicio cadastro = new Exercicio(nomeExercicio, intervalo, repticoes);
-            treino.adicionarExercicio(cadastro);
-
+            Exercicio cadastro = factory.criarExercicio(nomeExercicio, intervalo, repticoes);
             System.out.println("Deseja adicioanr mais exercicios?");
             sair = !confimar();
-
         } while (!sair);
     }
 

@@ -28,7 +28,7 @@ public class TreinoController {
         }
     }
 
-    public void cadastrarTreino(Treino treino) throws Exception {
+    public void cadastrar(Treino treino) throws Exception {
         if (buscaTreinoId(treino.getId()) == null) {
             treino.setId(criarID());
             treinos.add(treino);

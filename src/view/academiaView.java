@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import controller.AdministradorController;
 import controller.AlunoController;
+import controller.FactoryController;
 import controller.ProfessorController;
 import controller.TreinoController;
 import model.Administrador;
 import util.Entrada;
 import model.Aluno;
+import model.FactoryClasses;
 import model.Professor;
 import model.Treino;
 
@@ -29,17 +31,19 @@ import model.Treino;
 public class AcademiaView {
     public static void main(String[] args) throws Exception {
 
-        TreinoController controllerTreino = new TreinoController(new ArrayList<Treino>());
-        AlunoController controllerAluno = new AlunoController(new ArrayList<Aluno>());
-        ProfessorController controllerProfessor = new ProfessorController(new ArrayList<Professor>());
-        AdministradorController controllerAdministrador = new AdministradorController(new ArrayList<Administrador>());
+        FactoryController factoryController = new FactoryController();
+        TreinoController controllerTreino = factoryController.criarTreinoController();
+        AlunoController controllerAluno = factoryController.ciarAlunoController();
+        ProfessorController controllerProfessor = factoryController.criarProfessorController();
+        AdministradorController controllerAdministrador = factoryController.criarAdministradorController();
         
-        controllerAdministrador
-                .cadastrar(new Administrador(0, "admin", "admin", null, null, null, null, "admin", null));
-        controllerProfessor
-                .cadastrar(new Professor(0, "professor", "professor", null, null, null, null, "professor", null));
-        controllerAluno.cadastrar(
-                new Aluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false, null, 10, null, null));
+        FactoryClasses factoryClasses = new FactoryClasses();
+
+        controllerAdministrador.cadastrar(factoryClasses.criarAdministrador(0, null, null, null, null, null, null, null, null));
+        controllerAluno.cadastrar(factoryClasses.ciarAluno(0, null, null, null, null, null, null, null, null, false, null, 0, null, null) );
+        controllerProfessor.cadastrar(factoryClasses.criarProfessor(0, null, null, null, null, null, null, null, null));
+        controllerTreino.cadastrar(factoryClasses.criarTreino(null, null));
+
 
         System.out.println(controllerProfessor); 
         System.out.println(controllerAluno); 
@@ -124,12 +128,12 @@ public class AcademiaView {
                     break;
                 case 2:
                     System.out.println("\n\nSeja Bem Vindo " + professor.getNome());
-                    sairPrincipal = MenuProfessor.menuPrincipal(controllerTreino, controllerAluno);
+                    sairPrincipal = MenuProfessor.menuPrincipal(controllerTreino, controllerAluno,factoryClasses);
                     break;
                 case 3:
                     System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
                     sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor,
-                            controllerAdministrador);
+                            controllerAdministrador,factoryClasses);
                     break;
                 default:
                     sairPrincipal = true;
