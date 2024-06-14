@@ -16,7 +16,7 @@ import util.Entrada;
  * @since 11/06/2024
  */
 
-public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
+public class MenuTreino extends MenuPadrao  {
 
     public static void opcoesCadastroTreino() {
         System.out.println("\n\n");
@@ -29,7 +29,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
 
     }
 
-    public static void cadastro(TreinoController controller, FactoryClasses factory) throws Exception {
+    public static void exibirCadastro(TreinoController controller, FactoryClasses factory) throws Exception {
 
         int opcaoCadastro;
         boolean sairOpcaoCadastro = false;
@@ -46,23 +46,23 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
                     break;
                 case 1:
                     System.out.println("Cadastrar novo Treino");
-                    cadastroTreino(controller, factory);
+                    exibirCadastroTreino(controller, factory);
                     sairOpcaoCadastro = false;
                     break;
                 case 2:
-                    busca = buscar(controller);
-                    verTreino(busca);
-                    opcaoAlteracao(controller, busca, factory);
+                    busca = exibirBuscar(controller);
+                    exibirTreino(busca);
+                    exibirOpcaoAlteracao(controller, busca, factory);
                     break;
 
                 case 3:
                     System.out.println("Lista de TREINOS Cadastrados");
-                    verTreinos(controller.getTreinos());
+                    exibirTreinos(controller.getTreinos());
                     System.out.println("----------------\n\n");
                     sairOpcaoCadastro = false;
                     break;
                 case 4:
-                    verTreino(buscar(controller));
+                    exibirTreino(exibirBuscar(controller));
                     System.out.println("----------------\n\n");
                     sairOpcaoCadastro = false;
                     break;
@@ -75,7 +75,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
 
     }
 
-    public static void opcaoAlteracao(TreinoController controller, Treino treino, FactoryClasses factory)
+    public static void exibirOpcaoAlteracao(TreinoController controller, Treino treino, FactoryClasses factory)
             throws Exception {
 
         int opcao = 0;
@@ -94,11 +94,11 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
                     sair = true;
                     break;
                 case 1:
-                    alterar(treino, factory);
+                    exibirAlterar(treino, factory);
                     sair = true;
                     break;
                 case 2:
-                    deletar(controller, treino);
+                    exibirDeletar(controller, treino);
                     sair = true;
                     break;
                 default:
@@ -109,7 +109,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         } while (!sair);
     }
 
-    public static Treino cadastroTreino(TreinoController controller, FactoryClasses factory) throws Exception {
+    public static Treino exibirCadastroTreino(TreinoController controller, FactoryClasses factory) throws Exception {
 
         String nomeTreino, tipoTreino;
         Entrada.limparBuffer();
@@ -121,34 +121,34 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         tipoTreino = Entrada.entradaTipoTreino();
         Treino cadastro = factory.criarTreino(nomeTreino, tipoTreino);
         controller.cadastrar(cadastro);
-        cadastroExercicio(cadastro, factory);
+        exibirCadastroExercicio(cadastro, factory);
 
         return cadastro;
     }
 
-    public static void alterar(Treino treino, FactoryClasses factory) {
+    public static void exibirAlterar(Treino treino, FactoryClasses factory) {
         if (treino == null) {
             System.out.println("Aluno Não encontrado");
         } else {
             System.out.println("Você deseja alterar o Treino?");
-            verTreino(treino);
+            exibirTreino(treino);
 
-            if (confimar()) {
+            if (exibirConfirmar()) {
                 Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
                 treino.setNome(Entrada.entradaString());
                 System.out.println("Tipo Grupo Muscular");
                 treino.setTipoTreino(Entrada.entradaTipoTreino());
-                cadastroExercicio(treino, factory);
-                verTreino(treino);
+                exibirCadastroExercicio(treino, factory);
+                exibirTreino(treino);
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
             }
         }
     }
 
-    public static void cadastroExercicio(Treino treino, FactoryClasses factory) {
+    public static void exibirCadastroExercicio(Treino treino, FactoryClasses factory) {
 
         String nomeExercicio, intervalo, repticoes;
         boolean sair = false;
@@ -165,11 +165,11 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
             repticoes = Entrada.entradaString();
             Exercicio cadastro = factory.criarExercicio(nomeExercicio, intervalo, repticoes);
             System.out.println("Deseja adicioanr mais exercicios?");
-            sair = !confimar();
+            sair = !exibirConfirmar();
         } while (!sair);
     }
 
-    public static Treino alterarTreino(Treino treino, int id) {
+    public static Treino exibirAlterarTreino(Treino treino, int id) {
         Entrada.limparBuffer();
         System.out.println("\n\n");
         System.out.println("Alterar Treino ID: " + id);
@@ -181,23 +181,23 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         return treino;
     }
 
-    public static int informarId() {
+    public static int exibirInformarId() {
         System.out.println("Informar ID do treino:");
         return Entrada.entradaInt();
     }
 
-    public static Treino buscar(TreinoController controller) {
-        return controller.buscaTreinoId(MenuTreino.informarId());
+    public static Treino exibirBuscar(TreinoController controller) {
+        return controller.buscaTreinoId(MenuTreino.exibirInformarId());
     }
 
-    public static void deletar(TreinoController controller, Treino trieno) throws Exception {
+    public static void exibirDeletar(TreinoController controller, Treino trieno) throws Exception {
         if (trieno == null) {
             System.out.println("Treino não encontrado");
         } else {
             System.out.println("Você deseja deletar o Trino?");
-            verTreino(trieno);
+            exibirTreino(trieno);
 
-            if (MenuAdminstrador.confimar()) {
+            if (MenuAdministrador.exibirConfirmar()) {
                 controller.deletar(trieno.getId());
                 System.out.println("Treino Excluido:");
             } else {
@@ -206,7 +206,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         }
     }
 
-    public static void buscarTreinos(TreinoController controller) {
+    public static void exibirBuscaTreinos(TreinoController controller) {
         String tipo;
         List<Treino> treinos;
         System.out.println("Informar o Tipo do treino");
@@ -223,7 +223,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         return;
     }
 
-    public static void verTreino(Treino treino) {
+    public static void exibirTreino(Treino treino) {
         if (treino != null) {
             List<Exercicio> exercicios = treino.getExercicios();
             for (Exercicio exercicio : exercicios) {
@@ -235,7 +235,7 @@ public class MenuTreino extends MenuPadrao  implements iOpcoesPadraoMenu {
         }
     }
 
-    public static void verTreinos(List<Treino> treinos) {
+    public static void exibirTreinos(List<Treino> treinos) {
         if (treinos != null) {
             for (Treino treino : treinos) {
                 System.out.println(

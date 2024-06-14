@@ -114,7 +114,7 @@ public class AcademiaView {
                 if (nivelAcesso == 0) {
                     Log.gravar("Usuario Não encontrador");
                     System.err.println("Usuario Não encontrador, deseja efetuar novo login");
-                    sairOpcao = !MenuPadrao.confimar();
+                    sairOpcao = !MenuPadrao.exibirConfirmar();
                     sairPrincipal = sairOpcao;
                     Entrada.limparBuffer();
                 }
@@ -130,12 +130,12 @@ public class AcademiaView {
                 case 2:
                     Log.gravar("Login " + professor.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + professor.getNome());
-                    sairPrincipal = MenuProfessor.menuPrincipal(controllerTreino, controllerAluno, factoryClasses);
+                    sairPrincipal = MenuProfessor.exibirMenuPrincipal(controllerTreino, controllerAluno, factoryClasses);
                     break;
                 case 3:
                     Log.gravar("Login " + administrador.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + administrador.getNome());
-                    sairPrincipal = MenuAdminstrador.menuPrincipal(controllerAluno, controllerProfessor,
+                    sairPrincipal = MenuAdministrador.exibirMenuPrincipal(controllerAluno, controllerProfessor,
                             controllerAdministrador, factoryClasses);
                     break;
                 default:

@@ -22,9 +22,9 @@ import util.Entrada;
  * @since 2024-06-07
  */
 
-public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadraoMenu {
+public abstract class MenuAdministrador extends MenuPadrao {
 
-    public static void opcoes() {
+    public static void exibirOpcoes() {
         System.out.println("\n\n");
         System.out.println("Menu Administrador:");
         System.out.println("0 - FECHAR SISTEMA");
@@ -40,7 +40,7 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
         System.out.println("32 - BUSCAR ADMINISTRADORES - DELETAR/ALTERAR");
     }
 
-    public static boolean menuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
+    public static boolean exibirMenuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
             AdministradorController controllerAdministrador, FactoryClasses factory) throws Exception {
 
         int opcao = 0;
@@ -51,7 +51,7 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
 
         do {
 
-            opcoes();
+            exibirOpcoes();
             opcao = Entrada.entradaInt();
             sair = false;
 
@@ -63,17 +63,17 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
                     sair = true;
                     break;
                 case 10:
-                    MenuAluno.cadastro(controllerAluno, factory);
+                    MenuAluno.exibirCadastro(controllerAluno, factory);
                     sair = false;
                     break;
                 case 11:
-                    MenuAluno.verListaDeUsuarios(controllerAluno);
+                    MenuAluno.exibirListaDeUsuarios(controllerAluno);
                     sair = false;
                     break;
                 case 12:
-                    alunoBusca = MenuAluno.buscar(controllerAluno);
-                    MenuAluno.verUsuario(alunoBusca);
-                    MenuAluno.opcaoAlteracao(controllerAluno, alunoBusca);
+                    alunoBusca = MenuAluno.exibirBuscar(controllerAluno);
+                    MenuAluno.exibirAluno(alunoBusca);
+                    MenuAluno.exibirOpcaoAlteracao(controllerAluno, alunoBusca);
                     sair = false;
                     break;
 
@@ -82,28 +82,28 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
                     sair = false;
                     break;
                 case 21:
-                    MenuProfessor.verProfessores(controllerProfessor);
+                    MenuProfessor.exibirProfessores(controllerProfessor);
                     sair = false;
                     break;
                 case 22:
                     professorBusca = MenuProfessor.buscar(controllerProfessor);
-                    MenuProfessor.verProfessor(professorBusca);
-                    MenuProfessor.opcaoAlteracao(controllerProfessor, professorBusca);
+                    MenuProfessor.exibirProfessor(professorBusca);
+                    MenuProfessor.exibirOpcaoAlteracao(controllerProfessor, professorBusca);
                     sair = false;
                     break;
 
                 case 30:
-                    cadastro(controllerAdministrador, factory);
+                    exibirCadastro(controllerAdministrador, factory);
                     sair = false;
                     break;
                 case 31:
-                    verAdministradores(controllerAdministrador);
+                    exibirAdministradores(controllerAdministrador);
                     sair = false;
                     break;
                 case 32:
-                    administradorBusca = buscar(controllerAdministrador);
-                    verAdministrador(administradorBusca);
-                    opcaoAlteracao(controllerAdministrador, administradorBusca);
+                    administradorBusca = exibirBuscar(controllerAdministrador);
+                    exibirAdministrador(administradorBusca);
+                    exibirOpcaoAlteracao(controllerAdministrador, administradorBusca);
                     sair = false;
                     break;
 
@@ -118,7 +118,7 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
 
     }
 
-    public static void opcaoAlteracao(AdministradorController controller, Administrador administrador)
+    public static void exibirOpcaoAlteracao(AdministradorController controller, Administrador administrador)
             throws Exception {
 
         int opcao = 0;
@@ -137,11 +137,11 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
                     sair = true;
                     break;
                 case 1:
-                    alterar(administrador);
+                    exibirAlteracao(administrador);
                     sair = true;
                     break;
                 case 2:
-                    deletar(controller, administrador);
+                    exibirDeletar(controller, administrador);
                     sair = true;
                     break;
                 default:
@@ -152,14 +152,14 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
         } while (!sair);
     }
 
-    public static void deletar(AdministradorController controller, Administrador administrador) throws Exception {
+    public static void exibirDeletar(AdministradorController controller, Administrador administrador) throws Exception {
         if (administrador == null) {
             System.out.println("Aluno Não encontrado");
         } else {
             System.out.println("Você deseja deletar o administrador?");
-            verAdministrador(administrador);
+            exibirAdministrador(administrador);
 
-            if (MenuAdminstrador.confimar()) {
+            if (MenuAdministrador.exibirConfirmar()) {
                 controller.deletar(administrador.getId());
                 System.out.println("administrador Excluido:");
             } else {
@@ -168,13 +168,13 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
         }
     }
 
-    public static Administrador buscar(AdministradorController controller) {
+    public static Administrador exibirBuscar(AdministradorController controller) {
         Entrada.limparBuffer();
         System.out.println("Informar cpf do Administrador");
         return controller.buscaCpf(Entrada.entradaCPF());
     }
 
-    public static void cadastro(AdministradorController controller, FactoryClasses factory) throws Exception {
+    public static void exibirCadastro(AdministradorController controller, FactoryClasses factory) throws Exception {
 
         Entrada.limparBuffer();
         System.out.println("\n\n");
@@ -197,7 +197,7 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
         LocalDate dataNascimento = LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData());
 
         System.out.println("Você deseja cadastrar o Administrador?" + nome);
-        if (MenuAdminstrador.confimar()) {
+        if (MenuAdministrador.exibirConfirmar()) {
             controller.cadastrar(
                     factory.criarAdministrador(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
@@ -207,14 +207,14 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
 
     }
 
-    public static void alterar(Administrador administrador) {
+    public static void exibirAlteracao(Administrador administrador) {
         if (administrador == null) {
             System.out.println("Professor Não encontrado");
         } else {
             System.out.println("Você deseja alterar o administrador?");
-            verAdministrador(administrador);
+            exibirAdministrador(administrador);
 
-            if (MenuAluno.confimar()) {
+            if (MenuAluno.exibirConfirmar()) {
                 Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
@@ -233,19 +233,19 @@ public abstract class MenuAdminstrador extends MenuPadrao implements iOpcoesPadr
                 administrador.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
                 administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
-                verAdministrador(administrador);
+                exibirAdministrador(administrador);
             } else {
                 System.out.println("Operação Cancelada, Administrador não foi deletado:");
             }
         }
     }
 
-    public static void verAdministrador(Administrador administrador) {
+    public static void exibirAdministrador(Administrador administrador) {
         System.out.println("Dados do Administrador");
         System.out.println("CPF :" + administrador.getCpf() + ", Nome: " + administrador.getNome());
     }
 
-    public static void verAdministradores(AdministradorController controller) {
+    public static void exibirAdministradores(AdministradorController controller) {
         System.out.println("Lista de Administrador Cadastrados");
         for (Administrador administrador : controller.getAdministradores()) {
             System.err.println("CPF :" + administrador.getCpf() + ", Nome: " + administrador.getNome());

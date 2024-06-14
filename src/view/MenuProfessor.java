@@ -10,9 +10,9 @@ import model.FactoryClasses;
 import model.Professor;
 import util.Entrada;
 
-public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoMenu {
+public abstract class MenuProfessor extends MenuPadrao {
 
-    public static void opcoes() {
+    public static void exibirOpcoes() {
         System.out.println("\n\n");
         System.out.println("Menu Professor:");
         System.out.println("0 - FECHAR SISTEMA");
@@ -24,7 +24,7 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
 
     }
 
-    public static boolean menuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno,
+    public static boolean exibirMenuPrincipal(TreinoController controllerTreino, AlunoController controllerAluno,
             FactoryClasses factory) throws Exception {
 
         int opcao = 0;
@@ -33,7 +33,7 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
 
         do {
 
-            opcoes();
+            exibirOpcoes();
             opcao = Entrada.entradaInt();
             sair = false;
 
@@ -46,20 +46,20 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
                     break;
 
                 case 10:
-                    MenuTreino.cadastro(controllerTreino, factory);
+                    MenuTreino.exibirCadastro(controllerTreino, factory);
                     sair = false;
                     break;
                 case 11:
                     System.out.println("Lista de alunos Cadastrados");
-                    MenuAluno.verListaDeUsuarios(controllerAluno);
+                    MenuAluno.exibirListaDeUsuarios(controllerAluno);
                     break;
                 case 12:
-                    alunoBusca = MenuAluno.buscar(controllerAluno);
-                    MenuAluno.verUsuario(alunoBusca);
-                    MenuTreino.verTreino(alunoBusca.getTreino());
+                    alunoBusca = MenuAluno.exibirBuscar(controllerAluno);
+                    MenuAluno.exibirAluno(alunoBusca);
+                    MenuTreino.exibirTreino(alunoBusca.getTreino());
                     System.out.println("Deseja alterar treino?");
-                    if (confimar())
-                        MenuAluno.cadastroTreino(controllerTreino, alunoBusca);
+                    if (exibirConfirmar())
+                        MenuAluno.exibirCadastroTreinoDoAluno(controllerTreino, alunoBusca);
 
                     sair = false;
                     break;
@@ -75,7 +75,7 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
 
     }
 
-    public static void opcaoAlteracao(ProfessorController controller, Professor professor) throws Exception {
+    public static void exibirOpcaoAlteracao(ProfessorController controller, Professor professor) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -93,11 +93,11 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
                     sair = true;
                     break;
                 case 1:
-                    alterar(professor);
+                    exibirAlteracao(professor);
                     sair = true;
                     break;
                 case 2:
-                    deletar(controller, professor);
+                    exibirDeletar(controller, professor);
                     sair = true;
                     break;
                 default:
@@ -108,14 +108,14 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
         } while (!sair);
     }
 
-    public static void deletar(ProfessorController controller, Professor professor) throws Exception {
+    public static void exibirDeletar(ProfessorController controller, Professor professor) throws Exception {
         if (professor == null) {
             System.out.println("Aluno Não encontrado");
         } else {
             System.out.println("Você deseja deletar o Professor?");
-            MenuProfessor.verProfessor(professor);
+            MenuProfessor.exibirProfessor(professor);
 
-            if (MenuProfessor.confimar()) {
+            if (MenuProfessor.exibirConfirmar()) {
                 controller.deletar(professor.getId());
                 System.out.println("Professor Excluido:");
             } else {
@@ -154,7 +154,7 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
 
         System.out.println("Você deseja cadastrar o Professor?" + nome);
 
-        if (MenuProfessor.confimar()) {
+        if (MenuProfessor.exibirConfirmar()) {
             controller.cadastrar(
                     factory.criarProfessor(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento));
             System.out.println("Professor Cadastrado:");
@@ -164,14 +164,14 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
 
     }
 
-    public static void alterar(Professor professor) {
+    public static void exibirAlteracao(Professor professor) {
         if (professor == null) {
             System.out.println("Professor Não encontrado");
         } else {
             System.out.println("Você deseja alterar o Professor?");
-            MenuProfessor.verProfessor(professor);
+            MenuProfessor.exibirProfessor(professor);
 
-            if (MenuAluno.confimar()) {
+            if (MenuAluno.exibirConfirmar()) {
                 Entrada.limparBuffer();
                 System.out.println("\n\n");
                 System.out.println("Alterar o Nome:");
@@ -190,19 +190,19 @@ public abstract class MenuProfessor extends MenuPadrao implements iOpcoesPadraoM
                 professor.setSenha(Entrada.entradaString());
                 System.out.println("Altera a Data de Nascimento:");
                 professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
-                verProfessor(professor);
+                exibirProfessor(professor);
             } else {
                 System.out.println("Operação Cancelada, Professor não foi deletado:");
             }
         }
     }
 
-    public static void verProfessor(Professor professor) {
+    public static void exibirProfessor(Professor professor) {
         System.out.println("Dados do Professor");
         System.out.println("CPF :" + professor.getCpf() + ", Nome: " + professor.getNome());
     }
 
-    public static void verProfessores(ProfessorController controller) {
+    public static void exibirProfessores(ProfessorController controller) {
         System.out.println("Lista de Professores Cadastrados");
         for (Professor professor : controller.getProfessores()) {
             System.err.println("CPF :" + professor.getCpf() + ", Nome: " + professor.getNome());

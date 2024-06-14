@@ -82,6 +82,10 @@ public class Aluno extends Usuario  implements Serializable{
         return treino;
     }
 
+    public boolean temTreinoCadastrado(){
+        return treino!=null;
+    }
+
     public void setTreino(Treino treino) {
         this.treino = treino;
     }

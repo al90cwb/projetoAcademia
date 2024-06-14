@@ -16,7 +16,7 @@ import util.Entrada;
 
 public abstract class MenuPadrao  {
 
-    public static boolean confimar() {
+    public static boolean exibirConfirmar() {
         System.out.println("0=NÃO,1=SIM");
         return Entrada.entradaZeroUm() == 1;
     }
