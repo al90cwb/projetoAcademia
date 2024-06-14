@@ -1,5 +1,6 @@
 package view;
 
+
 import controller.AdministradorController;
 import controller.AlunoController;
 import controller.FactoryController;

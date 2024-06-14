@@ -127,7 +127,7 @@ public abstract class Entrada {
                 in.nextLine();
             }
         }
-        return frase;
+        return frase.toLowerCase();
     }
 
     public static String entradaTipoTreino() {

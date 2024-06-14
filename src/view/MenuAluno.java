@@ -140,7 +140,7 @@ public abstract class MenuAluno extends MenuPadrao  {
         System.out.println("Você deseja cadastrar o Aluno?" + nome);
 
         if (MenuAluno.exibirConfirmar()) {
-            controller.cadastrar(factory.ciarAluno(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento,
+            controller.cadastrar(factory.criarAluno(0, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento,
                     false, null, 10, null,
                     null));
             System.out.println("Aluno Cadastrado:");

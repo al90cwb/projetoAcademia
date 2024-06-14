@@ -7,7 +7,7 @@ import java.util.List;
 public class FactoryClasses implements iEntidadeFactory {
 
     @Override
-    public Aluno ciarAluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
+    public Aluno criarAluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento, boolean substituirTreino, Treino treino, int duracaoTreino,
             String aquecimento, String sugestaoDiasTreino) {
         return new Aluno(id, nome, cpf, endereco, celular, email, sexo, senha, dataNascimento, substituirTreino, treino, duracaoTreino, aquecimento, sugestaoDiasTreino);

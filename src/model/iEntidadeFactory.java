@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public interface iEntidadeFactory {
     
-    Aluno ciarAluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
+    Aluno criarAluno(int id, String nome, String cpf, String endereco, String celular, String email, String sexo,
             String senha, LocalDate dataNascimento,
             boolean substituirTreino, Treino treino, int duracaoTreino, String aquecimento, String sugestaoDiasTreino);
 
