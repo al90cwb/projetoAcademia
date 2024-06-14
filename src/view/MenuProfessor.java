@@ -35,7 +35,6 @@ public abstract class MenuProfessor extends MenuPadrao {
 
             exibirOpcoes();
             opcao = Entrada.entradaInt();
-            sair = false;
 
             switch (opcao) {
                 case 0:
@@ -47,7 +46,6 @@ public abstract class MenuProfessor extends MenuPadrao {
 
                 case 10:
                     MenuTreino.exibirCadastro(controllerTreino, factory);
-                    sair = false;
                     break;
                 case 11:
                     System.out.println("Lista de alunos Cadastrados");
@@ -60,12 +58,8 @@ public abstract class MenuProfessor extends MenuPadrao {
                     System.out.println("Deseja alterar treino?");
                     if (exibirConfirmar())
                         MenuAluno.exibirCadastroTreinoDoAluno(controllerTreino, alunoBusca);
-
-                    sair = false;
                     break;
-
                 default:
-                    sair = false;
                     break;
             }
 
@@ -94,15 +88,12 @@ public abstract class MenuProfessor extends MenuPadrao {
                     break;
                 case 1:
                     exibirAlteracao(professor);
-                    sair = true;
                     break;
                 case 2:
                     exibirDeletar(controller, professor);
-                    sair = true;
                     break;
                 default:
                     System.out.println("Opção invalida");
-                    sair = false;
                     break;
             }
         } while (!sair);

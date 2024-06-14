@@ -47,7 +47,6 @@ public class MenuTreino extends MenuPadrao  {
                 case 1:
                     System.out.println("Cadastrar novo Treino");
                     exibirCadastroTreino(controller, factory);
-                    sairOpcaoCadastro = false;
                     break;
                 case 2:
                     busca = exibirBuscar(controller);
@@ -59,15 +58,12 @@ public class MenuTreino extends MenuPadrao  {
                     System.out.println("Lista de TREINOS Cadastrados");
                     exibirTreinos(controller.getTreinos());
                     System.out.println("----------------\n\n");
-                    sairOpcaoCadastro = false;
                     break;
                 case 4:
                     exibirTreino(exibirBuscar(controller));
                     System.out.println("----------------\n\n");
-                    sairOpcaoCadastro = false;
                     break;
                 default:
-                    sairOpcaoCadastro = false;
                     break;
             }
 
@@ -103,7 +99,6 @@ public class MenuTreino extends MenuPadrao  {
                     break;
                 default:
                     System.out.println("Opção invalida");
-                    sair = false;
                     break;
             }
         } while (!sair);
@@ -163,7 +158,6 @@ public class MenuTreino extends MenuPadrao  {
             intervalo = Entrada.entradaString();
             System.out.println("Repticoes");
             repticoes = Entrada.entradaString();
-            Exercicio cadastro = factory.criarExercicio(nomeExercicio, intervalo, repticoes);
             System.out.println("Deseja adicioanr mais exercicios?");
             sair = !exibirConfirmar();
         } while (!sair);

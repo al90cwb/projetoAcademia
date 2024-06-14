@@ -43,6 +43,7 @@ public abstract class MenuAdministrador extends MenuPadrao {
     public static boolean exibirMenuPrincipal(AlunoController controllerAluno, ProfessorController controllerProfessor,
             AdministradorController controllerAdministrador, FactoryClasses factory) throws Exception {
 
+
         int opcao = 0;
         boolean sair = false;
         Aluno alunoBusca;
@@ -53,7 +54,6 @@ public abstract class MenuAdministrador extends MenuPadrao {
 
             exibirOpcoes();
             opcao = Entrada.entradaInt();
-            sair = false;
 
             switch (opcao) {
                 case 0:
@@ -64,51 +64,40 @@ public abstract class MenuAdministrador extends MenuPadrao {
                     break;
                 case 10:
                     MenuAluno.exibirCadastro(controllerAluno, factory);
-                    sair = false;
                     break;
                 case 11:
                     MenuAluno.exibirListaDeUsuarios(controllerAluno);
-                    sair = false;
                     break;
                 case 12:
                     alunoBusca = MenuAluno.exibirBuscar(controllerAluno);
                     MenuAluno.exibirAluno(alunoBusca);
                     MenuAluno.exibirOpcaoAlteracao(controllerAluno, alunoBusca);
-                    sair = false;
                     break;
 
                 case 20:
                     MenuProfessor.cadastro(controllerProfessor, factory);
-                    sair = false;
                     break;
                 case 21:
                     MenuProfessor.exibirProfessores(controllerProfessor);
-                    sair = false;
                     break;
                 case 22:
                     professorBusca = MenuProfessor.buscar(controllerProfessor);
                     MenuProfessor.exibirProfessor(professorBusca);
                     MenuProfessor.exibirOpcaoAlteracao(controllerProfessor, professorBusca);
-                    sair = false;
                     break;
 
                 case 30:
                     exibirCadastro(controllerAdministrador, factory);
-                    sair = false;
                     break;
                 case 31:
                     exibirAdministradores(controllerAdministrador);
-                    sair = false;
                     break;
                 case 32:
                     administradorBusca = exibirBuscar(controllerAdministrador);
                     exibirAdministrador(administradorBusca);
                     exibirOpcaoAlteracao(controllerAdministrador, administradorBusca);
-                    sair = false;
                     break;
-
                 default:
-                    sair = false;
                     break;
             }
 
@@ -146,7 +135,6 @@ public abstract class MenuAdministrador extends MenuPadrao {
                     break;
                 default:
                     System.out.println("Opção invalida");
-                    sair = false;
                     break;
             }
         } while (!sair);

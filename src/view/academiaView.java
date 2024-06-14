@@ -1,7 +1,5 @@
 package view;
 
-import java.util.ArrayList;
-
 import controller.AdministradorController;
 import controller.AlunoController;
 import controller.FactoryController;
@@ -13,7 +11,6 @@ import util.Log;
 import model.Aluno;
 import model.FactoryClasses;
 import model.Professor;
-import model.Treino;
 
 /**
  * A classe {@code AcademiaView} é responsável por exibir informações sobre
@@ -41,10 +38,13 @@ public class AcademiaView {
         AdministradorController controllerAdministrador = factoryController.criarAdministradorController();
 
         controllerAdministrador
-                .cadastrar(factoryClasses.criarAdministrador(0, "admin", "admin", null, null, null, null, "admin", null));
-        controllerAluno.cadastrar(factoryClasses.ciarAluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false,
-                null, 0, null, null));
-        controllerProfessor.cadastrar(factoryClasses.criarProfessor(0, "professor", "professor", null, null, null, null, "professor", null));
+                .cadastrar(
+                        factoryClasses.criarAdministrador(0, "admin", "admin", null, null, null, null, "admin", null));
+        controllerAluno
+                .cadastrar(factoryClasses.ciarAluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false,
+                        null, 0, null, null));
+        controllerProfessor.cadastrar(
+                factoryClasses.criarProfessor(0, "professor", "professor", null, null, null, null, "professor", null));
         controllerTreino.cadastrar(factoryClasses.criarTreino("treino", null));
 
         System.out.println(controllerProfessor);
@@ -125,12 +125,13 @@ public class AcademiaView {
                 case 1:
                     Log.gravar("Login " + aluno.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + aluno.getNome());
-                    sairPrincipal = MenuAluno.menuPrincipal(aluno);
+                    sairPrincipal = MenuAluno.exibirMenuPrincipal(aluno);
                     break;
                 case 2:
                     Log.gravar("Login " + professor.getNome());
                     System.out.println("\n\nSeja Bem Vindo " + professor.getNome());
-                    sairPrincipal = MenuProfessor.exibirMenuPrincipal(controllerTreino, controllerAluno, factoryClasses);
+                    sairPrincipal = MenuProfessor.exibirMenuPrincipal(controllerTreino, controllerAluno,
+                            factoryClasses);
                     break;
                 case 3:
                     Log.gravar("Login " + administrador.getNome());

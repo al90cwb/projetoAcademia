@@ -83,5 +83,10 @@ public class TreinoController {
         treinos = SerTreino.ler();
     }
 
+    @Override
+    public String toString() {
+        return "TreinoController [treinos=" + treinos + ", listaBusca=" + listaBusca + "]";
+    }
+
 
 }

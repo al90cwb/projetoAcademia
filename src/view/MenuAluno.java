@@ -21,7 +21,7 @@ public abstract class MenuAluno extends MenuPadrao  {
         System.out.println("11 - SOLICITAR TREINO NOVO");
     }
 
-    public static boolean menuPrincipal(Aluno aluno) {
+    public static boolean exibirMenuPrincipal(Aluno aluno) {
 
         int opcao = 0;
         boolean sair = false;
@@ -30,7 +30,6 @@ public abstract class MenuAluno extends MenuPadrao  {
 
             exibirOpcoes();
             opcao = Entrada.entradaInt();
-            sair = false;
 
             switch (opcao) {
                 case 0:
@@ -46,17 +45,13 @@ public abstract class MenuAluno extends MenuPadrao  {
                     } else {
                         System.out.println("\nVocê não possui treino cadastrado");
                     }
-                    sair = false;
                     break;
                 case 11:
                     aluno.setSubstituirTreino(true);
                     System.out.println("\nSolictação de treino confirmada");
                     exibirAluno(aluno);
-                    sair = false;
                     break;
-
                 default:
-                    sair = false;
                     break;
             }
 
@@ -93,7 +88,6 @@ public abstract class MenuAluno extends MenuPadrao  {
                     break;
                 default:
                     System.out.println("Opção invalida");
-                    sair = false;
                     break;
             }
         } while (!sair);

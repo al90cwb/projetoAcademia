@@ -68,3 +68,14 @@ Falha no cadastro administrador
 Falha no cadastro aluno
 Falha no cadastro professor
 Cadastro treino treino
+Usuario Não encontrador
+Usuario Não encontrador
+Cadastro Adminstrador admin
+Cadastro Aluno aluno
+Cadastro Professor professor
+Cadastro treino treino
+Login admin
+Falha no cadastro administrador
+Falha no cadastro aluno
+Falha no cadastro professor
+Cadastro treino treino
