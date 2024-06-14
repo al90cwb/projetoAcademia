@@ -76,11 +76,11 @@ public class TreinoController {
     }
 
     public void salvarDados() throws Exception{
-        SerTreino.salvar(treinos);
+        SerTreino.salvarDados(treinos);
     }
 
     private void carregarDados() throws Exception{
-        treinos = SerTreino.ler();
+        treinos = SerTreino.carregarDados();
     }
 
     @Override

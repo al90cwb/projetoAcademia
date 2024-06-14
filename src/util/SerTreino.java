@@ -12,7 +12,7 @@ import model.Treino;
 public abstract class SerTreino {
     private static final File TREINO_ARQUIVO = new File("src/obj/treino.bin");
 
-    public static void salvar(List<Treino> lista) throws Exception {
+    public static void salvarDados(List<Treino> lista) throws Exception {
         try {
             TREINO_ARQUIVO.getParentFile().mkdirs();
 
@@ -25,7 +25,7 @@ public abstract class SerTreino {
         }
     }
 
-    public static List<Treino> ler() throws Exception {
+    public static List<Treino> carregarDados() throws Exception {
         try {
             if (TREINO_ARQUIVO.exists() && TREINO_ARQUIVO.isFile()) {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(TREINO_ARQUIVO));

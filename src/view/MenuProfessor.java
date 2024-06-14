@@ -60,6 +60,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                         MenuAluno.exibirCadastroTreinoDoAluno(controllerTreino, alunoBusca);
                     break;
                 default:
+                    System.err.println("Opção inválida !");
                     break;
             }
 
@@ -87,7 +88,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                     sair = true;
                     break;
                 case 1:
-                    exibirAlteracao(professor);
+                    exibirAlteracao(controller, professor);
                     break;
                 case 2:
                     exibirDeletar(controller, professor);
@@ -155,7 +156,7 @@ public abstract class MenuProfessor extends MenuPadrao {
 
     }
 
-    public static void exibirAlteracao(Professor professor) {
+    public static void exibirAlteracao(ProfessorController controller,Professor professor) throws Exception {
         if (professor == null) {
             System.out.println("Professor Não encontrado");
         } else {
@@ -182,6 +183,7 @@ public abstract class MenuProfessor extends MenuPadrao {
                 System.out.println("Altera a Data de Nascimento:");
                 professor.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 exibirProfessor(professor);
+                controller.salvarDados();
             } else {
                 System.out.println("Operação Cancelada, Professor não foi deletado:");
             }

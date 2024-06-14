@@ -32,25 +32,10 @@ public class AcademiaView {
         FactoryController factoryController = new FactoryController();
         FactoryClasses factoryClasses = new FactoryClasses();
 
-        TreinoController controllerTreino = factoryController.criarTreinoController();
         AlunoController controllerAluno = factoryController.ciarAlunoController();
+        TreinoController controllerTreino = factoryController.criarTreinoController();
         ProfessorController controllerProfessor = factoryController.criarProfessorController();
         AdministradorController controllerAdministrador = factoryController.criarAdministradorController();
-
-        controllerAdministrador
-                .cadastrar(
-                        factoryClasses.criarAdministrador(0, "admin", "admin", null, null, null, null, "admin", null));
-        controllerAluno
-                .cadastrar(factoryClasses.ciarAluno(0, "aluno", "aluno", null, null, null, null, "aluno", null, false,
-                        null, 0, null, null));
-        controllerProfessor.cadastrar(
-                factoryClasses.criarProfessor(0, "professor", "professor", null, null, null, null, "professor", null));
-        controllerTreino.cadastrar(factoryClasses.criarTreino("treino", null));
-
-        System.out.println(controllerProfessor);
-        System.out.println(controllerAluno);
-        System.out.println(controllerAdministrador);
-        System.out.println(controllerTreino);
 
         String cpf, senha;
         Professor professor = null;

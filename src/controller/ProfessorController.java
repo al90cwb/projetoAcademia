@@ -38,8 +38,8 @@ public class ProfessorController {
         if (buscaId(professor.getId()) == null) {
             professor.setId(criarID());
             professores.add(professor);
-            Log.gravar("Cadastro Professor " +professor.getNome());
-        }else{
+            Log.gravar("Cadastro Professor " + professor.getNome());
+        } else {
             Log.gravar("Falha no cadastro professor");
         }
         salvarDados();
@@ -76,12 +76,12 @@ public class ProfessorController {
         return null;
     }
 
-    public void salvarDados() throws Exception{
-        SerProfessor.salvar(professores);
+    public void salvarDados() throws Exception {
+        SerProfessor.salvarDados(professores);
     }
 
-    private void carregarDados() throws Exception{
-        professores.addAll(SerProfessor.ler());
+    private void carregarDados() throws Exception {
+        professores.addAll(SerProfessor.carregarDados());
     }
 
 }

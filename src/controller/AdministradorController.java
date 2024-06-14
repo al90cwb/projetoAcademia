@@ -79,11 +79,11 @@ public class AdministradorController {
     }
 
     public void salvarDados() throws Exception{
-        SerAdministrador.salvar(administradores);
+        SerAdministrador.salvarDados(administradores);
     }
 
     private void carregarDados() throws Exception{
-        administradores = SerAdministrador.ler();
+        administradores = SerAdministrador.carre();
     }
 
 }

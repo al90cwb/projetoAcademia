@@ -98,6 +98,7 @@ public abstract class MenuAdministrador extends MenuPadrao {
                     exibirOpcaoAlteracao(controllerAdministrador, administradorBusca);
                     break;
                 default:
+                    System.err.println("Opção inválida !");
                     break;
             }
 
@@ -126,7 +127,7 @@ public abstract class MenuAdministrador extends MenuPadrao {
                     sair = true;
                     break;
                 case 1:
-                    exibirAlteracao(administrador);
+                    exibirAlteracao(controller,administrador);
                     sair = true;
                     break;
                 case 2:
@@ -195,9 +196,9 @@ public abstract class MenuAdministrador extends MenuPadrao {
 
     }
 
-    public static void exibirAlteracao(Administrador administrador) {
+    public static void exibirAlteracao(AdministradorController controller,Administrador administrador) throws Exception {
         if (administrador == null) {
-            System.out.println("Professor Não encontrado");
+            System.out.println("Administrador Não encontrado");
         } else {
             System.out.println("Você deseja alterar o administrador?");
             exibirAdministrador(administrador);
@@ -222,6 +223,7 @@ public abstract class MenuAdministrador extends MenuPadrao {
                 System.out.println("Altera a Data de Nascimento:");
                 administrador.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 exibirAdministrador(administrador);
+                controller.salvarDados();
             } else {
                 System.out.println("Operação Cancelada, Administrador não foi deletado:");
             }

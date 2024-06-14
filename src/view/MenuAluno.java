@@ -52,6 +52,7 @@ public abstract class MenuAluno extends MenuPadrao  {
                     exibirAluno(aluno);
                     break;
                 default:
+                    System.err.println("Opção inválida !");
                     break;
             }
 
@@ -79,7 +80,7 @@ public abstract class MenuAluno extends MenuPadrao  {
                     sair = true;
                     break;
                 case 1:
-                    exibirAlteracao(aluno);
+                    exibirAlteracao(controller,aluno);
                     sair = true;
                     break;
                 case 2:
@@ -196,7 +197,7 @@ public abstract class MenuAluno extends MenuPadrao  {
         MenuTreino.exibirTreino(aluno.getTreino());
     }
 
-    public static void exibirAlteracao(Aluno aluno) {
+    public static void exibirAlteracao(AlunoController controller,Aluno aluno) throws Exception {
         if (aluno == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -223,6 +224,7 @@ public abstract class MenuAluno extends MenuPadrao  {
                 System.out.println("Altera a Data de Nascimento:");
                 aluno.setDataNascimento(LocalDate.parse(Entrada.entradaData(), Entrada.getFormatoData()));
                 exibirAluno(aluno);
+                controller.salvarDados();
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
             }
