@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class SerProfessor {
     private static final File PROFESSOR_ARQUIVO = new File("src/obj/professor.bin");
 
-    public static <T> void salvar(List<T> lista) throws Exception {
+    public static <T> void salvarDados(List<T> lista) throws Exception {
         try {
             PROFESSOR_ARQUIVO.getParentFile().mkdirs();
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(PROFESSOR_ARQUIVO));
@@ -22,7 +22,7 @@ public abstract class SerProfessor {
         }
     }
 
-    public static <T> List<T> ler() throws Exception {
+    public static <T> List<T> carregarDados() throws Exception {
         try {
             if (PROFESSOR_ARQUIVO.exists() && PROFESSOR_ARQUIVO.isFile()) {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(PROFESSOR_ARQUIVO));

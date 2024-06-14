@@ -1,5 +1,6 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -10,7 +11,7 @@ import java.time.LocalDate;
  * @since 11/06/2024
  */
 
-public abstract class Usuario implements Comparable<Usuario> {
+public abstract class Usuario implements Comparable<Usuario>,Serializable {
     private int id;
     private String nome, cpf, endereco, celular, email, sexo, senha;
     private LocalDate dataNascimento;

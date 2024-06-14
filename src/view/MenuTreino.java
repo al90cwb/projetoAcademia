@@ -64,6 +64,7 @@ public class MenuTreino extends MenuPadrao  {
                     System.out.println("----------------\n\n");
                     break;
                 default:
+                    System.err.println("Opção inválida !");
                     break;
             }
 
@@ -90,7 +91,7 @@ public class MenuTreino extends MenuPadrao  {
                     sair = true;
                     break;
                 case 1:
-                    exibirAlterar(treino, factory);
+                    exibirAlterar(controller,treino, factory);
                     sair = true;
                     break;
                 case 2:
@@ -121,7 +122,7 @@ public class MenuTreino extends MenuPadrao  {
         return cadastro;
     }
 
-    public static void exibirAlterar(Treino treino, FactoryClasses factory) {
+    public static void exibirAlterar(TreinoController controller,Treino treino, FactoryClasses factory) throws Exception {
         if (treino == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -137,6 +138,7 @@ public class MenuTreino extends MenuPadrao  {
                 treino.setTipoTreino(Entrada.entradaTipoTreino());
                 exibirCadastroExercicio(treino, factory);
                 exibirTreino(treino);
+                controller.salvarDados();
             } else {
                 System.out.println("Operação Cancelada, Exercicio não foi deletado:");
             }

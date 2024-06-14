@@ -1,81 +1,17 @@
-Cadastro Adminstrador admin
-Cadastro Professor professor
 Cadastro Aluno aluno
 Cadastro Adminstrador admin
-Cadastro Professor professor
-Cadastro Aluno aluno
-Cadastro Aluno Alan
-Falha no cadastro administrador
-Falha no cadastro professor
-Falha no cadastro aluno
-Cadastro Adminstrador admin
-Cadastro Professor professor
-Cadastro Aluno aluno
-Cadastro Adminstrador admin
-Cadastro Professor professor
-Cadastro Adminstrador admin
-Cadastro Professor professor
-Falha no cadastro administrador
-Cadastro Aluno null
-Falha no cadastro professor
-Cadastro treino null
-Cadastro Adminstrador null
-Cadastro Aluno null
-Cadastro Professor null
-Cadastro treino null
-Cadastro Adminstrador null
-Cadastro Aluno null
-Cadastro Professor null
-Cadastro treino null
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
-Cadastro treino null
-Cadastro Adminstrador null
-Cadastro Aluno null
-Cadastro Professor null
-Cadastro treino null
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
-Cadastro treino null
-Cadastro Adminstrador null
-Cadastro Aluno null
-Cadastro Professor null
-Cadastro treino null
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
-Cadastro treino null
-Cadastro Adminstrador admin
-Cadastro Aluno aluno
-Cadastro Professor professor
-Cadastro treino treino
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
-Cadastro treino treino
-Cadastro Adminstrador admin
-Cadastro Aluno aluno
-Cadastro Professor professor
-Cadastro treino treino
-Cadastro Adminstrador admin
-Cadastro Aluno aluno
 Cadastro Professor professor
 Cadastro treino treino
 Login admin
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
-Cadastro treino treino
-Usuario Não encontrador
-Usuario Não encontrador
-Cadastro Adminstrador admin
 Cadastro Aluno aluno
+Cadastro Adminstrador admin
 Cadastro Professor professor
 Cadastro treino treino
 Login admin
-Falha no cadastro administrador
-Falha no cadastro aluno
-Falha no cadastro professor
+Cadastro Aluno aluno
+Cadastro Adminstrador admin
+Cadastro Professor professor
 Cadastro treino treino
+Login admin
+Login admin
+Login admin

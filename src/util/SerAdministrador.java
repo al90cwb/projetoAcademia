@@ -12,7 +12,7 @@ import model.Administrador;
 public abstract class SerAdministrador {
     private static final File ADMINISTRADOR_ARQUIVO = new File("src/obj/administrador.bin");
 
-    public static void salvar(List<Administrador> lista) throws Exception {
+    public static void salvarDados(List<Administrador> lista) throws Exception {
         try {
             ADMINISTRADOR_ARQUIVO.getParentFile().mkdirs();
 
@@ -25,7 +25,7 @@ public abstract class SerAdministrador {
         }
     }
 
-    public static List<Administrador> ler() throws Exception {
+    public static List<Administrador> carre() throws Exception {
         try {
             if (ADMINISTRADOR_ARQUIVO.exists() && ADMINISTRADOR_ARQUIVO.isFile()) {
                 ObjectInputStream ois = new ObjectInputStream(new FileInputStream(ADMINISTRADOR_ARQUIVO));

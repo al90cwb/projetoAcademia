@@ -78,11 +78,11 @@ public class AlunoController {
     }
 
     public void salvarDados() throws Exception{
-        SerAluno.salvar(alunos);
+        SerAluno.salvarDados(alunos);
     }
 
     private void carregarDados() throws Exception{
-        alunos = SerAluno.ler();
+        alunos = SerAluno.carregarDados();
     }
 
 }
