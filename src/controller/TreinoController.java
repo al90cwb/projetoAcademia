@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import model.Exercicio;
 import model.Treino;
 import util.Log;
 import util.SerTreino;

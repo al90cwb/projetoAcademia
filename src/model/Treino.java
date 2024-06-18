@@ -3,6 +3,8 @@ package model;
 import java.io.Serializable;
 import java.util.List;
 
+import util.SerTreino;
+
 /**
  * Classe para objetos do tipo {@code Treino}, onde serão contidos, valores e
  * métodos para o mesmo.

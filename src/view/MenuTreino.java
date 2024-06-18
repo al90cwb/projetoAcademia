@@ -16,7 +16,7 @@ import util.Entrada;
  * @since 11/06/2024
  */
 
-public class MenuTreino extends MenuPadrao  {
+public class MenuTreino extends MenuPadrao {
 
     public static void opcoesCadastroTreino() {
         System.out.println("\n\n");
@@ -53,14 +53,15 @@ public class MenuTreino extends MenuPadrao  {
                     exibirTreino(busca);
                     exibirOpcaoAlteracao(controller, busca, factory);
                     break;
-
                 case 3:
-                    System.out.println("Lista de TREINOS Cadastrados");
+                    System.out.println("Lista de Treinos Cadastrados");
                     exibirTreinos(controller.getTreinos());
                     System.out.println("----------------\n\n");
                     break;
                 case 4:
-                    exibirTreino(exibirBuscar(controller));
+                    busca = exibirBuscar(controller);
+                    exibirTreino(busca);
+                    controller.salvarDados();
                     System.out.println("----------------\n\n");
                     break;
                 default:
@@ -91,7 +92,7 @@ public class MenuTreino extends MenuPadrao  {
                     sair = true;
                     break;
                 case 1:
-                    exibirAlterar(controller,treino, factory);
+                    exibirAlterar(controller, treino, factory);
                     sair = true;
                     break;
                 case 2:
@@ -122,7 +123,8 @@ public class MenuTreino extends MenuPadrao  {
         return cadastro;
     }
 
-    public static void exibirAlterar(TreinoController controller,Treino treino, FactoryClasses factory) throws Exception {
+    public static void exibirAlterar(TreinoController controller, Treino treino, FactoryClasses factory)
+            throws Exception {
         if (treino == null) {
             System.out.println("Aluno Não encontrado");
         } else {
@@ -149,9 +151,8 @@ public class MenuTreino extends MenuPadrao  {
 
         String nomeExercicio, intervalo, repticoes;
         boolean sair = false;
+        treino.limparExercicios();
         do {
-            treino.limparExercicios();
-            Entrada.limparBuffer();
             System.out.println("\n\n");
             System.out.println("Adicionar Exercicio");
             System.out.println("Nome do Exercicio");
@@ -162,6 +163,8 @@ public class MenuTreino extends MenuPadrao  {
             repticoes = Entrada.entradaString();
             System.out.println("Deseja adicioanr mais exercicios?");
             sair = !exibirConfirmar();
+            treino.adicionarExercicio(factory.criarExercicio(nomeExercicio, intervalo, repticoes));
+
         } while (!sair);
     }
 
@@ -221,10 +224,12 @@ public class MenuTreino extends MenuPadrao  {
 
     public static void exibirTreino(Treino treino) {
         if (treino != null) {
+            System.out.println("Nome do Treino: " + treino.getNome());
             List<Exercicio> exercicios = treino.getExercicios();
+            System.out.println("Nome do Exercicio/ Repetições / Intervalo.");
             for (Exercicio exercicio : exercicios) {
-                System.out.println("Nome do Exercicio:" + exercicio.getNomeExercicio() + ", repetições:"
-                        + exercicio.getRepeticoes() + ", intervalo:" + exercicio.getIntervalo() + ".");
+                System.out.println(exercicio.getNomeExercicio() + " / " + exercicio.getRepeticoes() + " / "
+                        + exercicio.getIntervalo() + ".");
             }
         } else {
             System.out.println("Lista de exercicios vazia");
