@@ -96,7 +96,7 @@ public abstract class Entrada {
                 numero = in.nextFloat();
                 entradaValida = true; 
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                System.err.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine(); 
             }
         }
@@ -123,7 +123,7 @@ public abstract class Entrada {
                 frase = in.nextLine();
                 entradaValida = true;
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                System.err.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine();
             }
         }
@@ -138,7 +138,7 @@ public abstract class Entrada {
                 frase = in.nextLine();
                 entradaValida = true;
             } catch (InputMismatchException e) {
-                System.out.println("Entrada inválida. Por favor, digite um número válido.");
+                System.err.println("Entrada inválida. Por favor, digite um número válido.");
                 in.nextLine();
             }
         }
@@ -164,10 +164,10 @@ public abstract class Entrada {
                     }
                 }
                 if (!formatoCorreto) {
-                    System.out.println("Formato inválido. Por favor, digite uma data válida no formato (dd/mm/aaaa).");
+                    System.err.println("Formato inválido. Por favor, digite uma data válida no formato (dd/mm/aaaa).");
                 }
             } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-                System.out.println("Formato inválido. Por favor, digite uma data válida no formato (dd/mm/aaaa).");
+                System.err.println("Formato inválido. Por favor, digite uma data válida no formato (dd/mm/aaaa).");
             }
         }
 
