@@ -47,11 +47,13 @@ public class MenuTreino extends MenuPadrao {
                 case 1:
                     System.out.println("Cadastrar novo Treino");
                     exibirCadastroTreino(controller, factory);
+                    controller.salvarDados();
                     break;
                 case 2:
                     busca = exibirBuscar(controller);
                     exibirTreino(busca);
                     exibirOpcaoAlteracao(controller, busca, factory);
+                    controller.salvarDados();
                     break;
                 case 3:
                     System.out.println("Lista de Treinos Cadastrados");
@@ -61,7 +63,6 @@ public class MenuTreino extends MenuPadrao {
                 case 4:
                     busca = exibirBuscar(controller);
                     exibirTreino(busca);
-                    controller.salvarDados();
                     System.out.println("----------------\n\n");
                     break;
                 default:

@@ -21,7 +21,7 @@ public abstract class MenuAluno extends MenuPadrao  {
         System.out.println("11 - SOLICITAR TREINO NOVO");
     }
 
-    public static boolean exibirMenuPrincipal(Aluno aluno) {
+    public static boolean exibirMenuPrincipal(Aluno aluno,AlunoController controller) throws Exception {
 
         int opcao = 0;
         boolean sair = false;
@@ -50,6 +50,7 @@ public abstract class MenuAluno extends MenuPadrao  {
                     aluno.setSubstituirTreino(true);
                     System.out.println("\nSolictação de treino confirmada");
                     exibirAluno(aluno);
+                    controller.salvarDados();
                     break;
                 default:
                     System.err.println("Opção inválida !");
