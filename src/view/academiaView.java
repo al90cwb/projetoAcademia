@@ -1,21 +1,16 @@
 package view;
 
-import java.time.LocalDate;
-import java.util.Arrays;
-
 import controller.AdministradorController;
 import controller.AlunoController;
 import controller.FactoryController;
 import controller.ProfessorController;
 import controller.TreinoController;
 import model.Administrador;
-import util.Entrada;
-import util.Log;
 import model.Aluno;
-import model.Exercicio;
 import model.FactoryClasses;
 import model.Professor;
-import model.Treino;
+import util.Entrada;
+import util.Log;
 
 /**
  * A classe {@code AcademiaView} é responsável por exibir informações sobre
@@ -31,7 +26,7 @@ import model.Treino;
  * @since 2024-06-07
  */
 
-public class AcademiaView {
+public class academiaView {
     public static void main(String[] args) throws Exception {
 
         FactoryController factoryController = new FactoryController();
